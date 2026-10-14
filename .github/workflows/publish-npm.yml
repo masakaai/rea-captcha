@@ -23,8 +23,8 @@ jobs:
         run: npm install --global npm@11.16.0
       - run: npm ci
       - run: node scripts/verify-release-tag.mjs "${{ github.event.release.tag_name }}"
-      - run: npm run check
       - run: npx playwright install --with-deps chromium
+      - run: npm run check
       - run: npm run test:web-demo
       - run: npm run test:package
       - name: Publish with npm Trusted Publishing and provenance
