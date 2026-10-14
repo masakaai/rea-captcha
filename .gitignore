@@ -1,0 +1,10 @@
+node_modules/
+dist/
+coverage/
+.rea-captcha/
+*.log
+__pycache__/
+*.py[cod]
+.venv/
+.DS_Store
+/skills/

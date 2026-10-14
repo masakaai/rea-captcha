@@ -1,0 +1,23 @@
+name: Provider web demos
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 3 * * 3'
+
+permissions:
+  contents: read
+
+jobs:
+  live-provider-validation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24.11.0
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:web-demo

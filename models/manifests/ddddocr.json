@@ -1,0 +1,11 @@
+{
+  "id": "ddddocr-optional",
+  "upstream": "https://github.com/sml2h3/ddddocr",
+  "reviewedCommit": "c40f56f95412e10bcb9bd0bd24411e92f896d238",
+  "reviewedVersion": "1.6.1",
+  "codeLicense": "MIT",
+  "weightLicense": "No separate weight license found in the reviewed root license; review required before redistribution.",
+  "redistributed": false,
+  "required": false,
+  "runtime": "Python optional extra"
+}

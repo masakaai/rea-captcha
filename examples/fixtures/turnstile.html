@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+  <head><meta charset="utf-8"><title>Owned Turnstile fixture</title></head>
+  <body>
+    <main>
+      <h1>Checkout verification</h1>
+      <div class="cf-turnstile">Synthetic verification fixture</div>
+      <button id="complete" type="button">Complete as human</button>
+    </main>
+    <script>
+      document.querySelector('#complete').addEventListener('click', () => {
+        document.querySelector('.cf-turnstile').remove();
+        document.querySelector('main').dataset.captchaStatus = 'passed';
+      });
+    </script>
+  </body>
+</html>
