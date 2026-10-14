@@ -21,7 +21,7 @@
   <a href="https://github.com/masakaai/rea-captcha/actions/workflows/web-demo.yml"><img alt="Provider web demos" src="https://github.com/masakaai/rea-captcha/actions/workflows/web-demo.yml/badge.svg"></a>
   <a href="https://rea-captcha.vercel.app"><img alt="Live demo" src="https://img.shields.io/badge/live_demo-four_cases-157a73.svg"></a>
   <a href="https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.masakaai%2Frea-captcha"><img alt="MCP Registry" src="https://img.shields.io/badge/MCP_Registry-io.github.masakaai%2Frea--captcha-5c6ac4.svg"></a>
-  <a href="docs/mcp-tools.md"><img alt="MCP tools" src="https://img.shields.io/badge/MCP_tools-5-157a73.svg"></a>
+  <a href="docs/mcp-tools.md"><img alt="MCP tools" src="https://img.shields.io/badge/MCP_tools-6-157a73.svg"></a>
   <a href="https://skills.sh/masakaai/rea-captcha/rea-captcha"><img alt="skills.sh" src="https://skills.sh/b/masakaai/rea-captcha"></a>
   <a href="https://discord.gg/8Ybc32NcMt"><img alt="Discord" src="https://img.shields.io/discord/1555850967147356162?label=Discord&amp;logo=discord&amp;color=5865F2"></a>
   <a href="LICENSE"><img alt="license" src="https://img.shields.io/badge/license-MIT-157a73.svg"></a>
