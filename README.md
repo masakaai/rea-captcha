@@ -28,6 +28,8 @@ rea-captcha is an independent project and is not affiliated with [morluto/rea](h
 
 Node.js 22.19+, 24.11+, or 26+ is required. Python 3.11+ is needed only for browser-use or local OCR.
 
+> Registry status: the repository and release workflow are ready, but the one-time `0.1.0` npm owner bootstrap is still pending. Until the npm badge above resolves, the command below returns `E404`; maintainers should follow the [bootstrap procedure](docs/releasing.md#one-time-registry-bootstrap).
+
 ```sh
 npm install rea-captcha
 npx rea-captcha setup
