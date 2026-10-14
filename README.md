@@ -19,6 +19,7 @@
   <a href="https://www.npmjs.com/package/rea-captcha"><img alt="npm" src="https://img.shields.io/npm/v/rea-captcha.svg"></a>
   <a href="https://github.com/masakaai/rea-captcha/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/masakaai/rea-captcha/actions/workflows/ci.yml/badge.svg"></a>
   <a href="https://github.com/masakaai/rea-captcha/actions/workflows/web-demo.yml"><img alt="Provider web demos" src="https://github.com/masakaai/rea-captcha/actions/workflows/web-demo.yml/badge.svg"></a>
+  <a href="https://rea-captcha.vercel.app"><img alt="Live demo" src="https://img.shields.io/badge/live_demo-four_cases-157a73.svg"></a>
   <a href="https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.masakaai%2Frea-captcha"><img alt="MCP Registry" src="https://img.shields.io/badge/MCP_Registry-io.github.masakaai%2Frea--captcha-5c6ac4.svg"></a>
   <a href="docs/mcp-tools.md"><img alt="MCP tools" src="https://img.shields.io/badge/MCP_tools-5-157a73.svg"></a>
   <a href="https://skills.sh/masakaai/rea-captcha/rea-captcha"><img alt="skills.sh" src="https://skills.sh/b/masakaai/rea-captcha"></a>
@@ -28,6 +29,7 @@
 
 <p align="center">
   <a href="#install">Install</a> ·
+  <a href="https://rea-captcha.vercel.app">Live demo</a> ·
   <a href="#agentic-verification-matrix">Agentic matrix</a> ·
   <a href="#how-it-works">How it works</a> ·
   <a href="docs/mcp-tools.md">MCP catalog</a> ·
@@ -38,6 +40,8 @@
 rea-captcha detects browser verification challenges, pauses an agent before repeated actions make things worse, preserves the original browser session for visible human handoff, verifies fresh clearance, and resumes the same task. It ships a TypeScript SDK, local stdio MCP server, generic Playwright/CDP integration, a browser-use plugin, a Vercel-compatible Agent Skill, and optional authorized-origin local OCR.
 
 > **Official source:** install from [`masakaai/rea-captcha`](https://github.com/masakaai/rea-captcha) and npm package [`rea-captcha`](https://www.npmjs.com/package/rea-captcha). The project has no hosted solver, telemetry, stealth claim, or dependency on Jet Browser. Jet Browser remains an optional adapter for teams that already use it.
+
+<p align="center"><a href="https://rea-captcha.vercel.app"><strong>Run the four live verification cases</strong></a></p>
 
 <h2 align="center">Agentic verification matrix</h2>
 

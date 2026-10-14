@@ -86,37 +86,39 @@ const passedPage = `<!doctype html>
 <h1>Verification complete</h1><p>The protected demo action was accepted by its validation boundary.</p>
 <a href="/">Back to all cases</a></main></body></html>`;
 
-export async function startDemoServer({ port = 4173, host = '127.0.0.1' } = {}) {
-  const server = createServer(async (request, response) => {
-    try {
-      const url = new URL(request.url ?? '/', `http://${request.headers.host ?? `${host}:${port}`}`);
-      if (request.method === 'GET' && url.pathname === '/passed') {
-        send(response, 200, passedPage, 'text/html; charset=utf-8');
-        return;
-      }
-      if (request.method === 'POST' && url.pathname.startsWith('/verify/')) {
-        const provider = url.pathname.slice('/verify/'.length);
-        const values = new URLSearchParams(await readBody(request));
-        const result = provider === 'image-text'
-          ? { success: values.get('captcha_code')?.trim().toUpperCase() === 'LOCAL42', errors: [] }
-          : provider in testCredentials
-            ? await verifyVendor(provider, values)
-            : { success: false, errors: ['unknown-provider'] };
-        send(response, result.success ? 200 : 403, JSON.stringify(result));
-        return;
-      }
-      if (request.method !== 'GET' || !files.has(url.pathname)) {
-        send(response, 404, JSON.stringify({ success: false, errors: ['not-found'] }));
-        return;
-      }
-      const name = files.get(url.pathname);
-      const body = await readFile(join(root, name), 'utf8');
-      response.setHeader('set-cookie', 'rea_demo_session=kept; Path=/; SameSite=Lax');
-      send(response, 200, body, contentTypes.get(extname(name)) ?? 'application/octet-stream');
-    } catch (error) {
-      send(response, 500, JSON.stringify({ success: false, errors: [error instanceof Error ? error.message : String(error)] }));
+export async function handleDemoRequest(request, response) {
+  try {
+    const url = new URL(request.url ?? '/', `http://${request.headers.host ?? 'localhost'}`);
+    if (request.method === 'GET' && url.pathname === '/passed') {
+      send(response, 200, passedPage, 'text/html; charset=utf-8');
+      return;
     }
-  });
+    if (request.method === 'POST' && url.pathname.startsWith('/verify/')) {
+      const provider = url.pathname.slice('/verify/'.length);
+      const values = new URLSearchParams(await readBody(request));
+      const result = provider === 'image-text'
+        ? { success: values.get('captcha_code')?.trim().toUpperCase() === 'LOCAL42', errors: [] }
+        : provider in testCredentials
+          ? await verifyVendor(provider, values)
+          : { success: false, errors: ['unknown-provider'] };
+      send(response, result.success ? 200 : 403, JSON.stringify(result));
+      return;
+    }
+    if (request.method !== 'GET' || !files.has(url.pathname)) {
+      send(response, 404, JSON.stringify({ success: false, errors: ['not-found'] }));
+      return;
+    }
+    const name = files.get(url.pathname);
+    const body = await readFile(join(root, name), 'utf8');
+    response.setHeader('set-cookie', 'rea_demo_session=kept; Path=/; SameSite=Lax');
+    send(response, 200, body, contentTypes.get(extname(name)) ?? 'application/octet-stream');
+  } catch (error) {
+    send(response, 500, JSON.stringify({ success: false, errors: [error instanceof Error ? error.message : String(error)] }));
+  }
+}
+
+export async function startDemoServer({ port = 4173, host = '127.0.0.1' } = {}) {
+  const server = createServer(handleDemoRequest);
   await new Promise((resolve, reject) => {
     server.once('error', reject);
     server.listen(port, host, resolve);

@@ -77,7 +77,7 @@
   ],
   "scripts": {
     "build": "node scripts/build-skill.mjs && tsc -p tsconfig.build.json",
-    "check": "npm run typecheck && npm run test && npm run test:python && npm run docs:check",
+    "check": "npm run typecheck && npm run test && npm run test:python && npm run test:vercel-demo && npm run docs:check",
     "docs:check": "node scripts/check-doc-links.mjs",
     "demo:web": "node examples/web-demo/server.mjs",
     "mcp-registry:check": "node scripts/verify-mcp-registry.mjs",
@@ -88,6 +88,7 @@
     "test:python": "python3 -m unittest discover -s python/tests -p 'test_*.py' -v",
     "test:browser": "vitest run tests/playwright-handoff.test.ts",
     "test:package": "node scripts/verify-package-install.mjs",
+    "test:vercel-demo": "node scripts/verify-vercel-demo.mjs",
     "test:web-demo": "npm run build && node scripts/verify-web-demo.mjs",
     "typecheck": "tsc --noEmit"
   },

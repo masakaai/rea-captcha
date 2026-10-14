@@ -27,6 +27,8 @@ The Playwright acceptance test also verifies that the page title and a context c
 
 `examples/web-demo` contains four browser pages and a local validation server:
 
+The same handler is deployed at [`https://rea-captcha.vercel.app`](https://rea-captcha.vercel.app). The public deployment uses only the vendors' documented non-production credentials and the owned `LOCAL42` boundary; it is a verification-lifecycle demo, not a production challenge or solver.
+
 | Page | Real boundary | Completion proof |
 |---|---|---|
 | `recaptcha.html` | Google-hosted reCAPTCHA v2 script with Google's official test keypair | Token is posted to Google's `siteverify`; only `success: true` reaches the passed page |
