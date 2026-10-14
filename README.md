@@ -209,7 +209,7 @@ Join the [MASAKA Discord](https://discord.gg/8Ybc32NcMt), then use the dedicated
 
 rea-captcha is for owned or explicitly authorized workflows. It does not promise that a third-party service will accept automation, generate server-signed challenge tokens, or bypass interactive protection. Commercial solver APIs, credential transfer, stealth claims, and automatic completion of third-party interactive challenges are outside scope.
 
-rea-captcha is independent and is not affiliated with [morluto/rea](https://github.com/morluto/rea). Its layered organization, local-first operation, setup planning, and provider boundaries are intentionally inspired by REA's engineering style.
+Inspired by [morluto/rea](https://github.com/morluto/rea).
 
 ## License
 
