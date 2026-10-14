@@ -29,3 +29,7 @@ jobs:
       - run: npm run test:package
       - name: Publish with npm Trusted Publishing and provenance
         run: npm publish
+        env:
+          # Used only for the initial package bootstrap; npm prefers OIDC once
+          # the Trusted Publisher relationship is configured.
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
