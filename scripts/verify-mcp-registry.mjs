@@ -1,8 +1,6 @@
-import { execFile } from 'node:child_process';
 import { readFile } from 'node:fs/promises';
-import { promisify } from 'node:util';
+import { fetchPublishedPackage } from './npm-registry-visibility.mjs';
 
-const execFileAsync = promisify(execFile);
 const packageJson = JSON.parse(await readFile(new URL('../package.json', import.meta.url), 'utf8'));
 const serverJson = JSON.parse(await readFile(new URL('../server.json', import.meta.url), 'utf8'));
 const failures = [];
@@ -23,11 +21,7 @@ else {
 
 if (process.argv.includes('--published')) {
   try {
-    const { stdout } = await execFileAsync('npm', ['view', `${packageJson.name}@${packageJson.version}`, '--json'], {
-      timeout: 30_000,
-      maxBuffer: 1024 * 1024
-    });
-    const publishedPackage = JSON.parse(stdout);
+    const publishedPackage = await fetchPublishedPackage(`${packageJson.name}@${packageJson.version}`);
     if (publishedPackage.version !== packageJson.version) {
       failures.push('The exact npm version is not visible in the public registry.');
     }
