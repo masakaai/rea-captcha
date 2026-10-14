@@ -1,6 +1,7 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width">
-<title>Google verification demo</title><link rel="stylesheet" href="/styles.css"><script src="https://www.google.com/recaptcha/api.js" async defer></script></head><body>
-<main class="card"><p class="eyebrow">CASE 1 · OFFICIAL TEST MODE</p><h1>Google checkbox verification</h1>
-<p>This page uses Google's documented v2 test sitekey. It is never a production credential.</p>
+<title>Google reCAPTCHA · rea-captcha</title><link rel="stylesheet" href="/styles.css"><script src="https://www.google.com/recaptcha/api.js" async defer></script></head>
+<body class="case-page"><main class="case-shell"><nav class="case-nav"><a class="mini-mark" href="/">REA CAPTCHA</a><span class="status-pill">agent-ready test mode</span></nav>
+<section class="card"><p class="eyebrow">CASE 01 · GOOGLE</p><h1>reCAPTCHA v2 checkbox</h1>
+<p>Google's documented test sitekey lets an agent exercise the browser interaction safely. The protected action still waits for Google's server-side verification result.</p>
 <form data-provider="recaptcha"><div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
-<button type="submit">Validate protected action</button><p data-status aria-live="polite"></p></form></main><script type="module" src="/demo.js"></script></body></html>
+<button type="submit">Validate protected action <span>→</span></button><p data-status aria-live="polite"></p></form></section></main><script type="module" src="/demo.js"></script></body></html>

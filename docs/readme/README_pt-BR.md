@@ -2,11 +2,11 @@
 
 # rea-captcha
 
-**Detecção local de desafios de verificação e transferência humana segura para agentes de navegador.**
+**Ações de verificação autorizadas na sessão de navegador que o agente já usa.**
 
 [![npm](https://img.shields.io/npm/v/rea-captcha.svg)](https://www.npmjs.com/package/rea-captcha) [![MCP Registry](https://img.shields.io/badge/MCP_Registry-rea--captcha-5c6ac4.svg)](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.masakaai%2Frea-captcha) [![skills.sh](https://skills.sh/b/masakaai/rea-captcha)](https://skills.sh/masakaai/rea-captcha/rea-captcha) [![Discord](https://img.shields.io/discord/1555850967147356162?label=Discord&logo=discord&color=5865F2)](https://discord.gg/8Ybc32NcMt)
 
-rea-captcha detecta barreiras de verificação, pausa o agente, preserva a sessão original do navegador para uma intervenção humana visível e retoma a mesma tarefa somente após obter nova evidência de aprovação. Inclui SDK TypeScript, servidor MCP stdio local, Playwright/CDP, browser-use, um Agent Skill compatível com Vercel Skills e OCR local opcional para origens autorizadas.
+rea-captcha evita que agentes de navegador como browser-use fiquem presos no meio de uma tarefa por causa de um CAPTCHA. Ele reutiliza a sessão Playwright/CDP já aberta; em testes autorizados ou páginas próprias, o agente conclui a interação e só continua após uma nova evidência do servidor.
 
 Jet Browser é um adaptador opcional, não uma dependência nem o runtime padrão. O projeto não oferece solver hospedado, telemetria ou promessa de evasão stealth.
 
@@ -50,9 +50,9 @@ Requer Node.js 22.19+, 24.11+ ou 26+. Após confirmação, `setup` cria uma conf
 
 ## Agentes e MCP
 
-O nome oficial é `io.github.masakaai/rea-captcha`; a inicialização sem configuração é `npx -y rea-captcha mcp --stateless`. Há cinco ferramentas: `captcha_analyze`, `captcha_inspect`, `captcha_handoff`, `captcha_wait` e `captcha_resume`. A primeira analisa em modo somente leitura evidências já obtidas pelo agente; as outras quatro mantêm a mesma sessão configurada.
+O nome oficial é `io.github.masakaai/rea-captcha`; a inicialização sem configuração é `npx -y rea-captcha mcp --stateless`. Há seis ferramentas: `captcha_analyze`, `captcha_inspect`, `captcha_complete`, `captcha_handoff`, `captcha_wait` e `captcha_resume`. `captcha_complete` só atua no navegador existente após validar política, origem e chave de teste documentada do provedor.
 
-O ciclo é `inspect → blocked → handoff → espera limitada → nova verificação → resume`. Valor desconhecido, evidência incompleta, tempo esgotado ou uma previsão OCR isolada nunca autorizam a retomada.
+O ciclo do agente é `inspect → agent-action → complete → nova verificação → resume`. Valor desconhecido, evidência incompleta, tempo esgotado ou uma previsão OCR isolada nunca autorizam a retomada.
 
 ## Escopo
 

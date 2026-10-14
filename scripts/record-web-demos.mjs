@@ -6,7 +6,7 @@ import { tmpdir } from 'node:os';
 import { ChallengeController, ChallengePolicy } from '../dist/index.js';
 import { PlaywrightChallengeAdapter } from '../dist/browser/playwright.js';
 import { startDemoServer } from '../examples/web-demo/server.mjs';
-import { launchBrowser, satisfyChallenge, submitChallenge, waitForChallenge, webDemoCases } from './web-demo-harness.mjs';
+import { launchBrowser, waitForChallenge, webDemoCases } from './web-demo-harness.mjs';
 
 const outputDirectory = resolve('docs/assets/demos');
 const run = (command, args) => new Promise((resolvePromise, reject) => {
@@ -19,9 +19,9 @@ const run = (command, args) => new Promise((resolvePromise, reject) => {
 
 const annotate = async (page, heading, detail) => {
   await page.evaluate(({ heading, detail }) => {
-    document.querySelector('#rea-captcha-proof')?.remove();
+    document.querySelector('#rea-proof')?.remove();
     const proof = document.createElement('aside');
-    proof.id = 'rea-captcha-proof';
+    proof.id = 'rea-proof';
     proof.setAttribute('aria-label', 'rea-captcha verification evidence');
     Object.assign(proof.style, {
       position: 'fixed', top: '18px', right: '18px', zIndex: '2147483647', width: '300px',
@@ -71,10 +71,20 @@ try {
     const page = await context.newPage();
     await page.goto(`${publicOrigin}${testCase.path}`, { waitUntil: 'domcontentloaded', timeout: 30_000 });
     const controller = new ChallengeController({
-      browser: new PlaywrightChallengeAdapter({ id: testCase.provider, page }),
+      browser: new PlaywrightChallengeAdapter({
+        id: testCase.provider,
+        page,
+        agentActions: {
+          authorizedOrigins: [publicOrigin],
+          allowProviderTestAutomation: true,
+          submitSelector: 'button[type="submit"]',
+          imageTextValue: 'LOCAL42'
+        }
+      }),
       policy: new ChallengePolicy({
         authorizedOrigins: [publicOrigin],
-        allowLocalImageText: testCase.provider === 'image-text'
+        allowLocalImageText: testCase.provider === 'image-text',
+        allowProviderTestAutomation: true
       })
     });
     const initial = await controller.inspect();
@@ -83,16 +93,13 @@ try {
     await annotate(page, '1 · CHALLENGE DETECTED', `${testCase.label} · ${initial.finding.kind}`);
     await page.screenshot({ path: join(frames, '00.png') });
 
-    await controller.handoff();
-    await annotate(page, '2 · HUMAN HANDOFF', 'Same browser page and session retained');
+    await annotate(page, '2 · AGENT ACTION', 'Authorized test interaction in the same browser session');
     await page.screenshot({ path: join(frames, '01.png') });
 
-    await satisfyChallenge(page, testCase.provider);
-    await annotate(page, '3 · RESPONSE READY', 'Submitting through the server validation boundary');
-    await page.screenshot({ path: join(frames, '02.png') });
-    await submitChallenge(page);
-    const cleared = await controller.wait({ timeoutMs: 30_000, pollMs: 100 });
+    const cleared = await controller.complete({ timeoutMs: 30_000, pollMs: 100 });
     if (cleared.finding.status !== 'passed') throw new Error(`${testCase.provider}: validated page was not marked passed.`);
+    await annotate(page, '3 · SERVER VALIDATED', 'Fresh passed evidence from the protected action');
+    await page.screenshot({ path: join(frames, '02.png') });
     await controller.resume();
     await annotate(page, '4 · VALIDATED + RESUMED', 'Fresh passed evidence · same controller session');
     await page.screenshot({ path: join(frames, '03.png') });

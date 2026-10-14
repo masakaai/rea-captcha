@@ -21,7 +21,7 @@ Reviewed commit `cfe78dd`, category `Browser Automation & Web Scraping`. Its met
 
 Prepared entry:
 
-> `masakaai/rea-captcha`: Local stdio MCP and SDK for detecting browser verification challenges, pausing an agent, preserving its existing browser session for visible human handoff, verifying clearance, and resuming safely. Tools: `captcha_analyze`, `captcha_inspect`, `captcha_wait`, `captcha_handoff`, `captcha_resume`. Local, no auth, MIT, no hosted solver or telemetry.
+> `masakaai/rea-captcha`: Local stdio MCP and SDK for detecting browser verification challenges, completing authorized test or owned-origin actions in the existing browser, verifying clearance, and resuming safely. Tools: `captcha_analyze`, `captcha_inspect`, `captcha_complete`, `captcha_wait`, `captcha_handoff`, `captcha_resume`. Local, no auth, MIT, no hosted solver or telemetry.
 
 Status: technically aligned; wait for public repository and install verification.
 
@@ -31,7 +31,7 @@ Target category: Browser Automation. Use the list's icon grammar after the packa
 
 Prepared entry:
 
-> `masakaai/rea-captcha` — Local verification-challenge controller for browser agents. Detects common challenge widgets, coordinates human handoff in an existing browser session, and exposes five stdio MCP tools. MIT; no cloud solver or telemetry.
+> `masakaai/rea-captcha` — Local verification-challenge controller for browser agents. Detects common widgets, performs authorized actions in an existing browser session, and exposes six stdio MCP tools. MIT; no cloud solver or telemetry.
 
 Status: wait for public install and repository health checks.
 
@@ -41,7 +41,7 @@ Reviewed commit `27321cf`. Candidate sections are Domain-Specific Agent Skills a
 
 Prepared entry after adoption exists:
 
-> `rea-captcha` — Local Codex skill and stdio MCP that detects browser verification blocks, coordinates human handoff in the existing session, and verifies safe task resume across Playwright/CDP and browser-use.
+> `rea-captcha` — Local Codex skill and stdio MCP that detects browser verification blocks, performs authorized actions in the existing Playwright/CDP session, and verifies safe task resume.
 
 Status: do not submit yet; the list explicitly declines projects without external usage.
 
@@ -57,7 +57,7 @@ Reviewed commit `15af6b1`. The list accepts CAPTCHA libraries, recognition tools
 
 Prepared entry for `Tools` or `Other`:
 
-> `rea-captcha` — Local-first challenge detection and human-handoff control for browser agents, with official test-provider demos and optional authorized-origin image/text OCR. It does not automate production interactive challenges.
+> `rea-captcha` — Local-first challenge detection and authorized agent actions, with official test-provider demos and optional owned-origin image/text handling. It does not automate production interactive challenges.
 
 Status: relevant but potentially sensitive category fit; open an issue first after the public demo and repository exist.
 
@@ -67,7 +67,7 @@ Reviewed commit `88da194`, category `MCP Servers & Browser Tools`. Requirements 
 
 Prepared entry:
 
-> `rea-captcha` — Local stdio MCP and SDK that detects verification blocks, preserves the active Playwright/CDP session for human handoff, validates clearance, and resumes the browser agent.
+> `rea-captcha` — Local stdio MCP and SDK that detects verification blocks, performs authorized actions in the active Playwright/CDP session, validates clearance, and resumes the browser agent.
 
 Status: exact technical fit, but wait for public release and either the stated star threshold or maintainer confirmation of the niche-value exception.
 
@@ -77,7 +77,7 @@ Reviewed commit `ad74156`, category `AI Web Automation Tools / Dev Tools`. Its p
 
 Prepared entry:
 
-> `[rea-captcha](https://github.com/masakaai/rea-captcha) - Local verification-challenge controller and MCP for evidence-based detection, same-session human handoff, and safe browser-agent resume.`
+> `[rea-captcha](https://github.com/masakaai/rea-captcha) - Local verification-challenge controller and MCP for evidence-based detection, authorized same-session agent actions, and safe resume.`
 
 Status: technically eligible after public release; the PR must disclose project affiliation.
 
@@ -87,7 +87,7 @@ Reviewed commit `18ad5d9`. The best-fit section is `MCP Servers for Browser Auto
 
 Prepared entry:
 
-> `rea-captcha` — Local MCP controller for browser verification evidence, visible human handoff, server-validated completion, and same-session agent resume.
+> `rea-captcha` — Local MCP controller for browser verification evidence, authorized browser actions, server-validated completion, and same-session agent resume.
 
 Status: wait for public repository, install path, and demo URL; re-check contribution mechanics before submission because no standalone contribution guide was present.
 
@@ -97,7 +97,7 @@ Reviewed commit `b6f2b86`, category `Automation & Testing`. Its rules require an
 
 Prepared entry:
 
-> `[rea-captcha](https://github.com/masakaai/rea-captcha) - Local challenge detection and same-session human-handoff controller for browser automation agents.  \`Open Source\` \`Chromium\` \`WebKit\` \`Cross-platform\` \`Automation\``
+> `[rea-captcha](https://github.com/masakaai/rea-captcha) - Local challenge detection and authorized same-session action controller for browser automation agents.  \`Open Source\` \`Chromium\` \`WebKit\` \`Cross-platform\` \`Automation\``
 
 Status: wait for public maintenance history and release artifacts.
 
@@ -109,7 +109,7 @@ Prepared YAML:
 
 ```yaml
 - url: https://github.com/masakaai/rea-captcha
-  description: "Local MCP server for verification-challenge detection, same-session human handoff, and safe browser-agent resume."
+  description: "Local MCP server for verification-challenge detection, authorized same-session actions, and safe browser-agent resume."
 ```
 
 Status: structurally eligible only after the public repository has meaningful release and maintenance history.

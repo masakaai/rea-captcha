@@ -22,6 +22,7 @@ export const analyzeInput = z.object({
 
 export const toolNames = [
   'captcha_inspect',
+  'captcha_complete',
   'captcha_wait',
   'captcha_handoff',
   'captcha_resume',

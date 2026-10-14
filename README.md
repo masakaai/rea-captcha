@@ -37,9 +37,9 @@
   <a href="docs/architecture.md">Architecture</a>
 </p>
 
-rea-captcha detects browser verification challenges, pauses an agent before repeated actions make things worse, preserves the original browser session for visible human handoff, verifies fresh clearance, and resumes the same task. It ships a TypeScript SDK, local stdio MCP server, generic Playwright/CDP integration, a browser-use plugin, a Vercel-compatible Agent Skill, and optional authorized-origin local OCR.
+rea-captcha detects browser verification challenges and lets an agent complete supported interactions inside the browser session it already owns. Authorized provider-test and owned-origin flows stay in the same Playwright/CDP page, require fresh server-validated evidence, and resume the same task. It ships a TypeScript SDK, local stdio MCP server, browser-use plugin, Vercel-compatible Agent Skill, and optional authorized-origin local OCR.
 
-> **Official source:** install from [`masakaai/rea-captcha`](https://github.com/masakaai/rea-captcha) and npm package [`rea-captcha`](https://www.npmjs.com/package/rea-captcha). The project has no hosted solver, telemetry, stealth claim, or dependency on Jet Browser. Jet Browser remains an optional adapter for teams that already use it.
+> **Official source:** install from [`masakaai/rea-captcha`](https://github.com/masakaai/rea-captcha) and npm package [`rea-captcha`](https://www.npmjs.com/package/rea-captcha). The project has no hosted solver, telemetry, stealth claim, or dependency on Jet Browser. It reuses the agent's existing browser; the provider examples use documented non-production credentials only.
 
 <p align="center"><a href="https://rea-captcha.vercel.app"><strong>Run the four live verification cases</strong></a></p>
 
@@ -49,26 +49,26 @@ rea-captcha detects browser verification challenges, pauses an agent before repe
   <tr>
     <td align="center" width="50%">
       <strong>Google reCAPTCHA v2</strong><br>
-      <img src="https://raw.githubusercontent.com/masakaai/rea-captcha/main/docs/assets/demos/recaptcha.gif" alt="Google reCAPTCHA detection, handoff, validation, and resume" width="100%">
+      <img src="https://raw.githubusercontent.com/masakaai/rea-captcha/main/docs/assets/demos/recaptcha.gif" alt="Agent completes Google reCAPTCHA test mode, validates, and resumes" width="100%">
     </td>
     <td align="center" width="50%">
       <strong>Cloudflare Turnstile</strong><br>
-      <img src="https://raw.githubusercontent.com/masakaai/rea-captcha/main/docs/assets/demos/turnstile.gif" alt="Cloudflare Turnstile detection, handoff, validation, and resume" width="100%">
+      <img src="https://raw.githubusercontent.com/masakaai/rea-captcha/main/docs/assets/demos/turnstile.gif" alt="Agent completes Cloudflare Turnstile test mode, validates, and resumes" width="100%">
     </td>
   </tr>
   <tr>
     <td align="center" width="50%">
       <strong>hCaptcha</strong><br>
-      <img src="https://raw.githubusercontent.com/masakaai/rea-captcha/main/docs/assets/demos/hcaptcha.gif" alt="hCaptcha detection, handoff, validation, and resume" width="100%">
+      <img src="https://raw.githubusercontent.com/masakaai/rea-captcha/main/docs/assets/demos/hcaptcha.gif" alt="Agent completes hCaptcha test mode, validates, and resumes" width="100%">
     </td>
     <td align="center" width="50%">
       <strong>Owned image/text</strong><br>
-      <img src="https://raw.githubusercontent.com/masakaai/rea-captcha/main/docs/assets/demos/image-text.gif" alt="Owned image text detection, local validation, and resume" width="100%">
+      <img src="https://raw.githubusercontent.com/masakaai/rea-captcha/main/docs/assets/demos/image-text.gif" alt="Agent completes owned image text verification, validates, and resumes" width="100%">
     </td>
   </tr>
 </table>
 
-These are complete protected-action flows, not DOM-only fixtures. Each run detects a challenge, hands off the same browser context, submits to the real validation boundary, observes fresh passed evidence, verifies the session cookie, and resumes the same controller. Google reCAPTCHA v2, Cloudflare Turnstile, and hCaptcha use human handoff plus their vendor Siteverify endpoints; the owned image/text case uses an explicitly authorized local path and local server validation.
+These are complete agent-driven protected-action flows, not DOM-only fixtures. Each run detects a challenge, performs the authorized browser interaction in the same page, submits to the real validation boundary, observes fresh passed evidence, verifies the session cookie, and resumes the same controller. Google reCAPTCHA v2, Cloudflare Turnstile, and hCaptcha use their documented test modes plus vendor Siteverify endpoints; the owned image/text case uses an explicitly authorized local path and local server validation.
 
 The first three cases load vendor-hosted JavaScript and accept the protected action only after the server receives `success: true` from the vendor verification endpoint. They use the vendors' documented non-production credentials: [Google test keys](https://developers.google.com/recaptcha/docs/faq/#id-like-to-run-automated-tests-with-recaptcha-what-should-i-do), [Cloudflare dummy keys](https://developers.cloudflare.com/turnstile/troubleshooting/testing/), and [hCaptcha test keys](https://docs.hcaptcha.com/#integration-testing-test-keys).
 
@@ -88,7 +88,7 @@ Install rea-captcha in this project and connect it to the browser session this a
 ## How it works
 
 <p align="center">
-  <img src="docs/assets/how-it-works.svg" alt="rea-captcha lifecycle: inspect evidence, apply policy, hand off the same browser session when blocked, verify fresh clearance, and resume the same task" width="100%">
+  <img src="docs/assets/how-it-works.svg" alt="rea-captcha lifecycle: inspect evidence, apply policy, perform an authorized agent action in the same browser session, verify fresh clearance, and resume the same task" width="100%">
 </p>
 
 ## MCP and coding agents
@@ -99,7 +99,7 @@ The official Registry entry is `io.github.masakaai/rea-captcha` and launches the
 npx -y rea-captcha mcp --stateless
 ```
 
-It exposes five tools: `captcha_analyze`, `captcha_inspect`, `captcha_handoff`, `captcha_wait`, and `captcha_resume`. `captcha_analyze` accepts page evidence already held by Codex or another agent. The other four tools need a configured browser session. See the [tool catalog](docs/mcp-tools.md) for inputs and lifecycle semantics.
+It exposes six tools: `captcha_analyze`, `captcha_inspect`, `captcha_complete`, `captcha_handoff`, `captcha_wait`, and `captcha_resume`. `captcha_complete` performs only a policy-authorized action in the configured existing browser and waits for fresh validation evidence. See the [tool catalog](docs/mcp-tools.md) for inputs and lifecycle semantics.
 
 For a stateful local session, run setup and print a host configuration:
 
@@ -108,22 +108,34 @@ npx rea-captcha agent-config --agent codex
 npx rea-captcha agent-config --agent mcp-json
 ```
 
-rea-captcha adds verification intelligence and handoff; it does not replace an agent's navigation tools. Both integrations must refer to the same browser session.
+rea-captcha adds verification intelligence and bounded completion actions; it does not replace an agent's navigation tools. Both integrations must refer to the same browser session.
 
 ## TypeScript SDK
 
 ```ts
-import { ChallengeController } from 'rea-captcha';
+import { ChallengeController, ChallengePolicy } from 'rea-captcha';
 import { PlaywrightChallengeAdapter } from 'rea-captcha/playwright';
 
+const authorizedOrigin = 'https://fixture.example';
 const controller = new ChallengeController({
-  browser: new PlaywrightChallengeAdapter({ id: 'checkout', page })
+  browser: new PlaywrightChallengeAdapter({
+    id: 'checkout',
+    page,
+    agentActions: {
+      authorizedOrigins: [authorizedOrigin],
+      allowProviderTestAutomation: true,
+      submitSelector: 'button[type="submit"]'
+    }
+  }),
+  policy: new ChallengePolicy({
+    authorizedOrigins: [authorizedOrigin],
+    allowProviderTestAutomation: true
+  })
 });
 
 const inspection = await controller.inspect();
-if (inspection.policy.decision === 'human-handoff') {
-  await controller.handoff();
-  await controller.wait({ timeoutMs: 120_000 });
+if (inspection.policy.decision === 'agent-action' || inspection.policy.decision === 'local-processing') {
+  await controller.complete({ timeoutMs: 30_000 });
   await controller.resume();
 }
 ```
@@ -141,6 +153,8 @@ The recommended cross-agent provider is a browser already exposing CDP:
     "local-chrome": {
       "adapter": "playwright-cdp",
       "endpoint": "http://127.0.0.1:9222",
+      "allowProviderTestAutomation": true,
+      "submitSelector": "button[type=submit]",
       "authorizedOrigins": ["https://fixture.example"]
     }
   }
@@ -151,7 +165,9 @@ Generic Playwright `Page`, Playwright-over-CDP, browser-use, and optional Jet Br
 
 ## browser-use and local OCR
 
-The Python plugin composes with an existing browser-use `BrowserSession`, pauses before a challenged step, polls that same session, and resumes only after evidence clears:
+For agent-driven completion, point rea-captcha's Playwright/CDP session at the same existing browser used by browser-use. The MCP lifecycle detects the block, performs an authorized action, verifies the result, and returns control without replacing the browser or task context.
+
+The Python plugin remains a lightweight detection and manual-recovery fallback for browser-use integrations that do not expose a compatible CDP action surface:
 
 ```python
 from browser_use import Agent
@@ -168,7 +184,7 @@ Local `ddddocr` is an optional primitive only for simple image/text challenges o
 
 - Evidence detection for reCAPTCHA, hCaptcha, Turnstile, GeeTest, DataDome, PerimeterX, AWS WAF, image/text inputs, and generic verification pages.
 - Deterministic states with bounded timeout, cancellation, and fresh-evidence resume checks.
-- Five stdio MCP tools, CLI/MCP parity, TypeScript SDK, browser-use hooks, and a Vercel-compatible Agent Skill.
+- Six stdio MCP tools, CLI/MCP parity, TypeScript SDK, browser-use hooks, and a Vercel-compatible Agent Skill.
 - Borrowed Playwright/CDP sessions plus optional Jet Browser adapters.
 - Local JSONL events with explicit ownership and no telemetry.
 - npm Trusted Publishing/provenance workflow and GitHub OIDC publication to the official MCP Registry.
@@ -186,11 +202,11 @@ Local `ddddocr` is an optional primitive only for simple image/text challenges o
 
 ## Community
 
-Join the [MASAKA Discord](https://discord.gg/8Ybc32NcMt), then use the dedicated [#rea-captcha channel](https://discord.com/channels/1555850967147356162/1559900477750116362) for integration discussion and same-session handoff examples. Use [GitHub Issues](https://github.com/masakaai/rea-captcha/issues) for reproducible bugs and follow the [private security policy](SECURITY.md) for vulnerabilities. Never post browser profiles, cookies, challenge tokens, API keys, or private page evidence.
+Join the [MASAKA Discord](https://discord.gg/8Ybc32NcMt), then use the dedicated [#rea-captcha channel](https://discord.com/channels/1555850967147356162/1559900477750116362) for integration discussion and same-session agent examples. Use [GitHub Issues](https://github.com/masakaai/rea-captcha/issues) for reproducible bugs and follow the [private security policy](SECURITY.md) for vulnerabilities. Never post browser profiles, cookies, challenge tokens, API keys, or private page evidence.
 
 ## Scope and disclaimer
 
-rea-captcha is for owned or explicitly authorized workflows. It does not promise that a third-party service will accept automation, generate server-signed challenge tokens, or bypass interactive protection. Commercial solver APIs, credential transfer, stealth claims, and automatic completion of third-party interactive challenges are outside scope.
+rea-captcha is for owned or explicitly authorized workflows. Provider automation is accepted only when the adapter confirms the vendor's documented non-production test key. It does not bypass production interactive protection. Commercial solver APIs, credential transfer, stealth claims, and automatic completion of third-party production challenges are outside scope.
 
 Inspired by [morluto/rea](https://github.com/morluto/rea).
 

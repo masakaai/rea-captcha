@@ -19,9 +19,9 @@ const toolResult = (inspection: ChallengeInspection, state: string) => {
 };
 
 export function createReaCaptchaMcpServer(resolver: ControllerResolver): McpServer {
-  const server = new McpServer({ name: 'rea-captcha', version: '0.1.0' }, {
+  const server = new McpServer({ name: 'rea-captcha', version: '0.2.0' }, {
     maxToolInputElements: 16,
-    instructions: 'Use captcha_analyze for page evidence supplied by an agent. Use the session tools only for a configured browser session: inspect, handoff once, wait with a bounded timeout, then resume only after fresh clear evidence.'
+    instructions: 'Use captcha_analyze for page evidence supplied by an agent. In a configured existing browser session: inspect; use captcha_complete only when policy returns agent-action or local-processing; otherwise request handoff; then resume only after fresh clear evidence.'
   });
 
   server.registerTool(toolNames[0], {
@@ -35,6 +35,16 @@ export function createReaCaptchaMcpServer(resolver: ControllerResolver): McpServ
   });
 
   server.registerTool(toolNames[1], {
+    title: 'Complete authorized verification',
+    description: 'Let the agent complete an authorized provider-test or owned-origin challenge in the existing browser session, then wait for fresh server-validated evidence.',
+    inputSchema: waitInput,
+    annotations: { readOnlyHint: false, destructiveHint: false, openWorldHint: true }
+  }, async ({ session_id, timeout_ms, poll_ms }, extra) => {
+    const controller = await resolver.get(session_id);
+    return toolResult(await controller.complete({ timeoutMs: timeout_ms, pollMs: poll_ms, signal: extra.signal }), controller.state);
+  });
+
+  server.registerTool(toolNames[2], {
     title: 'Wait for verification',
     description: 'Poll the same browser session until its verification challenge clears or the bounded timeout expires.',
     inputSchema: waitInput,
@@ -44,7 +54,7 @@ export function createReaCaptchaMcpServer(resolver: ControllerResolver): McpServ
     return toolResult(await controller.wait({ timeoutMs: timeout_ms, pollMs: poll_ms, signal: extra.signal }), controller.state);
   });
 
-  server.registerTool(toolNames[2], {
+  server.registerTool(toolNames[3], {
     title: 'Request human handoff',
     description: 'Mark the current challenge as awaiting a person in the existing browser session.',
     inputSchema: sessionInput,
@@ -54,7 +64,7 @@ export function createReaCaptchaMcpServer(resolver: ControllerResolver): McpServ
     return toolResult(await controller.handoff(), controller.state);
   });
 
-  server.registerTool(toolNames[3], {
+  server.registerTool(toolNames[4], {
     title: 'Verify and resume',
     description: 'Re-inspect the existing browser session and resume its agent lifecycle only after the challenge is clear.',
     inputSchema: sessionInput,
@@ -64,7 +74,7 @@ export function createReaCaptchaMcpServer(resolver: ControllerResolver): McpServ
     return toolResult(await controller.resume(extra.signal), controller.state);
   });
 
-  server.registerTool(toolNames[4], {
+  server.registerTool(toolNames[5], {
     title: 'Analyze page evidence',
     description: 'Analyze URL, title, HTML, text, or runtime signals already available to the calling agent. This read-only tool needs no configured browser adapter and does not control or preserve a browser session.',
     inputSchema: analyzeInput,

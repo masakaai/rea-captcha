@@ -6,7 +6,7 @@
 
 [![npm](https://img.shields.io/npm/v/rea-captcha.svg)](https://www.npmjs.com/package/rea-captcha) [![MCP Registry](https://img.shields.io/badge/MCP_Registry-rea--captcha-5c6ac4.svg)](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.masakaai%2Frea-captcha) [![skills.sh](https://skills.sh/b/masakaai/rea-captcha)](https://skills.sh/masakaai/rea-captcha/rea-captcha) [![Discord](https://img.shields.io/discord/1555850967147356162?label=Discord&logo=discord&color=5865F2)](https://discord.gg/8Ybc32NcMt)
 
-rea-captcha mendeteksi penghalang verifikasi, menjeda agen, mempertahankan sesi browser asli untuk intervensi manusia yang terlihat, lalu melanjutkan tugas yang sama hanya setelah ada bukti lulus yang baru. Paket ini menyediakan SDK TypeScript, server MCP stdio lokal, Playwright/CDP, browser-use, Agent Skill yang kompatibel dengan Vercel Skills, serta OCR lokal opsional untuk origin yang diizinkan.
+rea-captcha mencegah agen browser seperti browser-use berhenti di tengah tugas karena CAPTCHA. Ia memakai kembali sesi Playwright/CDP yang sudah dimiliki agen; pada pengujian yang diizinkan atau halaman milik sendiri, agen menyelesaikan interaksi dan hanya melanjutkan setelah ada bukti server yang baru.
 
 Jet Browser hanyalah adaptor opsional, bukan dependensi atau runtime bawaan. Tidak ada solver ter-host, telemetri, atau klaim pengelakan stealth.
 
@@ -50,9 +50,9 @@ Memerlukan Node.js 22.19+, 24.11+, atau 26+. Setelah dikonfirmasi, `setup` membu
 
 ## Agen dan MCP
 
-Nama Registry resmi adalah `io.github.masakaai/rea-captcha`; peluncuran tanpa konfigurasi adalah `npx -y rea-captcha mcp --stateless`. Ada lima alat: `captcha_analyze`, `captcha_inspect`, `captcha_handoff`, `captcha_wait`, dan `captcha_resume`. Alat pertama menganalisis bukti yang sudah dimiliki agen secara hanya-baca; empat alat lainnya mempertahankan sesi browser terkonfigurasi yang sama.
+Nama Registry resmi adalah `io.github.masakaai/rea-captcha`; peluncuran tanpa konfigurasi adalah `npx -y rea-captcha mcp --stateless`. Ada enam alat: `captcha_analyze`, `captcha_inspect`, `captcha_complete`, `captcha_handoff`, `captcha_wait`, dan `captcha_resume`. `captcha_complete` hanya bertindak di browser yang ada setelah memeriksa kebijakan, origin, dan kunci uji provider yang terdokumentasi.
 
-Siklusnya adalah `inspect → blocked → handoff → tunggu terbatas → verifikasi baru → resume`. Nilai yang tidak dikenal, bukti tidak lengkap, timeout, atau prediksi OCR saja tidak pernah mengizinkan pelanjutan.
+Siklus agennya adalah `inspect → agent-action → complete → verifikasi baru → resume`. Nilai yang tidak dikenal, bukti tidak lengkap, timeout, atau prediksi OCR saja tidak pernah mengizinkan pelanjutan.
 
 ## Cakupan
 

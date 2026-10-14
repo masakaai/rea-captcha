@@ -1,8 +1,58 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width">
-<title>rea-captcha provider demos</title><link rel="stylesheet" href="/styles.css"></head><body>
-<main class="card"><p class="eyebrow">REAL PROVIDER INTEGRATIONS</p><h1>Four verification cases</h1>
-<p>Three pages load vendor-hosted widgets with their official non-production test keys and validate tokens at the vendor endpoint. The fourth is a fully owned image/text boundary.</p>
-<div class="grid"><a href="/recaptcha.html"><strong>Google reCAPTCHA v2</strong><p>Official widget and server verification.</p></a>
-<a href="/turnstile.html"><strong>Cloudflare Turnstile</strong><p>Official always-pass test widget.</p></a>
-<a href="/hcaptcha.html"><strong>hCaptcha</strong><p>Official publisher test keypair.</p></a>
-<a href="/image-text.html"><strong>Owned image/text</strong><p>Local form and server validation.</p></a></div></main></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="Four agent-driven verification demos for rea-captcha.">
+  <title>rea-captcha — keep browser agents moving</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="masthead">
+      <a class="wordmark" href="/" aria-label="rea-captcha home"><span>REA</span><b>CAPTCHA</b></a>
+      <nav><a href="https://github.com/masakaai/rea-captcha">GitHub</a><a href="https://www.npmjs.com/package/rea-captcha">npm</a></nav>
+    </header>
+
+    <section class="hero">
+      <div>
+        <p class="kicker">verification actions for browser agents</p>
+        <h1>keep browser-use<br>from getting <em>stuck.</em></h1>
+        <p class="lede">A browser task reaches a CAPTCHA and stops halfway through. rea-captcha detects it, lets the agent complete an authorized test interaction in the browser it already has, checks fresh server evidence, and continues the same task.</p>
+        <a class="button" href="#cases">try the four cases <span>→</span></a>
+      </div>
+      <div class="browser-card" aria-label="rea-captcha lifecycle preview">
+        <div class="browser-top"><span>existing browser session</span><i></i><i></i><i></i></div>
+        <div class="browser-stage">
+          <p>browser-use task</p>
+          <strong>Verification detected</strong>
+          <div class="challenge-line"><span class="check">✓</span><span>agent action authorized</span></div>
+        </div>
+        <ol class="steps"><li>detect</li><li class="active">act</li><li>verify</li><li>resume</li></ol>
+      </div>
+    </section>
+
+    <section class="flow" aria-label="Workflow">
+      <div><strong>Detect</strong><span>Read DOM, frame, URL, and runtime evidence</span></div>
+      <div><strong>Act</strong><span>Use the agent's existing Playwright/CDP page</span></div>
+      <div><strong>Verify</strong><span>Require the provider or owned server boundary</span></div>
+      <div><strong>Resume</strong><span>Continue only from fresh passed evidence</span></div>
+    </section>
+
+    <section class="cases" id="cases">
+      <div class="section-heading">
+        <div><p class="kicker">live provider matrix</p><h2>four cases.<br><em>one agent flow.</em></h2></div>
+        <p>These pages use vendor-documented non-production keys or a fully owned local boundary. They demonstrate integration behavior and provide no production anti-bot protection.</p>
+      </div>
+      <div class="case-grid">
+        <a href="/recaptcha.html"><span>01 / GOOGLE</span><strong>reCAPTCHA v2</strong><p>Agent checkbox action and Google Siteverify.</p><b>open case →</b></a>
+        <a href="/turnstile.html"><span>02 / CLOUDFLARE</span><strong>Turnstile</strong><p>Always-pass test widget and server verification.</p><b>open case →</b></a>
+        <a href="/hcaptcha.html"><span>03 / HCAPTCHA</span><strong>hCaptcha</strong><p>Publisher test keypair and hCaptcha Siteverify.</p><b>open case →</b></a>
+        <a href="/image-text.html"><span>04 / OWNED</span><strong>Image / text</strong><p>Authorized input and local server validation.</p><b>open case →</b></a>
+      </div>
+    </section>
+
+    <footer><span>rea-captcha · masakaai</span><span>existing browser in, verified task out.</span></footer>
+  </main>
+</body>
+</html>

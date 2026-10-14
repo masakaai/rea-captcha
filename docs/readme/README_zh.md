@@ -18,7 +18,7 @@
 
 [快速开始](#快速开始) · [四类真实验证矩阵](#四类真实验证矩阵) · [工作方式](#工作方式) · [MCP 工具目录](../mcp-tools.md) · [架构](../architecture.md)
 
-rea-captcha 在浏览器 Agent 重复操作之前识别验证挑战，暂停当前任务，保留原浏览器会话供用户可见接管，再根据新的通过证据恢复同一任务。项目提供 TypeScript SDK、本地 stdio MCP、Playwright/CDP、browser-use、Vercel Skills 兼容 Agent Skill，以及仅限授权来源的可选本地 OCR。
+rea-captcha 用于解决 browser-use 等浏览器 Agent 在任务中途被 CAPTCHA 卡住的问题。它复用 Agent 已有的 Playwright/CDP 浏览器，在明确授权的测试或自有场景中由 Agent 完成交互，经过新的服务端通过证据后再继续原任务。
 
 > **官方来源：** [`masakaai/rea-captcha`](https://github.com/masakaai/rea-captcha) 与 npm 包 [`rea-captcha`](https://www.npmjs.com/package/rea-captcha)。项目不包含托管解题服务、遥测或隐身绕过；Jet Browser 只是显式选择的可选适配器，不是依赖或默认运行时。
 
@@ -47,7 +47,7 @@ rea-captcha 在浏览器 Agent 重复操作之前识别验证挑战，暂停当�
   </tr>
 </table>
 
-每个案例都覆盖完整受保护操作：识别、同会话接管、服务端验证、重新观察通过状态、校验会话 Cookie，以及恢复同一个控制器。
+每个案例都覆盖完整受保护操作：识别、同会话 Agent 操作、服务端验证、重新观察通过状态、校验会话 Cookie，以及恢复同一个控制器。
 
 前三项加载厂商托管脚本，并且只有本地服务从厂商验证端点收到 `success: true` 后才接受受保护操作。测试使用各厂商公开的非生产测试密钥，不伪造通过状态。
 
@@ -82,9 +82,9 @@ npx skills add masakaai/rea-captcha --skill rea-captcha
     ├─ 已有页面证据 ── captcha_analyze ── 策略结果
     │
     └─ 活跃浏览器会话
-          inspect → blocked → handoff → 有界等待 → 新证据验证 → resume
-                         │
-                         └─ 用户操作同一个可见会话
+          inspect → agent-action → complete → 新证据验证 → resume
+                              │
+                              └─ Agent 操作同一个已有会话
 ```
 
 未知值、异常探测结果、缺失证据、超时和 OCR 预测都会按失败关闭处理，不能授权恢复。浏览器生命周期由调用方持有，适配器默认只借用会话。
@@ -97,14 +97,14 @@ npx skills add masakaai/rea-captcha --skill rea-captcha
 npx -y rea-captcha mcp --stateless
 ```
 
-服务提供 5 个工具：`captcha_analyze`、`captcha_inspect`、`captcha_handoff`、`captcha_wait` 与 `captcha_resume`。前者可直接分析 Agent 已持有的页面证据；其余 4 个工具需要已配置的浏览器会话。详见 [MCP 工具目录](../mcp-tools.md)。
+服务提供 6 个工具：`captcha_analyze`、`captcha_inspect`、`captcha_complete`、`captcha_handoff`、`captcha_wait` 与 `captcha_resume`。`captcha_complete` 只会在策略允许、来源匹配且厂商测试 key 校验通过时操作已有浏览器。详见 [MCP 工具目录](../mcp-tools.md)。
 
 ```sh
 npx rea-captcha agent-config --agent codex
 npx rea-captcha agent-config --agent mcp-json
 ```
 
-rea-captcha 增加验证识别和接管能力，不替代 Agent 自己的导航工具；两者必须使用同一浏览器会话。
+rea-captcha 增加验证识别和受控完成能力，不替代 Agent 自己的导航工具；两者必须使用同一浏览器会话。
 
 ## SDK 与浏览器提供方
 
@@ -125,7 +125,7 @@ const controller = new ChallengeController({
 
 - 识别 reCAPTCHA、hCaptcha、Turnstile、GeeTest、DataDome、PerimeterX、AWS WAF、图片/文本和通用验证页证据。
 - 确定性状态机、有界超时、取消和新证据恢复检查。
-- TypeScript SDK、browser-use hook、5 个 MCP 工具与 Vercel Skills 兼容 Skill。
+- TypeScript SDK、browser-use hook、6 个 MCP 工具与 Vercel Skills 兼容 Skill。
 - 本地 JSONL 事件、明确所有权、无遥测。
 - npm Trusted Publishing/provenance 与基于 GitHub OIDC 的 MCP Registry 发布。
 

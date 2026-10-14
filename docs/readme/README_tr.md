@@ -6,7 +6,7 @@
 
 [![npm](https://img.shields.io/npm/v/rea-captcha.svg)](https://www.npmjs.com/package/rea-captcha) [![MCP Registry](https://img.shields.io/badge/MCP_Registry-rea--captcha-5c6ac4.svg)](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.masakaai%2Frea-captcha) [![skills.sh](https://skills.sh/b/masakaai/rea-captcha)](https://skills.sh/masakaai/rea-captcha/rea-captcha) [![Discord](https://img.shields.io/discord/1555850967147356162?label=Discord&logo=discord&color=5865F2)](https://discord.gg/8Ybc32NcMt)
 
-rea-captcha doğrulama engellerini algılar, ajanı duraklatır, görünür insan müdahalesi için özgün tarayıcı oturumunu korur ve aynı görevi yalnızca yeni bir başarı kanıtından sonra sürdürür. TypeScript SDK, yerel stdio MCP, Playwright/CDP, browser-use, Vercel Skills uyumlu Agent Skill ve yetkilendirilmiş originler için isteğe bağlı yerel OCR içerir.
+rea-captcha, browser-use gibi tarayıcı ajanlarının görev ortasında CAPTCHA nedeniyle takılı kalmasını önler. Ajanın mevcut Playwright/CDP oturumunu yeniden kullanır; yetkili testlerde veya sahip olunan sayfalarda etkileşimi ajan tamamlar ve yalnızca yeni sunucu kanıtından sonra göreve devam eder.
 
 Jet Browser isteğe bağlı bir adaptördür; bağımlılık veya varsayılan runtime değildir. Barındırılan solver, telemetri ya da stealth atlatma iddiası yoktur.
 
@@ -50,9 +50,9 @@ Node.js 22.19+, 24.11+ veya 26+ gerekir. `setup`, onaydan sonra incelenebilir bi
 
 ## Ajanlar ve MCP
 
-Resmî ad `io.github.masakaai/rea-captcha`, yapılandırmasız başlatma komutu `npx -y rea-captcha mcp --stateless` şeklindedir. Beş araç sunulur: `captcha_analyze`, `captcha_inspect`, `captcha_handoff`, `captcha_wait` ve `captcha_resume`. İlki ajanın zaten sahip olduğu kanıtları salt okunur biçimde inceler; diğer dördü aynı yapılandırılmış oturumu korur.
+Resmî ad `io.github.masakaai/rea-captcha`, yapılandırmasız başlatma komutu `npx -y rea-captcha mcp --stateless` şeklindedir. Altı araç sunulur: `captcha_analyze`, `captcha_inspect`, `captcha_complete`, `captcha_handoff`, `captcha_wait` ve `captcha_resume`. `captcha_complete`, politika, origin ve belgelenmiş sağlayıcı test anahtarı doğrulandıktan sonra mevcut tarayıcıda işlem yapar.
 
-Döngü `inspect → blocked → handoff → sınırlı bekleme → yeni doğrulama → resume` şeklindedir. Bilinmeyen değerler, eksik kanıt, timeout veya tek başına OCR tahmini devam izni vermez.
+Ajan döngüsü `inspect → agent-action → complete → yeni doğrulama → resume` şeklindedir. Bilinmeyen değerler, eksik kanıt, timeout veya tek başına OCR tahmini devam izni vermez.
 
 ## Kapsam
 

@@ -17,6 +17,9 @@ const cdpSession = z.object({
   adapter: z.literal('playwright-cdp'),
   endpoint: z.url(),
   allowLocalImageText: z.boolean().default(false),
+  allowProviderTestAutomation: z.boolean().default(false),
+  submitSelector: z.string().min(1).optional(),
+  imageTextValue: z.string().min(1).optional(),
   authorizedOrigins: z.array(z.url()).default([])
 });
 

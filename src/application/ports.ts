@@ -6,6 +6,15 @@ export interface BrowserChallengePort {
   observe(signal?: AbortSignal): Promise<ChallengeObservation>;
 }
 
+export interface BrowserChallengeActionPort extends BrowserChallengePort {
+  completeAuthorizedChallenge(inspection: ChallengeInspection, signal?: AbortSignal): Promise<void>;
+}
+
+export const supportsAuthorizedChallengeAction = (
+  browser: BrowserChallengePort
+): browser is BrowserChallengeActionPort =>
+  'completeAuthorizedChallenge' in browser && typeof browser.completeAuthorizedChallenge === 'function';
+
 export interface AgentLifecyclePort {
   pause(reason: ChallengeInspection): Promise<void> | void;
   resume(reason: ChallengeInspection): Promise<void> | void;
@@ -13,7 +22,7 @@ export interface AgentLifecyclePort {
 
 export interface ChallengeEvent {
   readonly sessionId: string;
-  readonly type: 'state' | 'inspection' | 'handoff' | 'resume' | 'timeout' | 'error';
+  readonly type: 'state' | 'inspection' | 'agent-action' | 'handoff' | 'resume' | 'timeout' | 'error';
   readonly state: ChallengeState;
   readonly timestamp: string;
   readonly data?: Readonly<Record<string, unknown>>;

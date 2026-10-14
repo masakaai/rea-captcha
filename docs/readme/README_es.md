@@ -6,7 +6,7 @@
 
 [![npm](https://img.shields.io/npm/v/rea-captcha.svg)](https://www.npmjs.com/package/rea-captcha) [![MCP Registry](https://img.shields.io/badge/MCP_Registry-rea--captcha-5c6ac4.svg)](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.masakaai%2Frea-captcha) [![skills.sh](https://skills.sh/b/masakaai/rea-captcha)](https://skills.sh/masakaai/rea-captcha/rea-captcha) [![Discord](https://img.shields.io/discord/1555850967147356162?label=Discord&logo=discord&color=5865F2)](https://discord.gg/8Ybc32NcMt)
 
-rea-captcha detecta barreras de verificación, pausa al agente, conserva la sesión original para una intervención humana visible y reanuda la misma tarea solo después de obtener evidencia nueva de aprobación. Incluye SDK de TypeScript, servidor MCP stdio local, Playwright/CDP, browser-use, un Agent Skill compatible con Vercel Skills y OCR local opcional para orígenes autorizados.
+rea-captcha evita que agentes de navegador como browser-use se queden bloqueados a mitad de una tarea por un CAPTCHA. Reutiliza la sesión Playwright/CDP que el agente ya tiene; en pruebas autorizadas o páginas propias, el agente completa la interacción y solo continúa tras obtener evidencia nueva del servidor.
 
 Jet Browser es un adaptador opcional: no es dependencia ni runtime predeterminado. El proyecto no ofrece solver alojado, telemetría ni promesas de evasión.
 
@@ -50,9 +50,9 @@ Requiere Node.js 22.19+, 24.11+ o 26+. `setup` crea, previa confirmación, una c
 
 ## Agentes y MCP
 
-El nombre oficial es `io.github.masakaai/rea-captcha`; el inicio sin configuración es `npx -y rea-captcha mcp --stateless`. Expone cinco herramientas: `captcha_analyze`, `captcha_inspect`, `captcha_handoff`, `captcha_wait` y `captcha_resume`. La primera analiza en modo de solo lectura evidencia que el agente ya posee; las otras cuatro mantienen una única sesión configurada.
+El nombre oficial es `io.github.masakaai/rea-captcha`; el inicio sin configuración es `npx -y rea-captcha mcp --stateless`. Expone seis herramientas: `captcha_analyze`, `captcha_inspect`, `captcha_complete`, `captcha_handoff`, `captcha_wait` y `captcha_resume`. `captcha_complete` solo actúa en el navegador existente tras validar la política, el origen y la clave de prueba documentada del proveedor.
 
-El ciclo es `inspect → blocked → handoff → espera acotada → verificación nueva → resume`. Datos desconocidos, evidencia incompleta, tiempos agotados o una predicción OCR aislada nunca autorizan la reanudación.
+El ciclo del agente es `inspect → agent-action → complete → verificación nueva → resume`. Datos desconocidos, evidencia incompleta, tiempos agotados o una predicción OCR aislada nunca autorizan la reanudación.
 
 ## Alcance
 

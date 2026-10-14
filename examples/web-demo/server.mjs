@@ -82,9 +82,10 @@ async function verifyVendor(provider, values) {
 const passedPage = `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width">
 <title>Verification complete</title><link rel="stylesheet" href="/styles.css"></head>
-<body><main class="card" data-captcha-status="passed"><p class="eyebrow">REA CAPTCHA</p>
-<h1>Verification complete</h1><p>The protected demo action was accepted by its validation boundary.</p>
-<a href="/">Back to all cases</a></main></body></html>`;
+<body class="case-page"><main class="case-shell"><nav class="case-nav"><a class="mini-mark" href="/">REA CAPTCHA</a><span class="status-pill">fresh evidence: passed</span></nav>
+<section class="card" data-captcha-status="passed"><p class="eyebrow">SERVER VALIDATED</p>
+<h1>the agent can continue.</h1><p>The protected demo action was accepted by its validation boundary. The same browser session is ready for the original task.</p>
+<a class="back-link" href="/">← back to all four cases</a></section></main></body></html>`;
 
 export async function handleDemoRequest(request, response) {
   try {

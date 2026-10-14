@@ -41,7 +41,7 @@ export interface ChallengeFinding {
   readonly inspectedAt: string;
 }
 
-export type ChallengeDecision = 'continue' | 'human-handoff' | 'local-processing';
+export type ChallengeDecision = 'continue' | 'agent-action' | 'human-handoff' | 'local-processing';
 
 export interface ChallengePolicyDecision {
   readonly decision: ChallengeDecision;

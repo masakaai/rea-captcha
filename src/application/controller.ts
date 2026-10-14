@@ -1,7 +1,7 @@
 import type { ChallengeInspection } from '../domain/challenge.js';
 import { ChallengeStateMachine, type ChallengeState } from '../domain/state-machine.js';
 import { DomChallengeDetector } from '../detector/dom-detector.js';
-import type { AgentLifecyclePort, BrowserChallengePort, ChallengeEventSink, Clock } from './ports.js';
+import { supportsAuthorizedChallengeAction, type AgentLifecyclePort, type BrowserChallengePort, type ChallengeEventSink, type Clock } from './ports.js';
 import { ChallengePolicy } from './policy.js';
 
 const systemClock: Clock = {
@@ -94,9 +94,29 @@ export class ChallengeController {
     return inspection;
   }
 
+  async complete({ timeoutMs = 30_000, pollMs = 100, signal }: { timeoutMs?: number; pollMs?: number; signal?: AbortSignal } = {}): Promise<ChallengeInspection> {
+    this.#validateWaitOptions(timeoutMs, pollMs);
+    const inspection = this.#requireInspection();
+    if (inspection.policy.decision !== 'agent-action' && inspection.policy.decision !== 'local-processing') {
+      throw new Error('The active challenge is not authorized for agent completion.');
+    }
+    if (!supportsAuthorizedChallengeAction(this.#browser)) {
+      throw new Error('The configured browser adapter does not support authorized challenge actions.');
+    }
+    this.#move('acting');
+    try {
+      await this.#browser.completeAuthorizedChallenge(inspection, signal);
+      await this.#emit('agent-action', { kind: inspection.finding.kind, url: inspection.finding.url });
+    } catch (error) {
+      this.#move('failed');
+      await this.#emit('error', { message: error instanceof Error ? error.message : String(error) });
+      throw error;
+    }
+    return this.wait({ timeoutMs, pollMs, ...(signal ? { signal } : {}) });
+  }
+
   async wait({ timeoutMs = 120_000, pollMs = 1_000, signal }: { timeoutMs?: number; pollMs?: number; signal?: AbortSignal } = {}): Promise<ChallengeInspection> {
-    if (!Number.isInteger(timeoutMs) || timeoutMs < 1 || timeoutMs > 3_600_000) throw new Error('timeoutMs must be an integer from 1 to 3600000.');
-    if (!Number.isInteger(pollMs) || pollMs < 25 || pollMs > 60_000) throw new Error('pollMs must be an integer from 25 to 60000.');
+    this.#validateWaitOptions(timeoutMs, pollMs);
     const deadline = this.#clock.now().getTime() + timeoutMs;
     while (this.#clock.now().getTime() < deadline) {
       this.#move('verifying');
@@ -134,6 +154,11 @@ export class ChallengeController {
   #requireInspection(): ChallengeInspection {
     if (this.#lastInspection === null) throw new Error('Inspect the browser before requesting handoff.');
     return this.#lastInspection;
+  }
+
+  #validateWaitOptions(timeoutMs: number, pollMs: number): void {
+    if (!Number.isInteger(timeoutMs) || timeoutMs < 1 || timeoutMs > 3_600_000) throw new Error('timeoutMs must be an integer from 1 to 3600000.');
+    if (!Number.isInteger(pollMs) || pollMs < 25 || pollMs > 60_000) throw new Error('pollMs must be an integer from 25 to 60000.');
   }
 
   #move(state: ChallengeState): void {

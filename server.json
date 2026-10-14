@@ -2,19 +2,19 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.masakaai/rea-captcha",
   "title": "rea-captcha",
-  "description": "Local challenge detection, same-session human handoff, and safe browser-agent resume.",
+  "description": "Authorized verification actions in an agent's existing browser session with fresh-evidence resume.",
   "websiteUrl": "https://github.com/masakaai/rea-captcha",
   "repository": {
     "url": "https://github.com/masakaai/rea-captcha",
     "source": "github"
   },
-  "version": "0.1.1",
+  "version": "0.2.0",
   "packages": [
     {
       "registryType": "npm",
       "registryBaseUrl": "https://registry.npmjs.org",
       "identifier": "rea-captcha",
-      "version": "0.1.1",
+      "version": "0.2.0",
       "runtimeHint": "npx",
       "transport": {
         "type": "stdio"

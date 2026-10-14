@@ -34,4 +34,4 @@ required = false
 default_tools_approval_mode = "writes"
 ```
 
-Codex treats `captcha_inspect` and `captcha_wait` as read-only from their MCP annotations. Handoff and resume change controller state and are marked as writes.
+Codex treats `captcha_inspect` and `captcha_wait` as read-only from their MCP annotations. `captcha_complete` performs a bounded write in the existing browser; handoff and resume also change controller state and are marked as writes.

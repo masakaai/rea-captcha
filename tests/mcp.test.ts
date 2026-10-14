@@ -25,7 +25,7 @@ describe('MCP contracts', () => {
 
     const listed = await client.listTools();
     expect(listed.tools.map(tool => tool.name)).toEqual([
-      'captcha_inspect', 'captcha_wait', 'captcha_handoff', 'captcha_resume', 'captcha_analyze'
+      'captcha_inspect', 'captcha_complete', 'captcha_wait', 'captcha_handoff', 'captcha_resume', 'captcha_analyze'
     ]);
     const result = await client.callTool({ name: 'captcha_inspect', arguments: { session_id: 'fixture' } });
     expect(result.structuredContent).toMatchObject({

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 120 960 248" role="img" aria-labelledby="rea-how-title rea-how-desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="12 120 920 248" role="img" aria-labelledby="rea-how-title rea-how-desc">
         <title id="rea-how-title">rea-captcha request lifecycle</title>
-        <desc id="rea-how-desc">A browser agent inspects evidence in one browser session, pauses at a policy gate for visible human handoff when needed, verifies fresh clearance, and resumes the same task.</desc>
+        <desc id="rea-how-desc">A browser agent inspects evidence, performs an authorized action in the same browser session, verifies fresh clearance, and resumes the same task.</desc>
         <defs>
           <style>@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap');</style>
           <marker id="rea-how-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
@@ -12,7 +12,7 @@
           </marker>
         </defs>
 
-        <rect x="0" y="120" width="960" height="248" fill="#f3f6f8"/>
+        <rect x="12" y="120" width="920" height="248" fill="#f3f6f8"/>
 
         <rect x="184" y="132" width="736" height="224" rx="8" fill="#eef8f7" stroke="#157a73" stroke-width="1.2" stroke-dasharray="4 4"/>
         <rect x="208" y="148" width="148" height="20" rx="4" fill="#d8eeeb"/>
@@ -43,13 +43,13 @@
         <rect x="360" y="244" width="48" height="16" rx="4" fill="#bfe3df"/>
         <text x="384" y="256" fill="#157a73" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="8" font-weight="700" text-anchor="middle">POLICY</text>
         <text x="408" y="284" fill="#10212b" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="12" font-weight="700" text-anchor="middle">Policy gate</text>
-        <text x="408" y="304" fill="#536873" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="8" text-anchor="middle">clear or handoff</text>
+        <text x="408" y="304" fill="#536873" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="8" text-anchor="middle">allow or block</text>
 
         <rect x="488" y="232" width="120" height="96" rx="8" fill="#ffffff" stroke="#8ca0aa" stroke-width="1.2"/>
         <rect x="500" y="244" width="48" height="16" rx="4" fill="#edf1f3"/>
-        <text x="524" y="256" fill="#536873" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="8" font-weight="700" text-anchor="middle">HUMAN</text>
-        <text x="548" y="284" fill="#10212b" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="12" font-weight="700" text-anchor="middle">Human handoff</text>
-        <text x="548" y="304" fill="#536873" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="8" text-anchor="middle">same visible page</text>
+        <text x="524" y="256" fill="#536873" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="8" font-weight="700" text-anchor="middle">AGENT</text>
+        <text x="548" y="284" fill="#10212b" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="12" font-weight="700" text-anchor="middle">Agent action</text>
+        <text x="548" y="304" fill="#536873" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="8" text-anchor="middle">authorized browser</text>
 
         <rect x="628" y="232" width="120" height="96" rx="8" fill="#ffffff" stroke="#8ca0aa" stroke-width="1.2"/>
         <rect x="640" y="244" width="48" height="16" rx="4" fill="#edf1f3"/>

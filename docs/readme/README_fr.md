@@ -6,7 +6,7 @@
 
 [![npm](https://img.shields.io/npm/v/rea-captcha.svg)](https://www.npmjs.com/package/rea-captcha) [![MCP Registry](https://img.shields.io/badge/MCP_Registry-rea--captcha-5c6ac4.svg)](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.masakaai%2Frea-captcha) [![skills.sh](https://skills.sh/b/masakaai/rea-captcha)](https://skills.sh/masakaai/rea-captcha/rea-captcha) [![Discord](https://img.shields.io/discord/1555850967147356162?label=Discord&logo=discord&color=5865F2)](https://discord.gg/8Ybc32NcMt)
 
-rea-captcha détecte les barrières de vérification, met l'agent en pause, conserve la session d'origine pour une intervention humaine visible et reprend la même tâche uniquement après une nouvelle preuve de réussite. Le projet fournit un SDK TypeScript, un serveur MCP stdio local, Playwright/CDP, browser-use, un Agent Skill compatible Vercel Skills et un OCR local facultatif réservé aux origines autorisées.
+rea-captcha évite qu'un agent de navigateur comme browser-use reste bloqué au milieu d'une tâche par un CAPTCHA. Il réutilise la session Playwright/CDP déjà ouverte ; dans un test autorisé ou une page propriétaire, l'agent effectue lui-même l'interaction et ne reprend qu'après une nouvelle preuve serveur.
 
 Jet Browser est un adaptateur facultatif, ni dépendance ni runtime par défaut. Aucun solver hébergé, aucune télémétrie et aucune promesse de contournement furtif.
 
@@ -50,9 +50,9 @@ Node.js 22.19+, 24.11+ ou 26+ est requis. Après confirmation, `setup` crée une
 
 ## Agents et MCP
 
-Le nom officiel est `io.github.masakaai/rea-captcha` et le lancement sans configuration est `npx -y rea-captcha mcp --stateless`. Cinq outils sont exposés : `captcha_analyze`, `captcha_inspect`, `captcha_handoff`, `captcha_wait` et `captcha_resume`. Le premier analyse en lecture seule les preuves déjà détenues par l'agent ; les quatre autres conservent la même session configurée.
+Le nom officiel est `io.github.masakaai/rea-captcha` et le lancement sans configuration est `npx -y rea-captcha mcp --stateless`. Six outils sont exposés : `captcha_analyze`, `captcha_inspect`, `captcha_complete`, `captcha_handoff`, `captcha_wait` et `captcha_resume`. `captcha_complete` n'agit dans le navigateur existant qu'après contrôle de la politique, de l'origine et de la clé de test documentée du fournisseur.
 
-Le cycle est `inspect → blocked → handoff → attente bornée → nouvelle vérification → resume`. Une valeur inconnue, une preuve incomplète, un délai dépassé ou une prédiction OCR seule n'autorise jamais la reprise.
+Le cycle agent est `inspect → agent-action → complete → nouvelle vérification → resume`. Une valeur inconnue, une preuve incomplète, un délai dépassé ou une prédiction OCR seule n'autorise jamais la reprise.
 
 ## Périmètre
 

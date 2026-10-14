@@ -6,7 +6,7 @@
 
 [![npm](https://img.shields.io/npm/v/rea-captcha.svg)](https://www.npmjs.com/package/rea-captcha) [![MCP Registry](https://img.shields.io/badge/MCP_Registry-rea--captcha-5c6ac4.svg)](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.masakaai%2Frea-captcha) [![skills.sh](https://skills.sh/b/masakaai/rea-captcha)](https://skills.sh/masakaai/rea-captcha/rea-captcha) [![Discord](https://img.shields.io/discord/1555850967147356162?label=Discord&logo=discord&color=5865F2)](https://discord.gg/8Ybc32NcMt)
 
-Το rea-captcha εντοπίζει φραγμούς επαλήθευσης, παύει τον agent, διατηρεί την αρχική συνεδρία για ορατή ανθρώπινη παρέμβαση και συνεχίζει την ίδια εργασία μόνο μετά από νέα ένδειξη επιτυχίας. Περιλαμβάνει TypeScript SDK, τοπικό stdio MCP, Playwright/CDP, browser-use, Agent Skill συμβατό με Vercel Skills και προαιρετικό τοπικό OCR για εξουσιοδοτημένα origins.
+Το rea-captcha αποτρέπει το μπλοκάρισμα browser agents όπως το browser-use στη μέση μιας εργασίας από CAPTCHA. Επαναχρησιμοποιεί την υπάρχουσα συνεδρία Playwright/CDP και, σε εξουσιοδοτημένα tests ή ιδιόκτητες σελίδες, ο agent ολοκληρώνει την αλληλεπίδραση και συνεχίζει μόνο μετά από νέο αποδεικτικό του server.
 
 Το Jet Browser είναι προαιρετικός adapter, όχι εξάρτηση ή προεπιλεγμένο runtime. Δεν υπάρχει φιλοξενούμενος solver, τηλεμετρία ή υπόσχεση stealth παράκαμψης.
 
@@ -50,9 +50,9 @@ npx skills add masakaai/rea-captcha --skill rea-captcha
 
 ## Agents και MCP
 
-Το επίσημο όνομα είναι `io.github.masakaai/rea-captcha` και η εκκίνηση χωρίς ρύθμιση είναι `npx -y rea-captcha mcp --stateless`. Παρέχονται πέντε εργαλεία: `captcha_analyze`, `captcha_inspect`, `captcha_handoff`, `captcha_wait` και `captcha_resume`. Το πρώτο αναλύει μόνο για ανάγνωση στοιχεία που ήδη έχει ο agent· τα άλλα τέσσερα διατηρούν την ίδια ρυθμισμένη συνεδρία.
+Το επίσημο όνομα είναι `io.github.masakaai/rea-captcha` και η εκκίνηση χωρίς ρύθμιση είναι `npx -y rea-captcha mcp --stateless`. Παρέχονται έξι εργαλεία: `captcha_analyze`, `captcha_inspect`, `captcha_complete`, `captcha_handoff`, `captcha_wait` και `captcha_resume`. Το `captcha_complete` ενεργεί στο υπάρχον browser μόνο μετά τον έλεγχο policy, origin και τεκμηριωμένου provider test key.
 
-Ο κύκλος είναι `inspect → blocked → handoff → οριοθετημένη αναμονή → νέα επαλήθευση → resume`. Άγνωστη τιμή, ελλιπή στοιχεία, timeout ή μεμονωμένη πρόβλεψη OCR δεν επιτρέπουν συνέχιση.
+Ο κύκλος του agent είναι `inspect → agent-action → complete → νέα επαλήθευση → resume`. Άγνωστη τιμή, ελλιπή στοιχεία, timeout ή μεμονωμένη πρόβλεψη OCR δεν επιτρέπουν συνέχιση.
 
 ## Πεδίο χρήσης
 

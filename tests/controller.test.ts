@@ -2,6 +2,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { ChallengeController } from '../src/application/controller.js';
 import { InlineChallengeAdapter } from '../src/browser/inline.js';
 import { MemoryChallengeEventSink } from '../src/application/jsonl-event-sink.js';
+import { ChallengePolicy } from '../src/application/policy.js';
 
 describe('ChallengeController', () => {
   it('owns the detect -> handoff -> verify -> resume sequence', async () => {
@@ -37,6 +38,59 @@ describe('ChallengeController', () => {
     const controller = new ChallengeController({ browser });
     await controller.inspect();
     await expect(controller.resume()).rejects.toThrow('still active');
+    expect(controller.state).toBe('blocked');
+  });
+
+  it('lets an authorized agent action complete before fresh verification and resume', async () => {
+    const inline = new InlineChallengeAdapter('agent-fixture', {
+      url: 'https://fixture.test/', title: 'Fixture', html: '<div class="cf-turnstile"></div>'
+    });
+    const completeAuthorizedChallenge = vi.fn(async () => {
+      inline.update({
+        url: 'https://fixture.test/passed',
+        title: 'Fixture passed',
+        html: '<main data-captcha-status="passed">Validated</main>'
+      });
+    });
+    const browser = Object.assign(inline, { completeAuthorizedChallenge });
+    const resume = vi.fn();
+    const events = new MemoryChallengeEventSink();
+    const controller = new ChallengeController({
+      browser,
+      policy: new ChallengePolicy({
+        authorizedOrigins: ['https://fixture.test'],
+        allowProviderTestAutomation: true
+      }),
+      lifecycle: { pause() {}, resume },
+      events
+    });
+
+    const detected = await controller.inspect();
+    expect(detected.policy.decision).toBe('agent-action');
+    const cleared = await controller.complete({ timeoutMs: 100, pollMs: 25 });
+    expect(cleared.finding.status).toBe('passed');
+    expect(completeAuthorizedChallenge).toHaveBeenCalledOnce();
+    await controller.resume();
+    expect(resume).toHaveBeenCalledOnce();
+    expect(events.events.some(event => event.type === 'agent-action')).toBe(true);
+  });
+
+  it('validates completion timing before performing an authorized browser action', async () => {
+    const inline = new InlineChallengeAdapter('agent-fixture', {
+      url: 'https://fixture.test/', title: 'Fixture', html: '<div class="cf-turnstile"></div>'
+    });
+    const completeAuthorizedChallenge = vi.fn(async () => {});
+    const controller = new ChallengeController({
+      browser: Object.assign(inline, { completeAuthorizedChallenge }),
+      policy: new ChallengePolicy({
+        authorizedOrigins: ['https://fixture.test'],
+        allowProviderTestAutomation: true
+      })
+    });
+    await controller.inspect();
+
+    await expect(controller.complete({ timeoutMs: 0 })).rejects.toThrow('timeoutMs');
+    expect(completeAuthorizedChallenge).not.toHaveBeenCalled();
     expect(controller.state).toBe('blocked');
   });
 

@@ -1,28 +1,34 @@
-import { chromium } from 'playwright';
-import { ChallengeController } from 'rea-captcha';
-import { PlaywrightChallengeAdapter } from 'rea-captcha/playwright';
+import { ChallengeController, ChallengePolicy } from 'rea-captcha';
+import { connectCdpChallenge } from 'rea-captcha/cdp';
 
-const browser = await chromium.launch({ headless: false });
-const context = await browser.newContext();
-const page = await context.newPage();
-await page.goto(process.env.TARGET_URL ?? 'http://127.0.0.1:4173/turnstile.html');
+const authorizedOrigin = process.env.AUTHORIZED_ORIGIN ?? 'http://127.0.0.1:4173';
+const connection = await connectCdpChallenge({
+  id: 'existing-browser',
+  endpoint: process.env.CDP_ENDPOINT ?? 'http://127.0.0.1:9222',
+  agentActions: {
+    authorizedOrigins: [authorizedOrigin],
+    allowProviderTestAutomation: true,
+    submitSelector: 'button[type="submit"]',
+    imageTextValue: 'LOCAL42'
+  }
+});
 
 const controller = new ChallengeController({
-  browser: new PlaywrightChallengeAdapter({ id: 'playwright-demo', page }),
-  lifecycle: {
-    pause: () => { process.stdout.write('Challenge detected. Complete it in the visible browser.\n'); },
-    resume: () => { process.stdout.write('Challenge cleared. Agent work can resume.\n'); }
-  }
+  browser: connection.adapter,
+  policy: new ChallengePolicy({
+    authorizedOrigins: [authorizedOrigin],
+    allowLocalImageText: true,
+    allowProviderTestAutomation: true
+  })
 });
 
 try {
   const inspection = await controller.inspect();
-  if (inspection.policy.decision !== 'continue') {
-    await controller.handoff();
-    await controller.wait({ timeoutMs: 120_000, pollMs: 500 });
+  if (inspection.policy.decision === 'agent-action' || inspection.policy.decision === 'local-processing') {
+    await controller.complete({ timeoutMs: 30_000, pollMs: 100 });
     await controller.resume();
   }
 } finally {
   controller.close();
-  await browser.close();
+  await connection.close();
 }

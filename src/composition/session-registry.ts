@@ -45,7 +45,16 @@ export class ChallengeSessionRegistry {
     let browser: BrowserChallengePort;
     let cleanup: () => Promise<void> = async () => {};
     if (configured.adapter === 'playwright-cdp') {
-      const connection: CdpChallengeConnection = await connectCdpChallenge({ id, endpoint: configured.endpoint });
+      const connection: CdpChallengeConnection = await connectCdpChallenge({
+        id,
+        endpoint: configured.endpoint,
+        agentActions: {
+          authorizedOrigins: configured.authorizedOrigins,
+          allowProviderTestAutomation: configured.allowProviderTestAutomation,
+          ...(configured.submitSelector ? { submitSelector: configured.submitSelector } : {}),
+          ...(configured.imageTextValue ? { imageTextValue: configured.imageTextValue } : {})
+        }
+      });
       browser = connection.adapter;
       cleanup = connection.close;
     } else if (configured.adapter === 'jet-browser') {
@@ -76,7 +85,10 @@ export class ChallengeSessionRegistry {
       browser,
       policy: new ChallengePolicy({
         authorizedOrigins: configured.authorizedOrigins,
-        allowLocalImageText: configured.allowLocalImageText
+        allowLocalImageText: configured.allowLocalImageText,
+        allowProviderTestAutomation: configured.adapter === 'playwright-cdp'
+          ? configured.allowProviderTestAutomation
+          : false
       }),
       ...(this.#config.eventLog ? { events: new JsonlChallengeEventSink(this.#config.eventLog) } : {})
     });

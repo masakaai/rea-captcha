@@ -15,7 +15,7 @@
 [![skills.sh](https://skills.sh/b/masakaai/rea-captcha)](https://skills.sh/masakaai/rea-captcha/rea-captcha)
 [![Discord](https://img.shields.io/discord/1555850967147356162?label=Discord&logo=discord&color=5865F2)](https://discord.gg/8Ybc32NcMt)
 
-rea-captcha는 검증 챌린지를 감지하고 Agent를 일시 중지하며, 사람이 직접 처리할 수 있도록 원래 브라우저 세션을 유지합니다. 새로운 통과 증거를 확인한 뒤에만 같은 작업을 재개합니다. TypeScript SDK, 로컬 stdio MCP, Playwright/CDP, browser-use, Vercel Skills 호환 Skill, 허가된 origin 전용 선택적 로컬 OCR을 제공합니다.
+rea-captcha는 browser-use 같은 브라우저 Agent가 작업 도중 CAPTCHA에서 멈추는 문제를 처리합니다. Agent가 이미 사용 중인 Playwright/CDP 브라우저를 재사용하고, 허가된 테스트 또는 소유 환경에서는 Agent가 직접 상호작용한 뒤 새로운 서버 검증 결과가 있을 때만 원래 작업을 계속합니다.
 
 > 공식 배포처는 [`masakaai/rea-captcha`](https://github.com/masakaai/rea-captcha)와 npm의 [`rea-captcha`](https://www.npmjs.com/package/rea-captcha)입니다. 호스팅 solver, 텔레메트리, stealth 우회 기능이 없습니다. Jet Browser는 명시적으로 선택하는 선택적 어댑터이며 의존성이나 기본 런타임이 아닙니다.
 
@@ -57,9 +57,9 @@ npx skills add masakaai/rea-captcha --skill rea-captcha
 
 ## Agent / MCP
 
-공식 Registry 이름은 `io.github.masakaai/rea-captcha`이며 무설정 실행은 `npx -y rea-captcha mcp --stateless`입니다. MCP는 `captcha_analyze`, `captcha_inspect`, `captcha_handoff`, `captcha_wait`, `captcha_resume` 다섯 도구를 제공합니다. `captcha_analyze`는 Agent가 이미 가진 증거를 읽기 전용으로 분석하고, 나머지 네 도구는 설정된 동일 브라우저 세션을 사용합니다. 입력과 상태 의미는 [MCP tool catalog](../mcp-tools.md)에 있습니다.
+공식 Registry 이름은 `io.github.masakaai/rea-captcha`이며 무설정 실행은 `npx -y rea-captcha mcp --stateless`입니다. MCP는 `captcha_analyze`, `captcha_inspect`, `captcha_complete`, `captcha_handoff`, `captcha_wait`, `captcha_resume` 여섯 도구를 제공합니다. `captcha_complete`는 정책, origin, 공급자 테스트 키를 확인한 경우에만 기존 브라우저를 조작합니다. 자세한 내용은 [MCP tool catalog](../mcp-tools.md)에 있습니다.
 
-상태 흐름은 `inspect → blocked → handoff → bounded wait → fresh verify → resume`입니다. 알 수 없는 값, 누락된 증거, 시간 초과, OCR 예측만으로는 재개하지 않습니다.
+Agent 상태 흐름은 `inspect → agent-action → complete → fresh verify → resume`입니다. 알 수 없는 값, 누락된 증거, 시간 초과, OCR 예측만으로는 재개하지 않습니다.
 
 ## 지원 범위
 

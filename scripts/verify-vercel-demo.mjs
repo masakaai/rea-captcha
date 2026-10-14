@@ -24,7 +24,10 @@ const origin = `http://127.0.0.1:${address.port}`;
 try {
   const index = await fetch(`${origin}/`);
   assert.equal(index.status, 200);
-  assert.match(await index.text(), /Four verification cases/);
+  const indexHtml = await index.text();
+  assert.match(indexHtml, /keep browser-use/);
+  assert.match(indexHtml, /live provider matrix/);
+  assert.equal((indexHtml.match(/href="\/(?:recaptcha|turnstile|hcaptcha|image-text)\.html"/g) ?? []).length, 4);
   assert.match(index.headers.get('set-cookie') ?? '', /rea_demo_session=kept/);
 
   const provider = await fetch(`${origin}/turnstile.html`);

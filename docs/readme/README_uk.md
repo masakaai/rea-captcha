@@ -6,7 +6,7 @@
 
 [![npm](https://img.shields.io/npm/v/rea-captcha.svg)](https://www.npmjs.com/package/rea-captcha) [![MCP Registry](https://img.shields.io/badge/MCP_Registry-rea--captcha-5c6ac4.svg)](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.masakaai%2Frea-captcha) [![skills.sh](https://skills.sh/b/masakaai/rea-captcha)](https://skills.sh/masakaai/rea-captcha/rea-captcha) [![Discord](https://img.shields.io/discord/1555850967147356162?label=Discord&logo=discord&color=5865F2)](https://discord.gg/8Ybc32NcMt)
 
-rea-captcha виявляє бар'єри перевірки, призупиняє агента, зберігає початкову сесію браузера для видимого втручання людини й продовжує те саме завдання лише після отримання свіжого підтвердження успіху. Проєкт містить TypeScript SDK, локальний stdio MCP, Playwright/CDP, browser-use, Agent Skill для Vercel Skills і необов'язковий локальний OCR для дозволених origin.
+rea-captcha не дає браузерним агентам на кшталт browser-use застрягати посеред завдання через CAPTCHA. Він повторно використовує наявну сесію Playwright/CDP; в авторизованих тестах або на власних сторінках агент сам виконує дію й продовжує лише після нового серверного підтвердження.
 
 Jet Browser — необов'язковий адаптер, а не залежність чи runtime за замовчуванням. Немає розміщеного solver-сервісу, телеметрії або обіцянок прихованого обходу.
 
@@ -50,9 +50,9 @@ npx skills add masakaai/rea-captcha --skill rea-captcha
 
 ## Агенти та MCP
 
-Офіційна назва — `io.github.masakaai/rea-captcha`, запуск без конфігурації: `npx -y rea-captcha mcp --stateless`. Доступні п'ять інструментів: `captcha_analyze`, `captcha_inspect`, `captcha_handoff`, `captcha_wait` і `captcha_resume`. Перший лише читає й аналізує вже наявні в агента дані; решта чотири зберігають ту саму налаштовану сесію.
+Офіційна назва — `io.github.masakaai/rea-captcha`, запуск без конфігурації: `npx -y rea-captcha mcp --stateless`. Доступні шість інструментів: `captcha_analyze`, `captcha_inspect`, `captcha_complete`, `captcha_handoff`, `captcha_wait` і `captcha_resume`. `captcha_complete` працює в наявному браузері лише після перевірки політики, origin і документованого тестового ключа провайдера.
 
-Цикл: `inspect → blocked → handoff → обмежене очікування → нова перевірка → resume`. Невідоме значення, неповні дані, timeout або лише прогноз OCR ніколи не дозволяють продовження.
+Цикл агента: `inspect → agent-action → complete → нова перевірка → resume`. Невідоме значення, неповні дані, timeout або лише прогноз OCR ніколи не дозволяють продовження.
 
 ## Сфера застосування
 

@@ -6,7 +6,7 @@
 
 [![npm](https://img.shields.io/npm/v/rea-captcha.svg)](https://www.npmjs.com/package/rea-captcha) [![MCP Registry](https://img.shields.io/badge/MCP_Registry-rea--captcha-5c6ac4.svg)](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.masakaai%2Frea-captcha) [![skills.sh](https://skills.sh/b/masakaai/rea-captcha)](https://skills.sh/masakaai/rea-captcha/rea-captcha) [![Discord](https://img.shields.io/discord/1555850967147356162?label=Discord&logo=discord&color=5865F2)](https://discord.gg/8Ybc32NcMt)
 
-rea-captcha ตรวจพบด่านยืนยัน หยุด agent ชั่วคราว เก็บ browser session เดิมไว้ให้มนุษย์เข้ามาดำเนินการในหน้าต่างที่มองเห็นได้ และทำงานเดิมต่อเมื่อพบหลักฐานผ่านใหม่เท่านั้น โครงการมี TypeScript SDK, local stdio MCP, Playwright/CDP, browser-use, Agent Skill ที่รองรับ Vercel Skills และ local OCR แบบเลือกใช้สำหรับ origin ที่ได้รับอนุญาต
+rea-captcha ช่วยไม่ให้ browser agent อย่าง browser-use ติดค้างกลางงานเพราะ CAPTCHA โดยใช้ Playwright/CDP session ที่ agent มีอยู่แล้ว ในการทดสอบที่ได้รับอนุญาตหรือหน้าที่เป็นเจ้าของ agent จะทำ interaction เองและทำงานต่อเมื่อมีหลักฐานผ่านใหม่จากเซิร์ฟเวอร์เท่านั้น
 
 Jet Browser เป็น adapter เสริม ไม่ใช่ dependency หรือ runtime เริ่มต้น ไม่มี hosted solver, telemetry หรือคำกล่าวอ้างเรื่องการหลบเลี่ยงแบบ stealth
 
@@ -50,9 +50,9 @@ npx skills add masakaai/rea-captcha --skill rea-captcha
 
 ## Agent และ MCP
 
-ชื่อทางการคือ `io.github.masakaai/rea-captcha` และคำสั่งเริ่มต้นแบบไม่ต้องตั้งค่าคือ `npx -y rea-captcha mcp --stateless` มีเครื่องมือห้ารายการ: `captcha_analyze`, `captcha_inspect`, `captcha_handoff`, `captcha_wait` และ `captcha_resume` รายการแรกอ่านและวิเคราะห์หลักฐานที่ agent มีอยู่แล้ว ส่วนอีกสี่รายการรักษา browser session ที่ตั้งค่าไว้ให้เป็น session เดียวกัน
+ชื่อทางการคือ `io.github.masakaai/rea-captcha` และคำสั่งเริ่มต้นแบบไม่ต้องตั้งค่าคือ `npx -y rea-captcha mcp --stateless` มีเครื่องมือหกรายการ: `captcha_analyze`, `captcha_inspect`, `captcha_complete`, `captcha_handoff`, `captcha_wait` และ `captcha_resume` โดย `captcha_complete` จะทำงานใน browser เดิมหลังตรวจ policy, origin และ provider test key ที่มีเอกสารกำกับแล้วเท่านั้น
 
-วงจรคือ `inspect → blocked → handoff → รอแบบมีขอบเขต → ตรวจสอบใหม่ → resume` ค่าที่ไม่ทราบ หลักฐานไม่ครบ timeout หรือผลคาดการณ์ OCR เพียงอย่างเดียวไม่อนุญาตให้ทำงานต่อ
+วงจรของ agent คือ `inspect → agent-action → complete → ตรวจสอบใหม่ → resume` ค่าที่ไม่ทราบ หลักฐานไม่ครบ timeout หรือผลคาดการณ์ OCR เพียงอย่างเดียวไม่อนุญาตให้ทำงานต่อ
 
 ## ขอบเขต
 

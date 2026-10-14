@@ -1,27 +1,27 @@
 # Integration and acceptance cases
 
-The fixtures are synthetic and run on owned local pages. They validate runtime behavior without relying on public challenge endpoints or unstable third-party acceptance.
+The deterministic fixtures run on owned local pages. The four provider demos separately load documented vendor test widgets and validate their server endpoints.
 
 | Case | Detection evidence | Expected action | Automated check |
 |---|---|---|---|
-| reCAPTCHA widget | `g-recaptcha` or provider iframe | Human handoff | `detector-policy.test.ts` |
-| hCaptcha widget | `h-captcha` or provider iframe | Human handoff | `detector-policy.test.ts` |
-| Cloudflare Turnstile | `cf-turnstile` or challenge iframe | Human handoff | detector + Playwright acceptance |
+| reCAPTCHA widget | `g-recaptcha` or provider iframe | Agent action only on authorized origin + official test key | policy + four-case browser suite |
+| hCaptcha widget | `h-captcha` or provider iframe | Agent action only on authorized origin + official test key | policy + four-case browser suite |
+| Cloudflare Turnstile | `cf-turnstile` or challenge iframe | Agent action only on authorized origin + official test key | policy + four-case browser suite |
 | GeeTest | script/class marker | Human handoff | detector matrix |
 | DataDome | delivery script marker | Human handoff | detector matrix |
 | PerimeterX | `px-captcha` marker | Human handoff | detector matrix |
 | AWS WAF | AWS WAF token/widget marker | Human handoff | detector matrix |
 | Simple image/text | named input on exact authorized origin | Optional local OCR | policy test |
 | Ordinary page | no challenge evidence | Continue | TypeScript + Python detector tests |
-| Persistent challenge | evidence remains after handoff | Refuse resume | controller test |
-| Human completion | widget removed in same page/session | Verify and resume | Playwright acceptance |
+| Persistent challenge | evidence remains after action or handoff | Refuse resume | controller test |
+| Agent completion | authorized action in same page/session | Verify and resume | controller + Playwright acceptance |
 | Timeout | challenge never clears | Timed-out state | controller test |
 | Jet Browser | SDK `evaluate(sessionId, expression)` | Inspect borrowed session | Jet adapter contract test |
 | Jet standalone | ordered JSONL process | Own and close one WPE session | fake-process transport test |
 | MCP client | list and call real MCP tools | Structured evidence | in-memory protocol test |
 | browser-use | hook before step, same BrowserSession | Pause/poll/resume | Python plugin test |
 
-The Playwright acceptance test also verifies that the page title and a context cookie remain intact across handoff, which proves the workflow does not replace the browser context.
+The Playwright acceptance path verifies that the page title and a context cookie remain intact across the agent action, proving the workflow does not replace the browser context.
 
 ## Four provider web demos
 
@@ -36,4 +36,4 @@ The same handler is deployed at [`https://rea-captcha.vercel.app`](https://rea-c
 | `hcaptcha.html` | hCaptcha-hosted script with its official publisher test keypair | Passcode is posted to hCaptcha Siteverify with the matching test secret |
 | `image-text.html` | Fully owned local image/text form | Local server compares the submitted value; no third party or solver is contacted |
 
-Run `npm run demo:web` for interactive use or `npm run test:web-demo` for the live browser verification. The latter performs detection, handoff, real provider callback/validation, passed-state inspection, cookie-preservation check, and same-controller resume for all four cases. Vendor test credentials are intentionally non-production and provide no anti-bot protection.
+Run `npm run demo:web` for interactive use or `npm run test:web-demo` for the live browser verification. The latter performs detection, policy authorization, agent browser action, real provider callback/validation, passed-state inspection, cookie-preservation check, and same-controller resume for all four cases. Vendor test credentials are intentionally non-production and provide no anti-bot protection.

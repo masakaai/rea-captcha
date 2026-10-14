@@ -6,7 +6,7 @@
 
 [![npm](https://img.shields.io/npm/v/rea-captcha.svg)](https://www.npmjs.com/package/rea-captcha) [![MCP Registry](https://img.shields.io/badge/MCP_Registry-rea--captcha-5c6ac4.svg)](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.masakaai%2Frea-captcha) [![skills.sh](https://skills.sh/b/masakaai/rea-captcha)](https://skills.sh/masakaai/rea-captcha/rea-captcha) [![Discord](https://img.shields.io/discord/1555850967147356162?label=Discord&logo=discord&color=5865F2)](https://discord.gg/8Ybc32NcMt)
 
-rea-captcha مانع تأیید را تشخیص می‌دهد، عامل را متوقف می‌کند، نشست اصلی مرورگر را برای دخالت قابل‌مشاهدهٔ انسان نگه می‌دارد و همان کار را فقط پس از مشاهدهٔ شاهد تازهٔ موفقیت ادامه می‌دهد. این پروژه شامل SDK تایپ‌اسکریپت، سرور محلی MCP روی stdio، Playwright/CDP، browser-use، مهارت Agent سازگار با Vercel Skills و OCR محلی اختیاری برای originهای مجاز است.
+rea-captcha مانع گیرکردن عامل‌های مرورگر مانند browser-use در میانهٔ کار به‌خاطر CAPTCHA می‌شود. نشست موجود Playwright/CDP را دوباره استفاده می‌کند؛ در تست‌های مجاز یا صفحات تحت مالکیت، عامل تعامل را خودش انجام می‌دهد و فقط پس از دریافت شاهد تازه از سرور کار را ادامه می‌دهد.
 
 Jet Browser فقط یک آداپتور اختیاری است و وابستگی یا runtime پیش‌فرض نیست. solver میزبانی‌شده، تله‌متری یا ادعای دورزدن مخفی وجود ندارد.
 
@@ -50,9 +50,9 @@ Node.js 22.19+، 24.11+ یا 26+ لازم است. `setup` پس از تأیید �
 
 ## عامل‌ها و MCP
 
-نام رسمی رجیستری `io.github.masakaai/rea-captcha` و اجرای بدون پیکربندی `npx -y rea-captcha mcp --stateless` است. پنج ابزار ارائه می‌شود: `captcha_analyze`، `captcha_inspect`، `captcha_handoff`، `captcha_wait` و `captcha_resume`. ابزار نخست شواهدی را که عامل از قبل دارد فقط می‌خواند؛ چهار ابزار دیگر همان نشست مرورگر پیکربندی‌شده را حفظ می‌کنند.
+نام رسمی رجیستری `io.github.masakaai/rea-captcha` و اجرای بدون پیکربندی `npx -y rea-captcha mcp --stateless` است. شش ابزار ارائه می‌شود: `captcha_analyze`، `captcha_inspect`، `captcha_complete`، `captcha_handoff`، `captcha_wait` و `captcha_resume`. ابزار `captcha_complete` فقط پس از بررسی سیاست، origin و کلید تست مستند سرویس‌دهنده در مرورگر موجود عمل می‌کند.
 
-چرخهٔ حالت `inspect → blocked → handoff → انتظار محدود → بررسی تازه → resume` است. مقدار ناشناخته، شاهد ناقص، پایان مهلت یا پیش‌بینی OCR به‌تنهایی اجازهٔ ادامه نمی‌دهد.
+چرخهٔ عامل `inspect → agent-action → complete → بررسی تازه → resume` است. مقدار ناشناخته، شاهد ناقص، پایان مهلت یا پیش‌بینی OCR به‌تنهایی اجازهٔ ادامه نمی‌دهد.
 
 ## محدوده
 

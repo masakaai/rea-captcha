@@ -2,11 +2,11 @@
 
 # rea-captcha
 
-**面向瀏覽器 Agent 的本機優先驗證挑戰識別與安全人工接管。**
+**讓瀏覽器 Agent 在既有工作階段中完成授權驗證流程。**
 
 [![npm](https://img.shields.io/npm/v/rea-captcha.svg)](https://www.npmjs.com/package/rea-captcha) [![MCP Registry](https://img.shields.io/badge/MCP_Registry-rea--captcha-5c6ac4.svg)](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.masakaai%2Frea-captcha) [![skills.sh](https://skills.sh/b/masakaai/rea-captcha)](https://skills.sh/masakaai/rea-captcha/rea-captcha) [![Discord](https://img.shields.io/discord/1555850967147356162?label=Discord&logo=discord&color=5865F2)](https://discord.gg/8Ybc32NcMt)
 
-rea-captcha 會在瀏覽器 Agent 重複操作前識別驗證挑戰，暫停目前任務，保留原始瀏覽器工作階段供使用者可見接管，並且只在取得新的通過證據後恢復同一任務。專案提供 TypeScript SDK、本機 stdio MCP、Playwright/CDP、browser-use、相容 Vercel Skills 的 Agent Skill，以及僅限授權 origin 的選用本機 OCR。
+rea-captcha 用來處理 browser-use 等瀏覽器 Agent 在任務途中被 CAPTCHA 卡住的情況。它重用 Agent 既有的 Playwright/CDP 瀏覽器，在明確授權的測試或自有場景中由 Agent 完成交互，並只在取得新的伺服器端通過證據後繼續原任務。
 
 Jet Browser 只是明確選用的適配器，不是相依套件或預設 runtime。專案沒有託管 solver、遙測或隱身繞過承諾。
 
@@ -35,7 +35,7 @@ Jet Browser 只是明確選用的適配器，不是相依套件或預設 runtime
   </tr>
 </table>
 
-四個案例都驗證完整的受保護操作：識別、同工作階段接管、伺服器端驗證、新的通過證據、工作階段 Cookie，以及安全恢復。前三項使用供應商真實 JavaScript、公開非正式環境測試憑證與官方 Siteverify endpoint。
+四個案例都驗證完整的受保護操作：識別、同工作階段 Agent 操作、伺服器端驗證、新的通過證據、工作階段 Cookie，以及安全恢復。前三項使用供應商真實 JavaScript、公開非正式環境測試憑證與官方 Siteverify endpoint。
 
 ## 快速開始
 
@@ -50,9 +50,9 @@ npx skills add masakaai/rea-captcha --skill rea-captcha
 
 ## Agent 與 MCP
 
-官方 Registry 名稱為 `io.github.masakaai/rea-captcha`，零設定啟動為 `npx -y rea-captcha mcp --stateless`。服務提供五個工具：`captcha_analyze`、`captcha_inspect`、`captcha_handoff`、`captcha_wait` 與 `captcha_resume`。第一個工具以唯讀方式分析 Agent 已持有的證據；其餘四個工具持續使用同一個已設定的瀏覽器工作階段。
+官方 Registry 名稱為 `io.github.masakaai/rea-captcha`，零設定啟動為 `npx -y rea-captcha mcp --stateless`。服務提供六個工具：`captcha_analyze`、`captcha_inspect`、`captcha_complete`、`captcha_handoff`、`captcha_wait` 與 `captcha_resume`。`captcha_complete` 僅在策略允許、origin 相符且供應商測試 key 通過檢查時操作既有瀏覽器。
 
-狀態流程為 `inspect → blocked → handoff → 有界等待 → 新證據驗證 → resume`。未知值、缺少證據、逾時或單獨的 OCR 預測都不能授權恢復。
+Agent 流程為 `inspect → agent-action → complete → 新證據驗證 → resume`。未知值、缺少證據、逾時或單獨的 OCR 預測都不能授權恢復。
 
 ## 使用範圍
 

@@ -15,7 +15,7 @@
 [![skills.sh](https://skills.sh/b/masakaai/rea-captcha)](https://skills.sh/masakaai/rea-captcha/rea-captcha)
 [![Discord](https://img.shields.io/discord/1555850967147356162?label=Discord&logo=discord&color=5865F2)](https://discord.gg/8Ybc32NcMt)
 
-rea-captcha は検証チャレンジを検出して Agent を一時停止し、元のブラウザーセッションを人間の操作用に維持します。新しい通過証拠を確認した場合だけ、同じタスクを再開します。TypeScript SDK、stdio MCP、Playwright/CDP、browser-use、Vercel Skills 互換 Skill、許可済み origin 専用の任意ローカル OCR を提供します。
+rea-captcha は、browser-use などのブラウザー Agent がタスク途中の CAPTCHA で止まる問題に対応します。Agent がすでに使っている Playwright/CDP セッションを再利用し、許可されたテスト環境または所有ページで Agent 自身が操作し、新しいサーバー検証結果を確認してから元のタスクを続行します。
 
 > 公式配布元は [`masakaai/rea-captcha`](https://github.com/masakaai/rea-captcha) と npm の [`rea-captcha`](https://www.npmjs.com/package/rea-captcha) です。ホスト型 solver、テレメトリー、stealth 回避はありません。Jet Browser は明示的に選ぶ任意アダプターであり、依存関係でも既定ランタイムでもありません。
 
@@ -57,9 +57,9 @@ npx skills add masakaai/rea-captcha --skill rea-captcha
 
 ## Agent / MCP
 
-ゼロ設定の Registry 起動は `npx -y rea-captcha mcp --stateless` です。MCP は `captcha_analyze`、`captcha_inspect`、`captcha_handoff`、`captcha_wait`、`captcha_resume` の 5 ツールを公開します。`captcha_analyze` は Agent が既に取得した証拠を読み取り専用で分析します。残りの 4 ツールは設定済みの同一ブラウザーセッションを利用します。詳細は [MCP tool catalog](../mcp-tools.md) を参照してください。
+ゼロ設定の Registry 起動は `npx -y rea-captcha mcp --stateless` です。MCP は `captcha_analyze`、`captcha_inspect`、`captcha_complete`、`captcha_handoff`、`captcha_wait`、`captcha_resume` の 6 ツールを公開します。`captcha_complete` は、ポリシー、origin、ベンダーのテストキーを確認した後にだけ既存ブラウザーを操作します。詳細は [MCP tool catalog](../mcp-tools.md) を参照してください。
 
-状態遷移は `inspect → blocked → handoff → bounded wait → fresh verify → resume` です。不明値、欠損証拠、タイムアウト、OCR 予測だけでは再開しません。
+Agent の状態遷移は `inspect → agent-action → complete → fresh verify → resume` です。不明値、欠損証拠、タイムアウト、OCR 予測だけでは再開しません。
 
 ## 対応範囲
 

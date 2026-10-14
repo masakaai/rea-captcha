@@ -58,4 +58,14 @@ describe('challenge policy', () => {
     expect(policy.decide(allowed).decision).toBe('local-processing');
     expect(policy.decide(denied).decision).toBe('human-handoff');
   });
+
+  it('allows provider test automation only when the origin and feature are explicit', () => {
+    const finding = detector.detect(observation('<div class="g-recaptcha"></div>'));
+    const allowed = new ChallengePolicy({
+      authorizedOrigins: ['https://fixture.test'],
+      allowProviderTestAutomation: true
+    });
+    expect(allowed.decide(finding).decision).toBe('agent-action');
+    expect(new ChallengePolicy({ allowProviderTestAutomation: true }).decide(finding).decision).toBe('human-handoff');
+  });
 });
