@@ -21,17 +21,21 @@ rea-captcha は検証チャレンジを検出して Agent を一時停止し、�
 
 ## 4 ケースの実証マトリクス
 
-| ケース | 実クライアント | 検証境界 | 結果 |
-|---|---|---|---|
-| Google reCAPTCHA v2 | Google test widget | Google Siteverify | 通過・同一セッション再開 |
-| Cloudflare Turnstile | Cloudflare test widget | Cloudflare Siteverify | 通過・同一セッション再開 |
-| hCaptcha | hCaptcha test widget | hCaptcha Siteverify | 通過・同一セッション再開 |
-| 所有する画像/テキスト | ローカルフォーム | ローカルサーバー | 通過・同一セッション再開 |
+<p align="center">
+  <img src="../assets/demos/recaptcha.gif" alt="reCAPTCHA demo" width="860">
+</p>
 
-<table>
-  <tr><td width="50%"><img src="../assets/demos/recaptcha.gif" alt="reCAPTCHA demo" width="100%"></td><td width="50%"><img src="../assets/demos/turnstile.gif" alt="Turnstile demo" width="100%"></td></tr>
-  <tr><td width="50%"><img src="../assets/demos/hcaptcha.gif" alt="hCaptcha demo" width="100%"></td><td width="50%"><img src="../assets/demos/image-text.gif" alt="Image text demo" width="100%"></td></tr>
-</table>
+<p align="center">
+  <img src="../assets/demos/turnstile.gif" alt="Turnstile demo" width="860">
+</p>
+
+<p align="center">
+  <img src="../assets/demos/hcaptcha.gif" alt="hCaptcha demo" width="860">
+</p>
+
+<p align="center">
+  <img src="../assets/demos/image-text.gif" alt="Image text demo" width="860">
+</p>
 
 最初の 3 ケースはベンダー提供 JavaScript と公開された非本番テストキーを使用し、検証 endpoint が `success: true` を返した後だけ保護操作を受理します。
 

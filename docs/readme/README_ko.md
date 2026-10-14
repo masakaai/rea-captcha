@@ -21,17 +21,21 @@ rea-captcha는 검증 챌린지를 감지하고 Agent를 일시 중지하며, �
 
 ## 네 가지 실제 검증 사례
 
-| 사례 | 실제 클라이언트 | 검증 경계 | 확인 결과 |
-|---|---|---|---|
-| Google reCAPTCHA v2 | Google test widget | Google Siteverify | 통과 후 동일 세션 재개 |
-| Cloudflare Turnstile | Cloudflare test widget | Cloudflare Siteverify | 통과 후 동일 세션 재개 |
-| hCaptcha | hCaptcha test widget | hCaptcha Siteverify | 통과 후 동일 세션 재개 |
-| 소유한 이미지/텍스트 | 로컬 폼 | 로컬 서버 | 통과 후 동일 세션 재개 |
+<p align="center">
+  <img src="../assets/demos/recaptcha.gif" alt="reCAPTCHA demo" width="860">
+</p>
 
-<table>
-  <tr><td width="50%"><img src="../assets/demos/recaptcha.gif" alt="reCAPTCHA demo" width="100%"></td><td width="50%"><img src="../assets/demos/turnstile.gif" alt="Turnstile demo" width="100%"></td></tr>
-  <tr><td width="50%"><img src="../assets/demos/hcaptcha.gif" alt="hCaptcha demo" width="100%"></td><td width="50%"><img src="../assets/demos/image-text.gif" alt="Image text demo" width="100%"></td></tr>
-</table>
+<p align="center">
+  <img src="../assets/demos/turnstile.gif" alt="Turnstile demo" width="860">
+</p>
+
+<p align="center">
+  <img src="../assets/demos/hcaptcha.gif" alt="hCaptcha demo" width="860">
+</p>
+
+<p align="center">
+  <img src="../assets/demos/image-text.gif" alt="Image text demo" width="860">
+</p>
 
 앞의 세 사례는 공급자 호스팅 JavaScript와 공개된 비프로덕션 테스트 키를 사용하며, 검증 endpoint가 `success: true`를 반환해야 보호된 작업을 승인합니다.
 

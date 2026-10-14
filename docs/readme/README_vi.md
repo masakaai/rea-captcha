@@ -12,10 +12,25 @@ Jet Browser chỉ là adapter tùy chọn, không phải dependency hay runtime 
 
 ## Ma trận xác minh agentic
 
-<table>
-  <tr><td width="50%"><strong>Google reCAPTCHA v2</strong><br><img src="../assets/demos/recaptcha.gif" alt="Luồng reCAPTCHA" width="100%"></td><td width="50%"><strong>Cloudflare Turnstile</strong><br><img src="../assets/demos/turnstile.gif" alt="Luồng Turnstile" width="100%"></td></tr>
-  <tr><td width="50%"><strong>hCaptcha</strong><br><img src="../assets/demos/hcaptcha.gif" alt="Luồng hCaptcha" width="100%"></td><td width="50%"><strong>Ảnh/văn bản sở hữu</strong><br><img src="../assets/demos/image-text.gif" alt="Luồng ảnh và văn bản" width="100%"></td></tr>
-</table>
+<p align="center">
+  <strong>Google reCAPTCHA v2</strong><br>
+  <img src="../assets/demos/recaptcha.gif" alt="Luồng reCAPTCHA" width="860">
+</p>
+
+<p align="center">
+  <strong>Cloudflare Turnstile</strong><br>
+  <img src="../assets/demos/turnstile.gif" alt="Luồng Turnstile" width="860">
+</p>
+
+<p align="center">
+  <strong>hCaptcha</strong><br>
+  <img src="../assets/demos/hcaptcha.gif" alt="Luồng hCaptcha" width="860">
+</p>
+
+<p align="center">
+  <strong>Ảnh/văn bản sở hữu</strong><br>
+  <img src="../assets/demos/image-text.gif" alt="Luồng ảnh và văn bản" width="860">
+</p>
 
 Cả bốn trường hợp đều kiểm tra toàn bộ luồng được bảo vệ: phát hiện, bàn giao cùng phiên, xác minh phía máy chủ, bằng chứng mới, cookie phiên và tiếp tục an toàn. Ba trường hợp đầu dùng JavaScript thật của nhà cung cấp, thông tin thử nghiệm công khai và endpoint Siteverify chính thức.
 

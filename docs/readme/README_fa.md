@@ -12,10 +12,25 @@ Jet Browser فقط یک آداپتور اختیاری است و وابستگی �
 
 ## ماتریس تأیید عامل‌محور
 
-<table>
-  <tr><td width="50%"><strong>Google reCAPTCHA v2</strong><br><img src="../assets/demos/recaptcha.gif" alt="فرایند reCAPTCHA" width="100%"></td><td width="50%"><strong>Cloudflare Turnstile</strong><br><img src="../assets/demos/turnstile.gif" alt="فرایند Turnstile" width="100%"></td></tr>
-  <tr><td width="50%"><strong>hCaptcha</strong><br><img src="../assets/demos/hcaptcha.gif" alt="فرایند hCaptcha" width="100%"></td><td width="50%"><strong>تصویر/متن تحت مالکیت</strong><br><img src="../assets/demos/image-text.gif" alt="فرایند تصویر و متن" width="100%"></td></tr>
-</table>
+<p align="center">
+  <strong>Google reCAPTCHA v2</strong><br>
+  <img src="../assets/demos/recaptcha.gif" alt="فرایند reCAPTCHA" width="860">
+</p>
+
+<p align="center">
+  <strong>Cloudflare Turnstile</strong><br>
+  <img src="../assets/demos/turnstile.gif" alt="فرایند Turnstile" width="860">
+</p>
+
+<p align="center">
+  <strong>hCaptcha</strong><br>
+  <img src="../assets/demos/hcaptcha.gif" alt="فرایند hCaptcha" width="860">
+</p>
+
+<p align="center">
+  <strong>تصویر/متن تحت مالکیت</strong><br>
+  <img src="../assets/demos/image-text.gif" alt="فرایند تصویر و متن" width="860">
+</p>
 
 هر چهار مورد مسیر کامل عملیات محافظت‌شده را بررسی می‌کنند: تشخیص، تحویل همان نشست، اعتبارسنجی سرور، شاهد تازه، کوکی نشست و ادامهٔ امن. سه مورد نخست از JavaScript واقعی ارائه‌دهنده، کلیدهای تست عمومی و endpointهای Siteverify استفاده می‌کنند.
 

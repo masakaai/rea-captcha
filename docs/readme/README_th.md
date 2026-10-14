@@ -12,10 +12,25 @@ Jet Browser เป็น adapter เสริม ไม่ใช่ dependency �
 
 ## เมทริกซ์การยืนยันแบบ Agentic
 
-<table>
-  <tr><td width="50%"><strong>Google reCAPTCHA v2</strong><br><img src="../assets/demos/recaptcha.gif" alt="ขั้นตอน reCAPTCHA" width="100%"></td><td width="50%"><strong>Cloudflare Turnstile</strong><br><img src="../assets/demos/turnstile.gif" alt="ขั้นตอน Turnstile" width="100%"></td></tr>
-  <tr><td width="50%"><strong>hCaptcha</strong><br><img src="../assets/demos/hcaptcha.gif" alt="ขั้นตอน hCaptcha" width="100%"></td><td width="50%"><strong>รูปภาพ/ข้อความที่เป็นเจ้าของ</strong><br><img src="../assets/demos/image-text.gif" alt="ขั้นตอนรูปภาพและข้อความ" width="100%"></td></tr>
-</table>
+<p align="center">
+  <strong>Google reCAPTCHA v2</strong><br>
+  <img src="../assets/demos/recaptcha.gif" alt="ขั้นตอน reCAPTCHA" width="860">
+</p>
+
+<p align="center">
+  <strong>Cloudflare Turnstile</strong><br>
+  <img src="../assets/demos/turnstile.gif" alt="ขั้นตอน Turnstile" width="860">
+</p>
+
+<p align="center">
+  <strong>hCaptcha</strong><br>
+  <img src="../assets/demos/hcaptcha.gif" alt="ขั้นตอน hCaptcha" width="860">
+</p>
+
+<p align="center">
+  <strong>รูปภาพ/ข้อความที่เป็นเจ้าของ</strong><br>
+  <img src="../assets/demos/image-text.gif" alt="ขั้นตอนรูปภาพและข้อความ" width="860">
+</p>
 
 ทั้งสี่กรณีตรวจสอบเส้นทางที่ได้รับการป้องกันครบถ้วน ได้แก่ การตรวจพบ การส่งต่อ session เดิม การตรวจสอบฝั่ง server หลักฐานใหม่ session cookie และการทำงานต่ออย่างปลอดภัย สามกรณีแรกใช้ JavaScript จริงของผู้ให้บริการ ข้อมูลทดสอบสาธารณะ และ Siteverify endpoint อย่างเป็นทางการ
 

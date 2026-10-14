@@ -24,25 +24,27 @@ rea-captcha 在浏览器 Agent 重复操作之前识别验证挑战，暂停当�
 
 ## 四类真实验证矩阵
 
+<p align="center">
+  <strong>Google reCAPTCHA v2</strong><br>
+  <img src="../assets/demos/recaptcha.gif" alt="Google reCAPTCHA 完整验证流程" width="860">
+</p>
+
+<p align="center">
+  <strong>Cloudflare Turnstile</strong><br>
+  <img src="../assets/demos/turnstile.gif" alt="Cloudflare Turnstile 完整验证流程" width="860">
+</p>
+
+<p align="center">
+  <strong>hCaptcha</strong><br>
+  <img src="../assets/demos/hcaptcha.gif" alt="hCaptcha 完整验证流程" width="860">
+</p>
+
+<p align="center">
+  <strong>自有图片/文本</strong><br>
+  <img src="../assets/demos/image-text.gif" alt="自有图片文本完整验证流程" width="860">
+</p>
+
 每个案例都覆盖完整受保护操作：识别、同会话接管、服务端验证、重新观察通过状态、校验会话 Cookie，以及恢复同一个控制器。
-
-| 案例 | 真实客户端 | 策略 | 验证边界 | 已验证结果 |
-|---|---|---|---|---|
-| Google reCAPTCHA v2 | Google 测试组件 | 人工接管 | Google Siteverify | 通过并同会话恢复 |
-| Cloudflare Turnstile | Cloudflare 测试组件 | 人工接管 | Cloudflare Siteverify | 通过并同会话恢复 |
-| hCaptcha | hCaptcha 测试组件 | 人工接管 | hCaptcha Siteverify | 通过并同会话恢复 |
-| 自有图片/文本 | 本地自有表单 | 授权本地路径 | 本地服务 | 通过并同会话恢复 |
-
-<table>
-  <tr>
-    <td width="50%"><strong>Google reCAPTCHA v2</strong><br><img src="../assets/demos/recaptcha.gif" alt="Google reCAPTCHA 完整验证流程" width="100%"></td>
-    <td width="50%"><strong>Cloudflare Turnstile</strong><br><img src="../assets/demos/turnstile.gif" alt="Cloudflare Turnstile 完整验证流程" width="100%"></td>
-  </tr>
-  <tr>
-    <td width="50%"><strong>hCaptcha</strong><br><img src="../assets/demos/hcaptcha.gif" alt="hCaptcha 完整验证流程" width="100%"></td>
-    <td width="50%"><strong>自有图片/文本</strong><br><img src="../assets/demos/image-text.gif" alt="自有图片文本完整验证流程" width="100%"></td>
-  </tr>
-</table>
 
 前三项加载厂商托管脚本，并且只有本地服务从厂商验证端点收到 `success: true` 后才接受受保护操作。测试使用各厂商公开的非生产测试密钥，不伪造通过状态。
 

@@ -12,10 +12,25 @@ Jet Browser isteğe bağlı bir adaptördür; bağımlılık veya varsayılan ru
 
 ## Agentic doğrulama matrisi
 
-<table>
-  <tr><td width="50%"><strong>Google reCAPTCHA v2</strong><br><img src="../assets/demos/recaptcha.gif" alt="reCAPTCHA akışı" width="100%"></td><td width="50%"><strong>Cloudflare Turnstile</strong><br><img src="../assets/demos/turnstile.gif" alt="Turnstile akışı" width="100%"></td></tr>
-  <tr><td width="50%"><strong>hCaptcha</strong><br><img src="../assets/demos/hcaptcha.gif" alt="hCaptcha akışı" width="100%"></td><td width="50%"><strong>Sahip olunan görüntü/metin</strong><br><img src="../assets/demos/image-text.gif" alt="Görüntü ve metin akışı" width="100%"></td></tr>
-</table>
+<p align="center">
+  <strong>Google reCAPTCHA v2</strong><br>
+  <img src="../assets/demos/recaptcha.gif" alt="reCAPTCHA akışı" width="860">
+</p>
+
+<p align="center">
+  <strong>Cloudflare Turnstile</strong><br>
+  <img src="../assets/demos/turnstile.gif" alt="Turnstile akışı" width="860">
+</p>
+
+<p align="center">
+  <strong>hCaptcha</strong><br>
+  <img src="../assets/demos/hcaptcha.gif" alt="hCaptcha akışı" width="860">
+</p>
+
+<p align="center">
+  <strong>Sahip olunan görüntü/metin</strong><br>
+  <img src="../assets/demos/image-text.gif" alt="Görüntü ve metin akışı" width="860">
+</p>
 
 Dört vaka da korumalı akışın tamamını doğrular: algılama, aynı oturumun devri, sunucu doğrulaması, yeni kanıt, oturum çerezi ve güvenli sürdürme. İlk üçü gerçek sağlayıcı JavaScript'i, herkese açık test kimlik bilgilerini ve resmi Siteverify endpointlerini kullanır.
 

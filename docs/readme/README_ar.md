@@ -12,10 +12,25 @@ Jet Browser محول اختياري وليس تبعية أو بيئة التشغ
 
 ## مصفوفة التحقق الوكيلية
 
-<table>
-  <tr><td width="50%"><strong>Google reCAPTCHA v2</strong><br><img src="../assets/demos/recaptcha.gif" alt="مسار reCAPTCHA" width="100%"></td><td width="50%"><strong>Cloudflare Turnstile</strong><br><img src="../assets/demos/turnstile.gif" alt="مسار Turnstile" width="100%"></td></tr>
-  <tr><td width="50%"><strong>hCaptcha</strong><br><img src="../assets/demos/hcaptcha.gif" alt="مسار hCaptcha" width="100%"></td><td width="50%"><strong>صورة/نص مملوك</strong><br><img src="../assets/demos/image-text.gif" alt="مسار الصورة والنص" width="100%"></td></tr>
-</table>
+<p align="center">
+  <strong>Google reCAPTCHA v2</strong><br>
+  <img src="../assets/demos/recaptcha.gif" alt="مسار reCAPTCHA" width="860">
+</p>
+
+<p align="center">
+  <strong>Cloudflare Turnstile</strong><br>
+  <img src="../assets/demos/turnstile.gif" alt="مسار Turnstile" width="860">
+</p>
+
+<p align="center">
+  <strong>hCaptcha</strong><br>
+  <img src="../assets/demos/hcaptcha.gif" alt="مسار hCaptcha" width="860">
+</p>
+
+<p align="center">
+  <strong>صورة/نص مملوك</strong><br>
+  <img src="../assets/demos/image-text.gif" alt="مسار الصورة والنص" width="860">
+</p>
 
 تتحقق الحالات الأربع من المسار المحمي كاملًا: الاكتشاف، وتسليم الجلسة نفسها، والتحقق على الخادم، ودليل نجاح جديد، وملف تعريف ارتباط الجلسة، والاستئناف الآمن. تستخدم الحالات الثلاث الأولى JavaScript الحقيقي للمورد ومفاتيح الاختبار العامة ونقاط Siteverify الرسمية.
 

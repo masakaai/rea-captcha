@@ -8,6 +8,7 @@ const serverJson = JSON.parse(await readFile(new URL('../server.json', import.me
 const failures = [];
 
 if (serverJson.name !== 'io.github.masakaai/rea-captcha') failures.push('Unexpected MCP Registry namespace.');
+if (packageJson.mcpName !== serverJson.name) failures.push('package.json mcpName must match the MCP Registry namespace.');
 if (serverJson.version !== packageJson.version) failures.push('server.json version must match package.json.');
 if (serverJson.repository?.url !== 'https://github.com/masakaai/rea-captcha') failures.push('Unexpected repository URL.');
 

@@ -12,10 +12,25 @@ Jet Browser é um adaptador opcional, não uma dependência nem o runtime padrã
 
 ## Matriz de verificação agêntica
 
-<table>
-  <tr><td width="50%"><strong>Google reCAPTCHA v2</strong><br><img src="../assets/demos/recaptcha.gif" alt="Fluxo reCAPTCHA" width="100%"></td><td width="50%"><strong>Cloudflare Turnstile</strong><br><img src="../assets/demos/turnstile.gif" alt="Fluxo Turnstile" width="100%"></td></tr>
-  <tr><td width="50%"><strong>hCaptcha</strong><br><img src="../assets/demos/hcaptcha.gif" alt="Fluxo hCaptcha" width="100%"></td><td width="50%"><strong>Imagem/texto próprio</strong><br><img src="../assets/demos/image-text.gif" alt="Fluxo de imagem e texto" width="100%"></td></tr>
-</table>
+<p align="center">
+  <strong>Google reCAPTCHA v2</strong><br>
+  <img src="../assets/demos/recaptcha.gif" alt="Fluxo reCAPTCHA" width="860">
+</p>
+
+<p align="center">
+  <strong>Cloudflare Turnstile</strong><br>
+  <img src="../assets/demos/turnstile.gif" alt="Fluxo Turnstile" width="860">
+</p>
+
+<p align="center">
+  <strong>hCaptcha</strong><br>
+  <img src="../assets/demos/hcaptcha.gif" alt="Fluxo hCaptcha" width="860">
+</p>
+
+<p align="center">
+  <strong>Imagem/texto próprio</strong><br>
+  <img src="../assets/demos/image-text.gif" alt="Fluxo de imagem e texto" width="860">
+</p>
 
 Os quatro casos verificam o fluxo protegido completo: detecção, transferência da mesma sessão, validação no servidor, nova evidência, cookie de sessão e retomada segura. Os três primeiros usam JavaScript real do fornecedor, credenciais públicas de teste e os endpoints Siteverify oficiais.
 

@@ -11,37 +11,55 @@
   <a href="docs/readme/README_zh.md">简体中文</a> · <a href="docs/readme/README_zh-TW.md">繁體中文</a>
 </p>
 
-# rea-captcha
+<h1 align="center">rea-captcha</h1>
 
-**Local-first verification challenge intelligence for browser agents.**
+<p align="center"><strong>Local-first verification challenge intelligence for browser agents.</strong></p>
 
-[![npm](https://img.shields.io/npm/v/rea-captcha.svg)](https://www.npmjs.com/package/rea-captcha)
-[![CI](https://github.com/masakaai/rea-captcha/actions/workflows/ci.yml/badge.svg)](https://github.com/masakaai/rea-captcha/actions/workflows/ci.yml)
-[![Provider web demos](https://github.com/masakaai/rea-captcha/actions/workflows/web-demo.yml/badge.svg)](https://github.com/masakaai/rea-captcha/actions/workflows/web-demo.yml)
-[![MCP Registry](https://img.shields.io/badge/MCP_Registry-io.github.masakaai%2Frea--captcha-5c6ac4.svg)](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.masakaai%2Frea-captcha)
-[![MCP tools](https://img.shields.io/badge/MCP_tools-5-157a73.svg)](docs/mcp-tools.md)
-[![skills.sh](https://skills.sh/b/masakaai/rea-captcha)](https://skills.sh/masakaai/rea-captcha/rea-captcha)
-[![Discord](https://img.shields.io/discord/1555850967147356162?label=Discord&logo=discord&color=5865F2)](https://discord.gg/8Ybc32NcMt)
-[![license](https://img.shields.io/badge/license-MIT-157a73.svg)](LICENSE)
+<p align="center">
+  <a href="https://www.npmjs.com/package/rea-captcha"><img alt="npm" src="https://img.shields.io/npm/v/rea-captcha.svg"></a>
+  <a href="https://github.com/masakaai/rea-captcha/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/masakaai/rea-captcha/actions/workflows/ci.yml/badge.svg"></a>
+  <a href="https://github.com/masakaai/rea-captcha/actions/workflows/web-demo.yml"><img alt="Provider web demos" src="https://github.com/masakaai/rea-captcha/actions/workflows/web-demo.yml/badge.svg"></a>
+  <a href="https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.masakaai%2Frea-captcha"><img alt="MCP Registry" src="https://img.shields.io/badge/MCP_Registry-io.github.masakaai%2Frea--captcha-5c6ac4.svg"></a>
+  <a href="docs/mcp-tools.md"><img alt="MCP tools" src="https://img.shields.io/badge/MCP_tools-5-157a73.svg"></a>
+  <a href="https://skills.sh/masakaai/rea-captcha/rea-captcha"><img alt="skills.sh" src="https://skills.sh/b/masakaai/rea-captcha"></a>
+  <a href="https://discord.gg/8Ybc32NcMt"><img alt="Discord" src="https://img.shields.io/discord/1555850967147356162?label=Discord&amp;logo=discord&amp;color=5865F2"></a>
+  <a href="LICENSE"><img alt="license" src="https://img.shields.io/badge/license-MIT-157a73.svg"></a>
+</p>
 
-[Quick start](#quick-start) · [Agentic matrix](#agentic-verification-matrix) · [How it works](#how-it-works) · [MCP catalog](docs/mcp-tools.md) · [Cases](docs/cases.md) · [Architecture](docs/architecture.md)
+<p align="center">
+  <a href="#quick-start">Quick start</a> ·
+  <a href="#agentic-verification-matrix">Agentic matrix</a> ·
+  <a href="#how-it-works">How it works</a> ·
+  <a href="docs/mcp-tools.md">MCP catalog</a> ·
+  <a href="docs/cases.md">Cases</a> ·
+  <a href="docs/architecture.md">Architecture</a>
+</p>
 
 rea-captcha detects browser verification challenges, pauses an agent before repeated actions make things worse, preserves the original browser session for visible human handoff, verifies fresh clearance, and resumes the same task. It ships a TypeScript SDK, local stdio MCP server, generic Playwright/CDP integration, a browser-use plugin, a Vercel-compatible Agent Skill, and optional authorized-origin local OCR.
 
 > **Official source:** install from [`masakaai/rea-captcha`](https://github.com/masakaai/rea-captcha) and npm package [`rea-captcha`](https://www.npmjs.com/package/rea-captcha). The project has no hosted solver, telemetry, stealth claim, or dependency on Jet Browser. Jet Browser remains an optional adapter for teams that already use it.
 
-## Agentic verification matrix
+<h2 align="center">Agentic verification matrix</h2>
 
-<table>
-  <tr>
-    <td width="50%"><strong>Google reCAPTCHA v2</strong><br><img src="https://raw.githubusercontent.com/masakaai/rea-captcha/main/docs/assets/demos/recaptcha.gif" alt="Google reCAPTCHA detection, handoff, validation, and resume" width="100%"></td>
-    <td width="50%"><strong>Cloudflare Turnstile</strong><br><img src="https://raw.githubusercontent.com/masakaai/rea-captcha/main/docs/assets/demos/turnstile.gif" alt="Cloudflare Turnstile detection, handoff, validation, and resume" width="100%"></td>
-  </tr>
-  <tr>
-    <td width="50%"><strong>hCaptcha</strong><br><img src="https://raw.githubusercontent.com/masakaai/rea-captcha/main/docs/assets/demos/hcaptcha.gif" alt="hCaptcha detection, handoff, validation, and resume" width="100%"></td>
-    <td width="50%"><strong>Owned image/text</strong><br><img src="https://raw.githubusercontent.com/masakaai/rea-captcha/main/docs/assets/demos/image-text.gif" alt="Owned image text detection, local validation, and resume" width="100%"></td>
-  </tr>
-</table>
+<p align="center">
+  <strong>Google reCAPTCHA v2</strong><br>
+  <img src="https://raw.githubusercontent.com/masakaai/rea-captcha/main/docs/assets/demos/recaptcha.gif" alt="Google reCAPTCHA detection, handoff, validation, and resume" width="860">
+</p>
+
+<p align="center">
+  <strong>Cloudflare Turnstile</strong><br>
+  <img src="https://raw.githubusercontent.com/masakaai/rea-captcha/main/docs/assets/demos/turnstile.gif" alt="Cloudflare Turnstile detection, handoff, validation, and resume" width="860">
+</p>
+
+<p align="center">
+  <strong>hCaptcha</strong><br>
+  <img src="https://raw.githubusercontent.com/masakaai/rea-captcha/main/docs/assets/demos/hcaptcha.gif" alt="hCaptcha detection, handoff, validation, and resume" width="860">
+</p>
+
+<p align="center">
+  <strong>Owned image/text</strong><br>
+  <img src="https://raw.githubusercontent.com/masakaai/rea-captcha/main/docs/assets/demos/image-text.gif" alt="Owned image text detection, local validation, and resume" width="860">
+</p>
 
 These are complete protected-action flows, not DOM-only fixtures. Each run detects a challenge, hands off the same browser context, submits to the real validation boundary, observes fresh passed evidence, verifies the session cookie, and resumes the same controller. Google reCAPTCHA v2, Cloudflare Turnstile, and hCaptcha use human handoff plus their vendor Siteverify endpoints; the owned image/text case uses an explicitly authorized local path and local server validation.
 

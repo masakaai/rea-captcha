@@ -12,10 +12,25 @@ Jet Browser 只是明確選用的適配器，不是相依套件或預設 runtime
 
 ## Agentic 驗證矩陣
 
-<table>
-  <tr><td width="50%"><strong>Google reCAPTCHA v2</strong><br><img src="../assets/demos/recaptcha.gif" alt="reCAPTCHA 完整流程" width="100%"></td><td width="50%"><strong>Cloudflare Turnstile</strong><br><img src="../assets/demos/turnstile.gif" alt="Turnstile 完整流程" width="100%"></td></tr>
-  <tr><td width="50%"><strong>hCaptcha</strong><br><img src="../assets/demos/hcaptcha.gif" alt="hCaptcha 完整流程" width="100%"></td><td width="50%"><strong>自有圖片/文字</strong><br><img src="../assets/demos/image-text.gif" alt="圖片與文字完整流程" width="100%"></td></tr>
-</table>
+<p align="center">
+  <strong>Google reCAPTCHA v2</strong><br>
+  <img src="../assets/demos/recaptcha.gif" alt="reCAPTCHA 完整流程" width="860">
+</p>
+
+<p align="center">
+  <strong>Cloudflare Turnstile</strong><br>
+  <img src="../assets/demos/turnstile.gif" alt="Turnstile 完整流程" width="860">
+</p>
+
+<p align="center">
+  <strong>hCaptcha</strong><br>
+  <img src="../assets/demos/hcaptcha.gif" alt="hCaptcha 完整流程" width="860">
+</p>
+
+<p align="center">
+  <strong>自有圖片/文字</strong><br>
+  <img src="../assets/demos/image-text.gif" alt="圖片與文字完整流程" width="860">
+</p>
 
 四個案例都驗證完整的受保護操作：識別、同工作階段接管、伺服器端驗證、新的通過證據、工作階段 Cookie，以及安全恢復。前三項使用供應商真實 JavaScript、公開非正式環境測試憑證與官方 Siteverify endpoint。
 
