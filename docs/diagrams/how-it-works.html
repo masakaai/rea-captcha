@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>rea-captcha request lifecycle</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: #f3f6f8; }
+    body { padding: 24px; font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
+    figure { width: min(960px, 100%); margin: 0 auto; }
+    svg { display: block; width: 100%; height: auto; }
+  </style>
+</head>
+<body>
+  <main>
+    <figure>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" role="img" aria-labelledby="rea-how-title rea-how-desc">
+        <title id="rea-how-title">rea-captcha request lifecycle</title>
+        <desc id="rea-how-desc">A browser agent inspects evidence in one browser session, pauses at a policy gate for visible human handoff when needed, verifies fresh clearance, and resumes the same task.</desc>
+        <defs>
+          <style>@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap');</style>
+          <marker id="rea-how-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" fill="#536873"/>
+          </marker>
+          <marker id="rea-how-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" fill="#157a73"/>
+          </marker>
+        </defs>
+
+        <rect width="960" height="600" fill="#f3f6f8"/>
+
+        <text x="40" y="40" fill="#157a73" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="8" font-weight="700" letter-spacing="1.6">HOW IT WORKS</text>
+        <text x="40" y="76" fill="#10212b" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="28" font-weight="700">One safe pause. One verified resume.</text>
+        <text x="40" y="104" fill="#536873" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="12">The agent, person, and verifier keep one browser session and one task context.</text>
+
+        <rect x="184" y="132" width="736" height="288" rx="8" fill="#eef8f7" stroke="#157a73" stroke-width="1.2" stroke-dasharray="4 4"/>
+        <rect x="208" y="148" width="148" height="20" rx="4" fill="#d8eeeb"/>
+        <text x="220" y="162" fill="#157a73" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="8" font-weight="700" letter-spacing="1.2">SAME BROWSER SESSION</text>
+
+        <line x1="160" y1="280" x2="208" y2="280" stroke="#536873" stroke-width="1.2" marker-end="url(#rea-how-arrow)"/>
+        <line x1="328" y1="280" x2="348" y2="280" stroke="#157a73" stroke-width="1.2" marker-end="url(#rea-how-arrow-accent)"/>
+        <line x1="468" y1="280" x2="488" y2="280" stroke="#157a73" stroke-width="1.2" marker-end="url(#rea-how-arrow-accent)"/>
+        <line x1="608" y1="280" x2="628" y2="280" stroke="#536873" stroke-width="1.2" marker-end="url(#rea-how-arrow)"/>
+        <line x1="748" y1="280" x2="768" y2="280" stroke="#157a73" stroke-width="1.2" marker-end="url(#rea-how-arrow-accent)"/>
+        <path d="M 408 232 V 204 Q 408 196 416 196 H 820 Q 828 196 828 204 V 232" fill="none" stroke="#157a73" stroke-width="1.2" stroke-dasharray="5 4" marker-end="url(#rea-how-arrow-accent)"/>
+        <rect x="592" y="176" width="52" height="12" rx="2" fill="#f3f6f8"/>
+        <text x="618" y="184" fill="#157a73" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="8" font-weight="700" text-anchor="middle" letter-spacing="1">CLEAR</text>
+
+        <rect x="24" y="232" width="136" height="96" rx="8" fill="#ffffff" stroke="#8ca0aa" stroke-width="1.2"/>
+        <rect x="36" y="244" width="48" height="16" rx="4" fill="#edf1f3"/>
+        <text x="60" y="256" fill="#536873" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="8" font-weight="700" text-anchor="middle">AGENT</text>
+        <text x="92" y="284" fill="#10212b" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="12" font-weight="700" text-anchor="middle">Browser agent</text>
+        <text x="92" y="304" fill="#536873" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="8" text-anchor="middle">Codex · MCP · SDK</text>
+
+        <rect x="208" y="232" width="120" height="96" rx="8" fill="#ffffff" stroke="#8ca0aa" stroke-width="1.2"/>
+        <rect x="220" y="244" width="52" height="16" rx="4" fill="#edf1f3"/>
+        <text x="246" y="256" fill="#536873" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="8" font-weight="700" text-anchor="middle">INSPECT</text>
+        <text x="268" y="284" fill="#10212b" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="12" font-weight="700" text-anchor="middle">Inspect evidence</text>
+        <text x="268" y="304" fill="#536873" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="8" text-anchor="middle">DOM · URL · response</text>
+
+        <rect x="348" y="232" width="120" height="96" rx="8" fill="#dff1ef" stroke="#157a73" stroke-width="1.2"/>
+        <rect x="360" y="244" width="48" height="16" rx="4" fill="#bfe3df"/>
+        <text x="384" y="256" fill="#157a73" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="8" font-weight="700" text-anchor="middle">POLICY</text>
+        <text x="408" y="284" fill="#10212b" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="12" font-weight="700" text-anchor="middle">Policy gate</text>
+        <text x="408" y="304" fill="#536873" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="8" text-anchor="middle">clear or handoff</text>
+
+        <rect x="488" y="232" width="120" height="96" rx="8" fill="#ffffff" stroke="#8ca0aa" stroke-width="1.2"/>
+        <rect x="500" y="244" width="48" height="16" rx="4" fill="#edf1f3"/>
+        <text x="524" y="256" fill="#536873" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="8" font-weight="700" text-anchor="middle">HUMAN</text>
+        <text x="548" y="284" fill="#10212b" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="12" font-weight="700" text-anchor="middle">Human handoff</text>
+        <text x="548" y="304" fill="#536873" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="8" text-anchor="middle">same visible page</text>
+
+        <rect x="628" y="232" width="120" height="96" rx="8" fill="#ffffff" stroke="#8ca0aa" stroke-width="1.2"/>
+        <rect x="640" y="244" width="48" height="16" rx="4" fill="#edf1f3"/>
+        <text x="664" y="256" fill="#536873" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="8" font-weight="700" text-anchor="middle">VERIFY</text>
+        <text x="688" y="284" fill="#10212b" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="12" font-weight="700" text-anchor="middle">Fresh verification</text>
+        <text x="688" y="304" fill="#536873" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="8" text-anchor="middle">vendor or local</text>
+
+        <rect x="768" y="232" width="120" height="96" rx="8" fill="#dff1ef" stroke="#157a73" stroke-width="1.2"/>
+        <rect x="780" y="244" width="52" height="16" rx="4" fill="#bfe3df"/>
+        <text x="806" y="256" fill="#157a73" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="8" font-weight="700" text-anchor="middle">RESUME</text>
+        <text x="828" y="284" fill="#10212b" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="12" font-weight="700" text-anchor="middle">Resume task</text>
+        <text x="828" y="304" fill="#536873" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="8" text-anchor="middle">same controller</text>
+
+        <line x1="208" y1="356" x2="896" y2="356" stroke="#c7d7dc" stroke-width="0.8"/>
+        <text x="208" y="384" fill="#157a73" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="8" font-weight="700" letter-spacing="1.2">SESSION INVARIANT</text>
+        <text x="360" y="384" fill="#536873" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="12">Page state, cookies, and controller ownership stay in place.</text>
+
+        <line x1="40" y1="488" x2="920" y2="488" stroke="#d9e1e5" stroke-width="0.8"/>
+        <text x="40" y="520" fill="#536873" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="8" font-weight="700" letter-spacing="1.2">FAIL-CLOSED POLICY</text>
+        <text x="40" y="548" fill="#10212b" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="12">Only fresh passed evidence resumes the task. Unknown, stale, or incomplete evidence remains blocked.</text>
+      </svg>
+    </figure>
+  </main>
+</body>
+</html>

@@ -27,7 +27,7 @@
 </p>
 
 <p align="center">
-  <a href="#quick-start">Quick start</a> ·
+  <a href="#install">Install</a> ·
   <a href="#agentic-verification-matrix">Agentic matrix</a> ·
   <a href="#how-it-works">How it works</a> ·
   <a href="docs/mcp-tools.md">MCP catalog</a> ·
@@ -73,40 +73,19 @@ npm run demo:web       # interactive local demo
 npm run test:web-demo  # all four live validation paths
 ```
 
-## Quick start
+## Install
 
-Node.js 22.19+, 24.11+, or 26+ is required. Python 3.11+ is needed only for browser-use or local OCR.
+Paste one sentence into Codex, Claude Code, Cursor, or another coding agent:
 
-```sh
-npm install rea-captcha
-npx rea-captcha setup
-npx rea-captcha doctor
+```text
+Install rea-captcha in this project and connect it to the browser session this agent already uses.
 ```
-
-`setup` writes a reviewable generic Playwright/CDP configuration after confirmation and prints a Codex registration command. It never installs Jet Browser and refuses to overwrite an existing configuration. Start your browser with CDP enabled before running `doctor`.
-
-Install the repository Agent Skill with the Vercel Skills CLI:
-
-```sh
-npx skills add masakaai/rea-captcha --skill rea-captcha
-```
-
-The skill was verified through a clean project install and teaches supported agents to choose zero-configuration evidence analysis or the bounded same-session lifecycle.
 
 ## How it works
 
-```text
-browser agent
-    │
-    ├─ evidence already captured ── captcha_analyze ── policy result
-    │
-    └─ active browser session
-          inspect → blocked → handoff → bounded wait → fresh verify → resume
-                         │
-                         └─ the person uses the same visible session
-```
-
-Unknown or malformed boundary values fail closed. A detector outage, incomplete observation, timeout, or OCR prediction cannot authorize resume. The browser lifecycle belongs to the caller; adapters borrow sessions unless their composition contract explicitly says otherwise.
+<p align="center">
+  <img src="docs/assets/how-it-works.svg" alt="rea-captcha lifecycle: inspect evidence, apply policy, hand off the same browser session when blocked, verify fresh clearance, and resume the same task" width="100%">
+</p>
 
 ## MCP and coding agents
 
