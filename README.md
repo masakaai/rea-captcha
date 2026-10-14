@@ -1,8 +1,14 @@
 <p align="center">
-  <a href="README.md">English</a> ·
-  <a href="docs/readme/README_zh.md">简体中文</a> ·
-  <a href="docs/readme/README_ja.md">日本語</a> ·
-  <a href="docs/readme/README_ko.md">한국어</a>
+  <a href="README.md">English</a> · <a href="docs/readme/README_ar.md">العربية</a> ·
+  <a href="docs/readme/README_de.md">Deutsch</a> · <a href="docs/readme/README_el.md">Ελληνικά</a> ·
+  <a href="docs/readme/README_es.md">Español</a> · <a href="docs/readme/README_fa.md">فارسی</a> ·
+  <a href="docs/readme/README_fr.md">Français</a> · <a href="docs/readme/README_id.md">Bahasa Indonesia</a> ·
+  <a href="docs/readme/README_it.md">Italiano</a> · <a href="docs/readme/README_ja.md">日本語</a> ·
+  <a href="docs/readme/README_ko.md">한국어</a> · <a href="docs/readme/README_pl.md">Polski</a> ·
+  <a href="docs/readme/README_pt-BR.md">Português (Brasil)</a> · <a href="docs/readme/README_ru.md">Русский</a> ·
+  <a href="docs/readme/README_th.md">ไทย</a> · <a href="docs/readme/README_tr.md">Türkçe</a> ·
+  <a href="docs/readme/README_uk.md">Українська</a> · <a href="docs/readme/README_vi.md">Tiếng Việt</a> ·
+  <a href="docs/readme/README_zh.md">简体中文</a> · <a href="docs/readme/README_zh-TW.md">繁體中文</a>
 </p>
 
 # rea-captcha
@@ -26,15 +32,6 @@ rea-captcha detects browser verification challenges, pauses an agent before repe
 
 ## Agentic verification matrix
 
-These are complete protected-action flows. Each run detects a challenge, hands off the same browser context, submits to the real validation boundary, observes fresh passed evidence, verifies the session cookie, and resumes the same controller.
-
-| Case | Real client | Policy | Validation boundary | Verified outcome |
-|---|---|---|---|---|
-| Google reCAPTCHA v2 | Google test widget | Human handoff | Google Siteverify | Passed + same-session resume |
-| Cloudflare Turnstile | Cloudflare test widget | Human handoff | Cloudflare Siteverify | Passed + same-session resume |
-| hCaptcha | hCaptcha test widget | Human handoff | hCaptcha Siteverify | Passed + same-session resume |
-| Owned image/text | Local owned form | Authorized local path | Local server | Passed + same-session resume |
-
 <table>
   <tr>
     <td width="50%"><strong>Google reCAPTCHA v2</strong><br><img src="https://raw.githubusercontent.com/masakaai/rea-captcha/main/docs/assets/demos/recaptcha.gif" alt="Google reCAPTCHA detection, handoff, validation, and resume" width="100%"></td>
@@ -45,6 +42,8 @@ These are complete protected-action flows. Each run detects a challenge, hands o
     <td width="50%"><strong>Owned image/text</strong><br><img src="https://raw.githubusercontent.com/masakaai/rea-captcha/main/docs/assets/demos/image-text.gif" alt="Owned image text detection, local validation, and resume" width="100%"></td>
   </tr>
 </table>
+
+These are complete protected-action flows, not DOM-only fixtures. Each run detects a challenge, hands off the same browser context, submits to the real validation boundary, observes fresh passed evidence, verifies the session cookie, and resumes the same controller. Google reCAPTCHA v2, Cloudflare Turnstile, and hCaptcha use human handoff plus their vendor Siteverify endpoints; the owned image/text case uses an explicitly authorized local path and local server validation.
 
 The first three cases load vendor-hosted JavaScript and accept the protected action only after the server receives `success: true` from the vendor verification endpoint. They use the vendors' documented non-production credentials: [Google test keys](https://developers.google.com/recaptcha/docs/faq/#id-like-to-run-automated-tests-with-recaptcha-what-should-i-do), [Cloudflare dummy keys](https://developers.cloudflare.com/turnstile/troubleshooting/testing/), and [hCaptcha test keys](https://docs.hcaptcha.com/#integration-testing-test-keys).
 

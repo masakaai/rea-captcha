@@ -1,14 +1,16 @@
-import { access, readFile } from 'node:fs/promises';
+import { access, readFile, readdir } from 'node:fs/promises';
 import { constants } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const localizedReadmes = (await readdir(resolve(root, 'docs/readme')))
+  .filter(name => name.endsWith('.md'))
+  .sort()
+  .map(name => `docs/readme/${name}`);
 const documents = [
   'README.md',
-  'docs/readme/README_zh.md',
-  'docs/readme/README_ja.md',
-  'docs/readme/README_ko.md',
+  ...localizedReadmes,
   'CONTRIBUTING.md',
   'SECURITY.md',
   'DISCLAIMER.md',
