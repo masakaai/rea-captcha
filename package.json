@@ -79,6 +79,7 @@
     "check": "npm run typecheck && npm run test && npm run test:python && npm run docs:check",
     "docs:check": "node scripts/check-doc-links.mjs",
     "demo:web": "node examples/web-demo/server.mjs",
+    "mcp-registry:check": "node scripts/verify-mcp-registry.mjs",
     "prepack": "npm run build",
     "record:web-demo": "npm run build && node scripts/record-web-demos.mjs",
     "start": "node scripts/rea-captcha.mjs mcp",

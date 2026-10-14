@@ -21,7 +21,7 @@ Reviewed commit `cfe78dd`, category `Browser Automation & Web Scraping`. Its met
 
 Prepared entry:
 
-> `masakaai/rea-captcha`: Local stdio MCP and SDK for detecting browser verification challenges, pausing an agent, preserving its existing browser session for visible human handoff, verifying clearance, and resuming safely. Tools: `captcha_inspect`, `captcha_wait`, `captcha_handoff`, `captcha_resume`. Local, no auth, MIT, no hosted solver or telemetry.
+> `masakaai/rea-captcha`: Local stdio MCP and SDK for detecting browser verification challenges, pausing an agent, preserving its existing browser session for visible human handoff, verifying clearance, and resuming safely. Tools: `captcha_analyze`, `captcha_inspect`, `captcha_wait`, `captcha_handoff`, `captcha_resume`. Local, no auth, MIT, no hosted solver or telemetry.
 
 Status: technically aligned; wait for public repository and install verification.
 
@@ -31,7 +31,7 @@ Target category: Browser Automation. Use the list's icon grammar after the packa
 
 Prepared entry:
 
-> `masakaai/rea-captcha` — Local verification-challenge controller for browser agents. Detects common challenge widgets, coordinates human handoff in an existing browser session, and exposes four stdio MCP tools. MIT; no cloud solver or telemetry.
+> `masakaai/rea-captcha` — Local verification-challenge controller for browser agents. Detects common challenge widgets, coordinates human handoff in an existing browser session, and exposes five stdio MCP tools. MIT; no cloud solver or telemetry.
 
 Status: wait for public install and repository health checks.
 
