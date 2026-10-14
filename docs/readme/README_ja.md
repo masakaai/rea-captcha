@@ -68,4 +68,4 @@ npx skills add masakaai/rea-captcha --skill rea-captcha
 
 [Architecture](../architecture.md) · [Cases](../cases.md) · [Validation](../validation.md) · [Security](../../SECURITY.md) · [License](../../LICENSE)
 
-rea-captcha の統合については [MASAKA Discord](https://discord.gg/8Ybc32NcMt) でも議論できます。ブラウザープロファイル、Cookie、challenge token、API key、非公開ページの証拠は投稿しないでください。
+rea-captcha の統合については [MASAKA Discord](https://discord.gg/8Ybc32NcMt) の専用 [#rea-captcha チャンネル](https://discord.com/channels/1555850967147356162/1559900477750116362)で議論できます。ブラウザープロファイル、Cookie、challenge token、API key、非公開ページの証拠は投稿しないでください。

@@ -68,4 +68,4 @@ npx skills add masakaai/rea-captcha --skill rea-captcha
 
 [Architecture](../architecture.md) · [Cases](../cases.md) · [Validation](../validation.md) · [Security](../../SECURITY.md) · [License](../../LICENSE)
 
-rea-captcha 통합 논의는 [MASAKA Discord](https://discord.gg/8Ybc32NcMt)에서도 할 수 있습니다. 브라우저 프로필, Cookie, challenge token, API key 또는 비공개 페이지 증거를 게시하지 마십시오.
+rea-captcha 통합 논의는 [MASAKA Discord](https://discord.gg/8Ybc32NcMt)의 전용 [#rea-captcha 채널](https://discord.com/channels/1555850967147356162/1559900477750116362)에서 할 수 있습니다. 브라우저 프로필, Cookie, challenge token, API key 또는 비공개 페이지 증거를 게시하지 마십시오.

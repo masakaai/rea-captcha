@@ -200,7 +200,7 @@ Local `ddddocr` is an optional primitive only for simple image/text challenges o
 
 ## Community
 
-Join the [MASAKA Discord](https://discord.gg/8Ybc32NcMt) for rea-captcha integration discussion and same-session handoff examples. Use [GitHub Issues](https://github.com/masakaai/rea-captcha/issues) for reproducible bugs and follow the [private security policy](SECURITY.md) for vulnerabilities. Never post browser profiles, cookies, challenge tokens, API keys, or private page evidence.
+Join the [MASAKA Discord](https://discord.gg/8Ybc32NcMt), then use the dedicated [#rea-captcha channel](https://discord.com/channels/1555850967147356162/1559900477750116362) for integration discussion and same-session handoff examples. Use [GitHub Issues](https://github.com/masakaai/rea-captcha/issues) for reproducible bugs and follow the [private security policy](SECURITY.md) for vulnerabilities. Never post browser profiles, cookies, challenge tokens, API keys, or private page evidence.
 
 ## Scope and disclaimer
 

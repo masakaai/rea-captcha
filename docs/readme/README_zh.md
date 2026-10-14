@@ -132,6 +132,6 @@ rea-captcha 仅用于自有或明确授权的流程。它不会生成厂商签�
 
 [架构](../architecture.md) · [案例](../cases.md) · [验证证据](../validation.md) · [发布流程](../releasing.md) · [安全策略](../../SECURITY.md) · [贡献指南](../../CONTRIBUTING.md)
 
-可加入 [MASAKA Discord](https://discord.gg/8Ybc32NcMt) 讨论 rea-captcha 接入与同会话人工接管。请勿发布浏览器资料、Cookie、挑战 token、API key 或私有页面证据。
+可加入 [MASAKA Discord](https://discord.gg/8Ybc32NcMt)，并在专用的 [#rea-captcha 频道](https://discord.com/channels/1555850967147356162/1559900477750116362)讨论接入与同会话人工接管。请勿发布浏览器资料、Cookie、挑战 token、API key 或私有页面证据。
 
 核心代码与集成为 MIT 许可；可选依赖和模型保留各自条款。项目独立于 [morluto/rea](https://github.com/morluto/rea)，但 README 层次和本地优先工程组织参考了 REA 的风格。
