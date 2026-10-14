@@ -13,6 +13,7 @@
 [![CI](https://github.com/masakaai/rea-captcha/actions/workflows/ci.yml/badge.svg)](https://github.com/masakaai/rea-captcha/actions/workflows/ci.yml)
 [![MCP Registry](https://img.shields.io/badge/MCP_Registry-io.github.masakaai%2Frea--captcha-5c6ac4.svg)](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.masakaai%2Frea-captcha)
 [![skills.sh](https://skills.sh/b/masakaai/rea-captcha)](https://skills.sh/masakaai/rea-captcha/rea-captcha)
+[![Discord](https://img.shields.io/discord/1555850967147356162?label=Discord&logo=discord&color=5865F2)](https://discord.gg/8Ybc32NcMt)
 
 rea-captcha는 검증 챌린지를 감지하고 Agent를 일시 중지하며, 사람이 직접 처리할 수 있도록 원래 브라우저 세션을 유지합니다. 새로운 통과 증거를 확인한 뒤에만 같은 작업을 재개합니다. TypeScript SDK, 로컬 stdio MCP, Playwright/CDP, browser-use, Vercel Skills 호환 Skill, 허가된 origin 전용 선택적 로컬 OCR을 제공합니다.
 
@@ -62,3 +63,5 @@ npx skills add masakaai/rea-captcha --skill rea-captcha
 소유하거나 명시적으로 허가된 워크플로에만 사용하십시오. 제3자 대화형 챌린지 자동 완료, 공급자 서명 token 생성, 자격 증명 이동, stealth 우회는 범위 밖입니다.
 
 [Architecture](../architecture.md) · [Cases](../cases.md) · [Validation](../validation.md) · [Security](../../SECURITY.md) · [License](../../LICENSE)
+
+rea-captcha 통합 논의는 [MASAKA Discord](https://discord.gg/8Ybc32NcMt)에서도 할 수 있습니다. 브라우저 프로필, Cookie, challenge token, API key 또는 비공개 페이지 증거를 게시하지 마십시오.

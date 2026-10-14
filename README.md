@@ -15,6 +15,7 @@
 [![MCP Registry](https://img.shields.io/badge/MCP_Registry-io.github.masakaai%2Frea--captcha-5c6ac4.svg)](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.masakaai%2Frea-captcha)
 [![MCP tools](https://img.shields.io/badge/MCP_tools-5-157a73.svg)](docs/mcp-tools.md)
 [![skills.sh](https://skills.sh/b/masakaai/rea-captcha)](https://skills.sh/masakaai/rea-captcha/rea-captcha)
+[![Discord](https://img.shields.io/discord/1555850967147356162?label=Discord&logo=discord&color=5865F2)](https://discord.gg/8Ybc32NcMt)
 [![license](https://img.shields.io/badge/license-MIT-157a73.svg)](LICENSE)
 
 [Quick start](#quick-start) · [Agentic matrix](#agentic-verification-matrix) · [How it works](#how-it-works) · [MCP catalog](docs/mcp-tools.md) · [Cases](docs/cases.md) · [Architecture](docs/architecture.md)
@@ -179,6 +180,10 @@ Local `ddddocr` is an optional primitive only for simple image/text challenges o
 - [Ecosystem and awesome-list intake](docs/ecosystem.md)
 - [Security policy](SECURITY.md)
 - [Contributing](CONTRIBUTING.md)
+
+## Community
+
+Join the [MASAKA Discord](https://discord.gg/8Ybc32NcMt) for rea-captcha integration discussion and same-session handoff examples. Use [GitHub Issues](https://github.com/masakaai/rea-captcha/issues) for reproducible bugs and follow the [private security policy](SECURITY.md) for vulnerabilities. Never post browser profiles, cookies, challenge tokens, API keys, or private page evidence.
 
 ## Scope and disclaimer
 

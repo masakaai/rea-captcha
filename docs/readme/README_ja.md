@@ -13,6 +13,7 @@
 [![CI](https://github.com/masakaai/rea-captcha/actions/workflows/ci.yml/badge.svg)](https://github.com/masakaai/rea-captcha/actions/workflows/ci.yml)
 [![MCP Registry](https://img.shields.io/badge/MCP_Registry-io.github.masakaai%2Frea--captcha-5c6ac4.svg)](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.masakaai%2Frea-captcha)
 [![skills.sh](https://skills.sh/b/masakaai/rea-captcha)](https://skills.sh/masakaai/rea-captcha/rea-captcha)
+[![Discord](https://img.shields.io/discord/1555850967147356162?label=Discord&logo=discord&color=5865F2)](https://discord.gg/8Ybc32NcMt)
 
 rea-captcha は検証チャレンジを検出して Agent を一時停止し、元のブラウザーセッションを人間の操作用に維持します。新しい通過証拠を確認した場合だけ、同じタスクを再開します。TypeScript SDK、stdio MCP、Playwright/CDP、browser-use、Vercel Skills 互換 Skill、許可済み origin 専用の任意ローカル OCR を提供します。
 
@@ -62,3 +63,5 @@ npx skills add masakaai/rea-captcha --skill rea-captcha
 所有または明示的に許可されたワークフロー専用です。第三者の対話型チャレンジ自動完了、署名 token 生成、資格情報の移送、stealth 回避は対象外です。
 
 [Architecture](../architecture.md) · [Cases](../cases.md) · [Validation](../validation.md) · [Security](../../SECURITY.md) · [License](../../LICENSE)
+
+rea-captcha の統合については [MASAKA Discord](https://discord.gg/8Ybc32NcMt) でも議論できます。ブラウザープロファイル、Cookie、challenge token、API key、非公開ページの証拠は投稿しないでください。

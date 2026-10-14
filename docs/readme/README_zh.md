@@ -13,6 +13,7 @@
 [![CI](https://github.com/masakaai/rea-captcha/actions/workflows/ci.yml/badge.svg)](https://github.com/masakaai/rea-captcha/actions/workflows/ci.yml)
 [![MCP Registry](https://img.shields.io/badge/MCP_Registry-io.github.masakaai%2Frea--captcha-5c6ac4.svg)](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.masakaai%2Frea-captcha)
 [![skills.sh](https://skills.sh/b/masakaai/rea-captcha)](https://skills.sh/masakaai/rea-captcha/rea-captcha)
+[![Discord](https://img.shields.io/discord/1555850967147356162?label=Discord&logo=discord&color=5865F2)](https://discord.gg/8Ybc32NcMt)
 [![license](https://img.shields.io/badge/license-MIT-157a73.svg)](../../LICENSE)
 
 [快速开始](#快速开始) · [四类真实验证矩阵](#四类真实验证矩阵) · [工作方式](#工作方式) · [MCP 工具目录](../mcp-tools.md) · [架构](../architecture.md)
@@ -128,5 +129,7 @@ rea-captcha 仅用于自有或明确授权的流程。它不会生成厂商签�
 ## 文档与许可
 
 [架构](../architecture.md) · [案例](../cases.md) · [验证证据](../validation.md) · [发布流程](../releasing.md) · [安全策略](../../SECURITY.md) · [贡献指南](../../CONTRIBUTING.md)
+
+可加入 [MASAKA Discord](https://discord.gg/8Ybc32NcMt) 讨论 rea-captcha 接入与同会话人工接管。请勿发布浏览器资料、Cookie、挑战 token、API key 或私有页面证据。
 
 核心代码与集成为 MIT 许可；可选依赖和模型保留各自条款。项目独立于 [morluto/rea](https://github.com/morluto/rea)，但 README 层次和本地优先工程组织参考了 REA 的风格。
