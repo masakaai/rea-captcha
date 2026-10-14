@@ -34,7 +34,7 @@ export const waitForChallenge = async (page, provider) => {
   if (provider === 'recaptcha') {
     await page.frameLocator('iframe[title*="reCAPTCHA"]').locator('#recaptcha-anchor').waitFor({ state: 'visible', timeout: 30_000 });
   } else if (provider === 'hcaptcha') {
-    await page.frameLocator('iframe[title="Widget containing checkbox for hCaptcha security challenge"]').locator('#checkbox').waitFor({ state: 'visible', timeout: 30_000 });
+    await page.frameLocator('iframe[src*="hcaptcha.com"][src*="frame=checkbox"]').locator('#checkbox').waitFor({ state: 'visible', timeout: 30_000 });
   } else if (provider === 'turnstile') {
     await waitForToken(page, 'cf-turnstile-response');
   } else {
@@ -47,7 +47,7 @@ export const satisfyChallenge = async (page, provider) => {
     await page.frameLocator('iframe[title*="reCAPTCHA"]').locator('#recaptcha-anchor').click();
     await waitForToken(page, 'g-recaptcha-response');
   } else if (provider === 'hcaptcha') {
-    await page.frameLocator('iframe[title="Widget containing checkbox for hCaptcha security challenge"]').locator('#checkbox').click();
+    await page.frameLocator('iframe[src*="hcaptcha.com"][src*="frame=checkbox"]').locator('#checkbox').click();
     await waitForToken(page, 'h-captcha-response');
   } else if (provider === 'turnstile') {
     await waitForToken(page, 'cf-turnstile-response');

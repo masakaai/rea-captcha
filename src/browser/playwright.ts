@@ -38,6 +38,8 @@ const tokenFields = {
   hcaptcha: 'h-captcha-response'
 } as const;
 
+const hcaptchaCheckboxFrame = 'iframe[src*="hcaptcha.com"][src*="frame=checkbox"]';
+
 const normalizeOrigins = (values: readonly string[]): ReadonlySet<string> => new Set(values.map(value => new URL(value).origin));
 
 export class PlaywrightChallengeAdapter implements BrowserChallengeActionPort {
@@ -88,7 +90,7 @@ export class PlaywrightChallengeAdapter implements BrowserChallengeActionPort {
       if (kind === 'recaptcha') {
         await this.#page.frameLocator('iframe[title*="reCAPTCHA"]').locator('#recaptcha-anchor').click({ timeout: 30_000 });
       } else if (kind === 'hcaptcha') {
-        await this.#page.frameLocator('iframe[title="Widget containing checkbox for hCaptcha security challenge"]').locator('#checkbox').click({ timeout: 30_000 });
+        await this.#page.frameLocator(hcaptchaCheckboxFrame).locator('#checkbox').click({ timeout: 30_000 });
       }
       await this.#waitForToken(tokenFields[kind], signal);
     } else if (kind === 'image-text') {

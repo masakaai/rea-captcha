@@ -2,10 +2,10 @@ import { describe, expect, it, vi } from 'vitest';
 import type { ChallengeInspection } from '../src/domain/challenge.js';
 import { PlaywrightChallengeAdapter, type PlaywrightPagePort } from '../src/browser/playwright.js';
 
-const inspection = (url = 'https://fixture.test/checkout'): ChallengeInspection => ({
+const inspection = (url = 'https://fixture.test/checkout', kind: ChallengeInspection['finding']['kind'] = 'recaptcha'): ChallengeInspection => ({
   finding: {
     status: 'detected',
-    kind: 'recaptcha',
+    kind,
     confidence: 0.99,
     url,
     title: 'Fixture',
@@ -25,6 +25,7 @@ class FakePage implements PlaywrightPagePort {
   readonly fill = vi.fn(async () => {});
   sitekey = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI';
   url = 'https://fixture.test/checkout';
+  frameSelector = '';
 
   async evaluate<R>(expression: string): Promise<R> {
     if (expression === 'location.href') return this.url as R;
@@ -37,7 +38,8 @@ class FakePage implements PlaywrightPagePort {
     }) as R;
   }
 
-  frameLocator() {
+  frameLocator(selector: string) {
+    this.frameSelector = selector;
     return {
       locator: () => ({
         click: this.checkboxClick,
@@ -51,7 +53,7 @@ class FakePage implements PlaywrightPagePort {
     return {
       click: selector === 'button[type="submit"]' ? this.submitClick : this.checkboxClick,
       fill: this.fill,
-      inputValue: async () => selector.includes('g-recaptcha-response') ? 'test-token' : ''
+      inputValue: async () => selector.includes('captcha-response') ? 'test-token' : ''
     };
   }
 }
@@ -105,5 +107,22 @@ describe('Playwright authorized agent actions', () => {
 
     await expect(adapter.completeAuthorizedChallenge(inspection('https://elsewhere.test/'))).rejects.toThrow('not authorized');
     expect(page.checkboxClick).not.toHaveBeenCalled();
+  });
+
+  it('uses a locale-independent hCaptcha checkbox frame selector', async () => {
+    const page = new FakePage();
+    page.sitekey = '10000000-ffff-ffff-ffff-000000000001';
+    const adapter = new PlaywrightChallengeAdapter({
+      id: 'existing-page',
+      page,
+      agentActions: {
+        authorizedOrigins: ['https://fixture.test'],
+        allowProviderTestAutomation: true
+      }
+    });
+    await adapter.completeAuthorizedChallenge(inspection('https://fixture.test/checkout', 'hcaptcha'));
+
+    expect(page.frameSelector).toBe('iframe[src*="hcaptcha.com"][src*="frame=checkbox"]');
+    expect(page.checkboxClick).toHaveBeenCalledOnce();
   });
 });
