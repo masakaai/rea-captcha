@@ -1,6 +1,18 @@
 # Ecosystem and awesome-list intake
 
-This intake was reviewed on 2026-10-14 against the repositories and commits below. The prepared entries become eligible only after `https://github.com/masakaai/rea-captcha` is public and its install command resolves from a public registry or documented source checkout.
+## Submitted entries (2026-10-15)
+
+The repository and npm package are public. These submissions are open; submission does not mean acceptance:
+
+| Directory | Submission | Current follow-up |
+| --- | --- | --- |
+| awesome-playwright | [#241](https://github.com/mxschmitt/awesome-playwright/pull/241) | Awaiting review. |
+| mcpHQ | [#254](https://github.com/mcpHQ/awesome-mcp-servers/pull/254) | Awaiting review. |
+| punkpeye | [#16418](https://github.com/punkpeye/awesome-mcp-servers/pull/16418) | Requires Glama listing, checks, and score badge. |
+| TensorBlock | [#3779](https://github.com/TensorBlock/awesome-mcp-servers/pull/3779) | Generated entry needs the capability update supplied in the PR comment. |
+| Steel awesome-web-agents | [#138](https://github.com/steel-dev/awesome-web-agents/pull/138) | Submitted under Dev Tools; awaiting review. |
+
+The intake below records the earlier 2026-10-14 eligibility review. Its pre-release status notes are historical; use the submission table for current follow-up. Descriptions must distinguish provider test-key automation from production challenge solving.
 
 ## Runtime cases collected
 
