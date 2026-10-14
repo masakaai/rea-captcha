@@ -23,11 +23,17 @@ else {
 
 if (process.argv.includes('--published')) {
   try {
-    const { stdout } = await execFileAsync('npm', ['view', `${packageJson.name}@${packageJson.version}`, 'version', '--json'], {
+    const { stdout } = await execFileAsync('npm', ['view', `${packageJson.name}@${packageJson.version}`, '--json'], {
       timeout: 30_000,
       maxBuffer: 1024 * 1024
     });
-    if (JSON.parse(stdout) !== packageJson.version) failures.push('The exact npm version is not visible in the public registry.');
+    const publishedPackage = JSON.parse(stdout);
+    if (publishedPackage.version !== packageJson.version) {
+      failures.push('The exact npm version is not visible in the public registry.');
+    }
+    if (publishedPackage.mcpName !== serverJson.name) {
+      failures.push('The published npm package mcpName must match the MCP Registry namespace.');
+    }
   } catch (error) {
     failures.push(`Unable to verify the public npm package: ${error instanceof Error ? error.message : String(error)}`);
   }
