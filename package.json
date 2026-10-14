@@ -1,7 +1,7 @@
 {
   "name": "rea-captcha",
   "mcpName": "io.github.masakaai/rea-captcha",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Local-first verification challenge intelligence and human handoff for browser agents.",
   "license": "MIT",
   "repository": {
