@@ -12,25 +12,28 @@ Jet Browser ist ein optionaler Adapter, keine Abhängigkeit und keine Standardla
 
 ## Agentische Verifizierungsmatrix
 
-<p align="center">
-  <strong>Google reCAPTCHA v2</strong><br>
-  <img src="../assets/demos/recaptcha.gif" alt="reCAPTCHA-Ablauf" width="860">
-</p>
-
-<p align="center">
-  <strong>Cloudflare Turnstile</strong><br>
-  <img src="../assets/demos/turnstile.gif" alt="Turnstile-Ablauf" width="860">
-</p>
-
-<p align="center">
-  <strong>hCaptcha</strong><br>
-  <img src="../assets/demos/hcaptcha.gif" alt="hCaptcha-Ablauf" width="860">
-</p>
-
-<p align="center">
-  <strong>Eigene Bild/Text-Prüfung</strong><br>
-  <img src="../assets/demos/image-text.gif" alt="Bild-Text-Ablauf" width="860">
-</p>
+<table align="center">
+  <tr>
+    <td align="center" width="50%">
+      <strong>Google reCAPTCHA v2</strong><br>
+      <img src="../assets/demos/recaptcha.gif" alt="reCAPTCHA-Ablauf" width="100%">
+    </td>
+    <td align="center" width="50%">
+      <strong>Cloudflare Turnstile</strong><br>
+      <img src="../assets/demos/turnstile.gif" alt="Turnstile-Ablauf" width="100%">
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <strong>hCaptcha</strong><br>
+      <img src="../assets/demos/hcaptcha.gif" alt="hCaptcha-Ablauf" width="100%">
+    </td>
+    <td align="center" width="50%">
+      <strong>Eigene Bild/Text-Prüfung</strong><br>
+      <img src="../assets/demos/image-text.gif" alt="Bild-Text-Ablauf" width="100%">
+    </td>
+  </tr>
+</table>
 
 Alle vier Fälle prüfen den vollständigen geschützten Ablauf: Erkennung, Übergabe derselben Sitzung, serverseitige Validierung, neuer Erfolgsnachweis, Sitzungscookie und sichere Fortsetzung. Die ersten drei verwenden echte Anbieter-JavaScript-Clients, öffentliche Testschlüssel und deren Siteverify-Endpunkte.
 

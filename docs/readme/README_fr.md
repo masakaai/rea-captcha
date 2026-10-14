@@ -12,25 +12,28 @@ Jet Browser est un adaptateur facultatif, ni dépendance ni runtime par défaut.
 
 ## Matrice de vérification agentique
 
-<p align="center">
-  <strong>Google reCAPTCHA v2</strong><br>
-  <img src="../assets/demos/recaptcha.gif" alt="Flux reCAPTCHA" width="860">
-</p>
-
-<p align="center">
-  <strong>Cloudflare Turnstile</strong><br>
-  <img src="../assets/demos/turnstile.gif" alt="Flux Turnstile" width="860">
-</p>
-
-<p align="center">
-  <strong>hCaptcha</strong><br>
-  <img src="../assets/demos/hcaptcha.gif" alt="Flux hCaptcha" width="860">
-</p>
-
-<p align="center">
-  <strong>Image/texte propriétaire</strong><br>
-  <img src="../assets/demos/image-text.gif" alt="Flux image et texte" width="860">
-</p>
+<table align="center">
+  <tr>
+    <td align="center" width="50%">
+      <strong>Google reCAPTCHA v2</strong><br>
+      <img src="../assets/demos/recaptcha.gif" alt="Flux reCAPTCHA" width="100%">
+    </td>
+    <td align="center" width="50%">
+      <strong>Cloudflare Turnstile</strong><br>
+      <img src="../assets/demos/turnstile.gif" alt="Flux Turnstile" width="100%">
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <strong>hCaptcha</strong><br>
+      <img src="../assets/demos/hcaptcha.gif" alt="Flux hCaptcha" width="100%">
+    </td>
+    <td align="center" width="50%">
+      <strong>Image/texte propriétaire</strong><br>
+      <img src="../assets/demos/image-text.gif" alt="Flux image et texte" width="100%">
+    </td>
+  </tr>
+</table>
 
 Les quatre cas vérifient le parcours protégé complet : détection, transfert de la même session, validation serveur, nouvelle preuve, cookie de session et reprise sûre. Les trois premiers utilisent le JavaScript réel des fournisseurs, leurs identifiants de test publics et leurs endpoints Siteverify.
 

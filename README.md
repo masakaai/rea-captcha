@@ -41,25 +41,28 @@ rea-captcha detects browser verification challenges, pauses an agent before repe
 
 <h2 align="center">Agentic verification matrix</h2>
 
-<p align="center">
-  <strong>Google reCAPTCHA v2</strong><br>
-  <img src="https://raw.githubusercontent.com/masakaai/rea-captcha/main/docs/assets/demos/recaptcha.gif" alt="Google reCAPTCHA detection, handoff, validation, and resume" width="860">
-</p>
-
-<p align="center">
-  <strong>Cloudflare Turnstile</strong><br>
-  <img src="https://raw.githubusercontent.com/masakaai/rea-captcha/main/docs/assets/demos/turnstile.gif" alt="Cloudflare Turnstile detection, handoff, validation, and resume" width="860">
-</p>
-
-<p align="center">
-  <strong>hCaptcha</strong><br>
-  <img src="https://raw.githubusercontent.com/masakaai/rea-captcha/main/docs/assets/demos/hcaptcha.gif" alt="hCaptcha detection, handoff, validation, and resume" width="860">
-</p>
-
-<p align="center">
-  <strong>Owned image/text</strong><br>
-  <img src="https://raw.githubusercontent.com/masakaai/rea-captcha/main/docs/assets/demos/image-text.gif" alt="Owned image text detection, local validation, and resume" width="860">
-</p>
+<table align="center">
+  <tr>
+    <td align="center" width="50%">
+      <strong>Google reCAPTCHA v2</strong><br>
+      <img src="https://raw.githubusercontent.com/masakaai/rea-captcha/main/docs/assets/demos/recaptcha.gif" alt="Google reCAPTCHA detection, handoff, validation, and resume" width="100%">
+    </td>
+    <td align="center" width="50%">
+      <strong>Cloudflare Turnstile</strong><br>
+      <img src="https://raw.githubusercontent.com/masakaai/rea-captcha/main/docs/assets/demos/turnstile.gif" alt="Cloudflare Turnstile detection, handoff, validation, and resume" width="100%">
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <strong>hCaptcha</strong><br>
+      <img src="https://raw.githubusercontent.com/masakaai/rea-captcha/main/docs/assets/demos/hcaptcha.gif" alt="hCaptcha detection, handoff, validation, and resume" width="100%">
+    </td>
+    <td align="center" width="50%">
+      <strong>Owned image/text</strong><br>
+      <img src="https://raw.githubusercontent.com/masakaai/rea-captcha/main/docs/assets/demos/image-text.gif" alt="Owned image text detection, local validation, and resume" width="100%">
+    </td>
+  </tr>
+</table>
 
 These are complete protected-action flows, not DOM-only fixtures. Each run detects a challenge, hands off the same browser context, submits to the real validation boundary, observes fresh passed evidence, verifies the session cookie, and resumes the same controller. Google reCAPTCHA v2, Cloudflare Turnstile, and hCaptcha use human handoff plus their vendor Siteverify endpoints; the owned image/text case uses an explicitly authorized local path and local server validation.
 

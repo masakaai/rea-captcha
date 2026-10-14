@@ -12,25 +12,28 @@ Jet Browser jest opcjonalnym adapterem, a nie zależnością ani domyślnym runt
 
 ## Agentowa macierz weryfikacji
 
-<p align="center">
-  <strong>Google reCAPTCHA v2</strong><br>
-  <img src="../assets/demos/recaptcha.gif" alt="Przebieg reCAPTCHA" width="860">
-</p>
-
-<p align="center">
-  <strong>Cloudflare Turnstile</strong><br>
-  <img src="../assets/demos/turnstile.gif" alt="Przebieg Turnstile" width="860">
-</p>
-
-<p align="center">
-  <strong>hCaptcha</strong><br>
-  <img src="../assets/demos/hcaptcha.gif" alt="Przebieg hCaptcha" width="860">
-</p>
-
-<p align="center">
-  <strong>Własny obraz/tekst</strong><br>
-  <img src="../assets/demos/image-text.gif" alt="Przebieg obrazu i tekstu" width="860">
-</p>
+<table align="center">
+  <tr>
+    <td align="center" width="50%">
+      <strong>Google reCAPTCHA v2</strong><br>
+      <img src="../assets/demos/recaptcha.gif" alt="Przebieg reCAPTCHA" width="100%">
+    </td>
+    <td align="center" width="50%">
+      <strong>Cloudflare Turnstile</strong><br>
+      <img src="../assets/demos/turnstile.gif" alt="Przebieg Turnstile" width="100%">
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <strong>hCaptcha</strong><br>
+      <img src="../assets/demos/hcaptcha.gif" alt="Przebieg hCaptcha" width="100%">
+    </td>
+    <td align="center" width="50%">
+      <strong>Własny obraz/tekst</strong><br>
+      <img src="../assets/demos/image-text.gif" alt="Przebieg obrazu i tekstu" width="100%">
+    </td>
+  </tr>
+</table>
 
 Wszystkie cztery przypadki sprawdzają pełny chroniony przebieg: wykrycie, przekazanie tej samej sesji, walidację serwera, świeży dowód, cookie sesji i bezpieczne wznowienie. Pierwsze trzy używają prawdziwego JavaScriptu dostawcy, publicznych danych testowych i oficjalnych endpointów Siteverify.
 

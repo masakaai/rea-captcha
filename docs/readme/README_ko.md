@@ -21,21 +21,24 @@ rea-captcha는 검증 챌린지를 감지하고 Agent를 일시 중지하며, �
 
 ## 네 가지 실제 검증 사례
 
-<p align="center">
-  <img src="../assets/demos/recaptcha.gif" alt="reCAPTCHA demo" width="860">
-</p>
-
-<p align="center">
-  <img src="../assets/demos/turnstile.gif" alt="Turnstile demo" width="860">
-</p>
-
-<p align="center">
-  <img src="../assets/demos/hcaptcha.gif" alt="hCaptcha demo" width="860">
-</p>
-
-<p align="center">
-  <img src="../assets/demos/image-text.gif" alt="Image text demo" width="860">
-</p>
+<table align="center">
+  <tr>
+    <td align="center" width="50%">
+      <img src="../assets/demos/recaptcha.gif" alt="reCAPTCHA demo" width="100%">
+    </td>
+    <td align="center" width="50%">
+      <img src="../assets/demos/turnstile.gif" alt="Turnstile demo" width="100%">
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <img src="../assets/demos/hcaptcha.gif" alt="hCaptcha demo" width="100%">
+    </td>
+    <td align="center" width="50%">
+      <img src="../assets/demos/image-text.gif" alt="Image text demo" width="100%">
+    </td>
+  </tr>
+</table>
 
 앞의 세 사례는 공급자 호스팅 JavaScript와 공개된 비프로덕션 테스트 키를 사용하며, 검증 endpoint가 `success: true`를 반환해야 보호된 작업을 승인합니다.
 

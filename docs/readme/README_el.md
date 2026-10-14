@@ -12,25 +12,28 @@
 
 ## Agentic verification matrix
 
-<p align="center">
-  <strong>Google reCAPTCHA v2</strong><br>
-  <img src="../assets/demos/recaptcha.gif" alt="Ροή reCAPTCHA" width="860">
-</p>
-
-<p align="center">
-  <strong>Cloudflare Turnstile</strong><br>
-  <img src="../assets/demos/turnstile.gif" alt="Ροή Turnstile" width="860">
-</p>
-
-<p align="center">
-  <strong>hCaptcha</strong><br>
-  <img src="../assets/demos/hcaptcha.gif" alt="Ροή hCaptcha" width="860">
-</p>
-
-<p align="center">
-  <strong>Ιδιόκτητη εικόνα/κείμενο</strong><br>
-  <img src="../assets/demos/image-text.gif" alt="Ροή εικόνας και κειμένου" width="860">
-</p>
+<table align="center">
+  <tr>
+    <td align="center" width="50%">
+      <strong>Google reCAPTCHA v2</strong><br>
+      <img src="../assets/demos/recaptcha.gif" alt="Ροή reCAPTCHA" width="100%">
+    </td>
+    <td align="center" width="50%">
+      <strong>Cloudflare Turnstile</strong><br>
+      <img src="../assets/demos/turnstile.gif" alt="Ροή Turnstile" width="100%">
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <strong>hCaptcha</strong><br>
+      <img src="../assets/demos/hcaptcha.gif" alt="Ροή hCaptcha" width="100%">
+    </td>
+    <td align="center" width="50%">
+      <strong>Ιδιόκτητη εικόνα/κείμενο</strong><br>
+      <img src="../assets/demos/image-text.gif" alt="Ροή εικόνας και κειμένου" width="100%">
+    </td>
+  </tr>
+</table>
 
 Και οι τέσσερις περιπτώσεις επαληθεύουν ολόκληρη την προστατευμένη ροή: εντοπισμό, παράδοση της ίδιας συνεδρίας, server validation, νέα ένδειξη επιτυχίας, session cookie και ασφαλή συνέχιση. Οι τρεις πρώτες χρησιμοποιούν πραγματικό JavaScript παρόχου, δημόσια test keys και τα επίσημα Siteverify endpoints.
 

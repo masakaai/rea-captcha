@@ -24,25 +24,28 @@ rea-captcha 在浏览器 Agent 重复操作之前识别验证挑战，暂停当�
 
 ## 四类真实验证矩阵
 
-<p align="center">
-  <strong>Google reCAPTCHA v2</strong><br>
-  <img src="../assets/demos/recaptcha.gif" alt="Google reCAPTCHA 完整验证流程" width="860">
-</p>
-
-<p align="center">
-  <strong>Cloudflare Turnstile</strong><br>
-  <img src="../assets/demos/turnstile.gif" alt="Cloudflare Turnstile 完整验证流程" width="860">
-</p>
-
-<p align="center">
-  <strong>hCaptcha</strong><br>
-  <img src="../assets/demos/hcaptcha.gif" alt="hCaptcha 完整验证流程" width="860">
-</p>
-
-<p align="center">
-  <strong>自有图片/文本</strong><br>
-  <img src="../assets/demos/image-text.gif" alt="自有图片文本完整验证流程" width="860">
-</p>
+<table align="center">
+  <tr>
+    <td align="center" width="50%">
+      <strong>Google reCAPTCHA v2</strong><br>
+      <img src="../assets/demos/recaptcha.gif" alt="Google reCAPTCHA 完整验证流程" width="100%">
+    </td>
+    <td align="center" width="50%">
+      <strong>Cloudflare Turnstile</strong><br>
+      <img src="../assets/demos/turnstile.gif" alt="Cloudflare Turnstile 完整验证流程" width="100%">
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <strong>hCaptcha</strong><br>
+      <img src="../assets/demos/hcaptcha.gif" alt="hCaptcha 完整验证流程" width="100%">
+    </td>
+    <td align="center" width="50%">
+      <strong>自有图片/文本</strong><br>
+      <img src="../assets/demos/image-text.gif" alt="自有图片文本完整验证流程" width="100%">
+    </td>
+  </tr>
+</table>
 
 每个案例都覆盖完整受保护操作：识别、同会话接管、服务端验证、重新观察通过状态、校验会话 Cookie，以及恢复同一个控制器。
 

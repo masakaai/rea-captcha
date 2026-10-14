@@ -12,25 +12,28 @@ Jet Browser — только необязательный адаптер, а н�
 
 ## Матрица агентной проверки
 
-<p align="center">
-  <strong>Google reCAPTCHA v2</strong><br>
-  <img src="../assets/demos/recaptcha.gif" alt="Сценарий reCAPTCHA" width="860">
-</p>
-
-<p align="center">
-  <strong>Cloudflare Turnstile</strong><br>
-  <img src="../assets/demos/turnstile.gif" alt="Сценарий Turnstile" width="860">
-</p>
-
-<p align="center">
-  <strong>hCaptcha</strong><br>
-  <img src="../assets/demos/hcaptcha.gif" alt="Сценарий hCaptcha" width="860">
-</p>
-
-<p align="center">
-  <strong>Собственное изображение/текст</strong><br>
-  <img src="../assets/demos/image-text.gif" alt="Сценарий изображения и текста" width="860">
-</p>
+<table align="center">
+  <tr>
+    <td align="center" width="50%">
+      <strong>Google reCAPTCHA v2</strong><br>
+      <img src="../assets/demos/recaptcha.gif" alt="Сценарий reCAPTCHA" width="100%">
+    </td>
+    <td align="center" width="50%">
+      <strong>Cloudflare Turnstile</strong><br>
+      <img src="../assets/demos/turnstile.gif" alt="Сценарий Turnstile" width="100%">
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <strong>hCaptcha</strong><br>
+      <img src="../assets/demos/hcaptcha.gif" alt="Сценарий hCaptcha" width="100%">
+    </td>
+    <td align="center" width="50%">
+      <strong>Собственное изображение/текст</strong><br>
+      <img src="../assets/demos/image-text.gif" alt="Сценарий изображения и текста" width="100%">
+    </td>
+  </tr>
+</table>
 
 Все четыре случая проверяют полный защищённый путь: обнаружение, передачу той же сессии, серверную валидацию, новое подтверждение, cookie сессии и безопасное продолжение. Первые три используют настоящий JavaScript поставщика, общедоступные тестовые ключи и официальные endpoint Siteverify.
 

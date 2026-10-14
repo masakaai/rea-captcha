@@ -12,25 +12,28 @@ Jet Browser es un adaptador opcional: no es dependencia ni runtime predeterminad
 
 ## Matriz de verificación agéntica
 
-<p align="center">
-  <strong>Google reCAPTCHA v2</strong><br>
-  <img src="../assets/demos/recaptcha.gif" alt="Flujo de reCAPTCHA" width="860">
-</p>
-
-<p align="center">
-  <strong>Cloudflare Turnstile</strong><br>
-  <img src="../assets/demos/turnstile.gif" alt="Flujo de Turnstile" width="860">
-</p>
-
-<p align="center">
-  <strong>hCaptcha</strong><br>
-  <img src="../assets/demos/hcaptcha.gif" alt="Flujo de hCaptcha" width="860">
-</p>
-
-<p align="center">
-  <strong>Imagen/texto propio</strong><br>
-  <img src="../assets/demos/image-text.gif" alt="Flujo de imagen y texto" width="860">
-</p>
+<table align="center">
+  <tr>
+    <td align="center" width="50%">
+      <strong>Google reCAPTCHA v2</strong><br>
+      <img src="../assets/demos/recaptcha.gif" alt="Flujo de reCAPTCHA" width="100%">
+    </td>
+    <td align="center" width="50%">
+      <strong>Cloudflare Turnstile</strong><br>
+      <img src="../assets/demos/turnstile.gif" alt="Flujo de Turnstile" width="100%">
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <strong>hCaptcha</strong><br>
+      <img src="../assets/demos/hcaptcha.gif" alt="Flujo de hCaptcha" width="100%">
+    </td>
+    <td align="center" width="50%">
+      <strong>Imagen/texto propio</strong><br>
+      <img src="../assets/demos/image-text.gif" alt="Flujo de imagen y texto" width="100%">
+    </td>
+  </tr>
+</table>
 
 Los cuatro casos verifican el recorrido protegido completo: detección, traspaso de la misma sesión, validación del servidor, evidencia nueva, cookie de sesión y reanudación segura. Los tres primeros usan JavaScript real del proveedor, credenciales públicas de prueba y sus endpoints Siteverify.
 

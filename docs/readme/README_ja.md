@@ -21,21 +21,24 @@ rea-captcha は検証チャレンジを検出して Agent を一時停止し、�
 
 ## 4 ケースの実証マトリクス
 
-<p align="center">
-  <img src="../assets/demos/recaptcha.gif" alt="reCAPTCHA demo" width="860">
-</p>
-
-<p align="center">
-  <img src="../assets/demos/turnstile.gif" alt="Turnstile demo" width="860">
-</p>
-
-<p align="center">
-  <img src="../assets/demos/hcaptcha.gif" alt="hCaptcha demo" width="860">
-</p>
-
-<p align="center">
-  <img src="../assets/demos/image-text.gif" alt="Image text demo" width="860">
-</p>
+<table align="center">
+  <tr>
+    <td align="center" width="50%">
+      <img src="../assets/demos/recaptcha.gif" alt="reCAPTCHA demo" width="100%">
+    </td>
+    <td align="center" width="50%">
+      <img src="../assets/demos/turnstile.gif" alt="Turnstile demo" width="100%">
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <img src="../assets/demos/hcaptcha.gif" alt="hCaptcha demo" width="100%">
+    </td>
+    <td align="center" width="50%">
+      <img src="../assets/demos/image-text.gif" alt="Image text demo" width="100%">
+    </td>
+  </tr>
+</table>
 
 最初の 3 ケースはベンダー提供 JavaScript と公開された非本番テストキーを使用し、検証 endpoint が `success: true` を返した後だけ保護操作を受理します。
 
