@@ -6,6 +6,7 @@
     "paths": {
       "rea-captcha": ["./src/index.ts"],
       "rea-captcha/playwright": ["./src/browser/playwright.ts"],
+      "rea-captcha/cdp": ["./src/browser/cdp.ts"],
       "rea-captcha/jet-browser": ["./src/browser/jet-browser.ts"],
       "rea-captcha/jet-standalone": ["./src/browser/jet-standalone.ts"]
     },
