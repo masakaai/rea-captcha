@@ -12,12 +12,14 @@ const files = new Map([
   ['/hcaptcha.html', 'hcaptcha.html'],
   ['/image-text.html', 'image-text.html'],
   ['/demo.js', 'demo.js'],
-  ['/styles.css', 'styles.css']
+  ['/styles.css', 'styles.css'],
+  ['/social-preview.png', 'social-preview.png']
 ]);
 const contentTypes = new Map([
   ['.html', 'text/html; charset=utf-8'],
   ['.js', 'text/javascript; charset=utf-8'],
-  ['.css', 'text/css; charset=utf-8']
+  ['.css', 'text/css; charset=utf-8'],
+  ['.png', 'image/png']
 ]);
 
 const testCredentials = {
@@ -110,7 +112,7 @@ export async function handleDemoRequest(request, response) {
       return;
     }
     const name = files.get(url.pathname);
-    const body = await readFile(join(root, name), 'utf8');
+    const body = await readFile(join(root, name));
     response.setHeader('set-cookie', 'rea_demo_session=kept; Path=/; SameSite=Lax');
     send(response, 200, body, contentTypes.get(extname(name)) ?? 'application/octet-stream');
   } catch (error) {
