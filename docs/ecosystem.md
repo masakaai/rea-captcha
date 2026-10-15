@@ -1,8 +1,8 @@
 # Ecosystem and awesome-list intake
 
-## Submitted entries (2026-10-15)
+## Submitted entries (checked 2026-10-16)
 
-The repository and npm package are public. Statuses below were checked on 2026-10-15; submission does not mean acceptance:
+The repository and npm package are public. Statuses below were checked on 2026-10-16; submission does not mean acceptance:
 
 | Directory | Submission | Current follow-up |
 | --- | --- | --- |
@@ -12,6 +12,7 @@ The repository and npm package are public. Statuses below were checked on 2026-1
 | TensorBlock | [#3779](https://github.com/TensorBlock/awesome-mcp-servers/pull/3779) | Merged on October 15. Main-branch entry includes authorized provider-test scope and the stateless stdio launch command. Website deployment is separate. |
 | Steel awesome-web-agents | [#138](https://github.com/steel-dev/awesome-web-agents/pull/138) | Submitted under Dev Tools; awaiting review. |
 | Agent-Tools awesome-autonomous-web | [#39](https://github.com/Agent-Tools/awesome-autonomous-web/pull/39) | Awaiting review. |
+| Awesome AI Agent Tools | [#114](https://github.com/michielhdoteth/awesome-ai-agent-tools/pull/114) | Merged on October 15; entry verified in the main catalog. |
 | abordage awesome-mcp | [#165](https://github.com/abordage/awesome-mcp/pull/165) | Awaiting review. |
 | AIAnytime Awesome-MCP-Servers | [#218](https://github.com/AIAnytime/Awesome-MCP-Servers/pull/218) | Merged; entry verified in the main README. |
 | YuzeHao2023 Awesome-MCP-Servers | [#637](https://github.com/YuzeHao2023/Awesome-MCP-Servers/pull/637) | Awaiting review. |
@@ -20,6 +21,7 @@ The repository and npm package are public. Statuses below were checked on 2026-1
 | Agent Skill Index | [#593](https://github.com/heilcheng/awesome-agent-skills/pull/593) | Awaiting review; external-contributor Vercel preview needs upstream team authorization. |
 | browser-use awesome-projects | [#11](https://github.com/browser-use/awesome-projects/pull/11) | Awaiting review. |
 | Awesome Computer Use | [#46](https://github.com/ranpox/awesome-computer-use/pull/46) | Awaiting review. |
+| Awesome Testing Tools | [#176](https://github.com/ZoranPandovski/awesome-testing-tools/pull/176) | Submitted under Automated Testing Tools; awaiting review. |
 | Awesome DevOps MCP Servers | [#368](https://github.com/rohitg00/awesome-devops-mcp-servers/pull/368) | Submitted under Testing & Chaos Engineering; awaiting review. |
 | angrykoala awesome-browser-automation | [#193](https://github.com/angrykoala/awesome-browser-automation/pull/193) | Closed without merge or review comments; no resubmission. |
 
