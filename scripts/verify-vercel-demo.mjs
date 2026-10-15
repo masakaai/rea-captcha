@@ -29,6 +29,7 @@ try {
   assert.match(indexHtml, /browser-use handoff/);
   assert.match(indexHtml, /npx -y rea-captcha mcp --stateless/);
   assert.match(indexHtml, /https:\/\/github\.com\/masakaai\/rea-captcha/);
+  assert.match(indexHtml, /https:\/\/www\.producthunt\.com\/products\/rea-captcha\?launch=rea-captcha/);
   assert.match(indexHtml, /live provider matrix/);
   assert.match(indexHtml, /og:image:width" content="1280"/);
   assert.match(indexHtml, /og:image:height" content="640"/);
