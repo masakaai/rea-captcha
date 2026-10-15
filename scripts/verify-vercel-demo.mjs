@@ -5,6 +5,7 @@ import { createServer } from 'node:http';
 import demoHandler from '../api/index.mjs';
 
 assert.equal(typeof demoHandler, 'function', 'The Vercel entrypoint must export a request handler.');
+const packageJson = JSON.parse(await readFile(new URL('../package.json', import.meta.url), 'utf8'));
 
 const server = createServer((request, response) => {
   Promise.resolve(demoHandler(request, response)).catch(error => {
@@ -28,7 +29,7 @@ try {
   const indexHtml = await index.text();
   assert.match(indexHtml, /keep browser-use/);
   assert.match(indexHtml, /browser-use handoff/);
-  assert.match(indexHtml, /npx rea-captcha@0\.2\.3 mcp --stateless/);
+  assert(indexHtml.includes(`npx rea-captcha@${packageJson.version} mcp --stateless`));
   assert.doesNotMatch(indexHtml, /npx (?:-y|--yes) rea-captcha/);
   assert.match(indexHtml, /https:\/\/github\.com\/masakaai\/rea-captcha/);
   assert.match(indexHtml, /https:\/\/www\.producthunt\.com\/products\/rea-captcha\?launch=rea-captcha/);

@@ -96,7 +96,7 @@ Install rea-captcha in this project and connect it to the browser session this a
 The official Registry entry is `io.github.masakaai/rea-captcha` and launches the zero-configuration stdio server through npm:
 
 ```sh
-npx rea-captcha@0.2.3 mcp --stateless
+npx rea-captcha@0.2.4 mcp --stateless
 ```
 
 Review the pinned package version and approve npm's install prompt only when it matches the release you intend to run. The command does not suppress that prompt.
@@ -168,6 +168,14 @@ The recommended cross-agent provider is a browser already exposing CDP:
 Generic Playwright `Page`, Playwright-over-CDP, browser-use, and optional Jet Browser managed/standalone adapters are implemented. Jet Browser must be selected explicitly and is neither installed nor started by the default path. Configuration examples and provider boundaries are documented in [architecture](docs/architecture.md) and [cases](docs/cases.md).
 
 ## browser-use and local OCR
+
+Install the version-aligned Python adapter from the tagged repository source:
+
+```sh
+python -m pip install 'rea-captcha[browser-use] @ git+https://github.com/masakaai/rea-captcha.git@v0.2.4#subdirectory=python'
+```
+
+The Python adapter is not published on PyPI yet, so an unqualified `pip install rea-captcha` will not work. The pinned source install keeps the adapter and repository release aligned without relying on an unpublished distribution.
 
 For agent-driven completion, point rea-captcha's Playwright/CDP session at the same existing browser used by browser-use. The MCP lifecycle detects the block, performs an authorized action, verifies the result, and returns control without replacing the browser or task context.
 

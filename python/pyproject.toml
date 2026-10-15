@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "rea-captcha"
-version = "0.1.0"
+version = "0.2.4"
 description = "Browser-use adapter and optional local OCR worker for rea-captcha."
 readme = "README.md"
 requires-python = ">=3.11"

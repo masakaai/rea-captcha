@@ -94,7 +94,7 @@ npx skills add masakaai/rea-captcha --skill rea-captcha
 官方 Registry 名称为 `io.github.masakaai/rea-captcha`。零配置入口为：
 
 ```sh
-npx rea-captcha@0.2.3 mcp --stateless
+npx rea-captcha@0.2.4 mcp --stateless
 ```
 
 服务提供 6 个工具：`captcha_analyze`、`captcha_inspect`、`captcha_complete`、`captcha_handoff`、`captcha_wait` 与 `captcha_resume`。`captcha_complete` 只会在策略允许、来源匹配且厂商测试 key 校验通过时操作已有浏览器。详见 [MCP 工具目录](../mcp-tools.md)。

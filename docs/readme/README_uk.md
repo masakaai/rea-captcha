@@ -50,7 +50,7 @@ npx skills add masakaai/rea-captcha --skill rea-captcha
 
 ## Агенти та MCP
 
-Офіційна назва — `io.github.masakaai/rea-captcha`, запуск без конфігурації: `npx rea-captcha@0.2.3 mcp --stateless`. Доступні шість інструментів: `captcha_analyze`, `captcha_inspect`, `captcha_complete`, `captcha_handoff`, `captcha_wait` і `captcha_resume`. `captcha_complete` працює в наявному браузері лише після перевірки політики, origin і документованого тестового ключа провайдера.
+Офіційна назва — `io.github.masakaai/rea-captcha`, запуск без конфігурації: `npx rea-captcha@0.2.4 mcp --stateless`. Доступні шість інструментів: `captcha_analyze`, `captcha_inspect`, `captcha_complete`, `captcha_handoff`, `captcha_wait` і `captcha_resume`. `captcha_complete` працює в наявному браузері лише після перевірки політики, origin і документованого тестового ключа провайдера.
 
 Цикл агента: `inspect → agent-action → complete → нова перевірка → resume`. Невідоме значення, неповні дані, timeout або лише прогноз OCR ніколи не дозволяють продовження.
 

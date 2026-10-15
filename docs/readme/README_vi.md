@@ -50,7 +50,7 @@ Cần Node.js 22.19+, 24.11+ hoặc 26+. Sau khi xác nhận, `setup` tạo cấ
 
 ## Agent và MCP
 
-Tên Registry chính thức là `io.github.masakaai/rea-captcha`; lệnh chạy không cần cấu hình là `npx rea-captcha@0.2.3 mcp --stateless`. Có sáu công cụ: `captcha_analyze`, `captcha_inspect`, `captcha_complete`, `captcha_handoff`, `captcha_wait` và `captcha_resume`. `captcha_complete` chỉ thao tác trên browser hiện có sau khi kiểm tra policy, origin và test key có tài liệu của nhà cung cấp.
+Tên Registry chính thức là `io.github.masakaai/rea-captcha`; lệnh chạy không cần cấu hình là `npx rea-captcha@0.2.4 mcp --stateless`. Có sáu công cụ: `captcha_analyze`, `captcha_inspect`, `captcha_complete`, `captcha_handoff`, `captcha_wait` và `captcha_resume`. `captcha_complete` chỉ thao tác trên browser hiện có sau khi kiểm tra policy, origin và test key có tài liệu của nhà cung cấp.
 
 Chu trình của agent là `inspect → agent-action → complete → xác minh mới → resume`. Giá trị không rõ, bằng chứng thiếu, timeout hoặc chỉ một dự đoán OCR không bao giờ cho phép tiếp tục.
 

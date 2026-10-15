@@ -57,7 +57,7 @@ npx skills add masakaai/rea-captcha --skill rea-captcha
 
 ## Agent / MCP
 
-공식 Registry 이름은 `io.github.masakaai/rea-captcha`이며 무설정 실행은 `npx rea-captcha@0.2.3 mcp --stateless`입니다. MCP는 `captcha_analyze`, `captcha_inspect`, `captcha_complete`, `captcha_handoff`, `captcha_wait`, `captcha_resume` 여섯 도구를 제공합니다. `captcha_complete`는 정책, origin, 공급자 테스트 키를 확인한 경우에만 기존 브라우저를 조작합니다. 자세한 내용은 [MCP tool catalog](../mcp-tools.md)에 있습니다.
+공식 Registry 이름은 `io.github.masakaai/rea-captcha`이며 무설정 실행은 `npx rea-captcha@0.2.4 mcp --stateless`입니다. MCP는 `captcha_analyze`, `captcha_inspect`, `captcha_complete`, `captcha_handoff`, `captcha_wait`, `captcha_resume` 여섯 도구를 제공합니다. `captcha_complete`는 정책, origin, 공급자 테스트 키를 확인한 경우에만 기존 브라우저를 조작합니다. 자세한 내용은 [MCP tool catalog](../mcp-tools.md)에 있습니다.
 
 Agent 상태 흐름은 `inspect → agent-action → complete → fresh verify → resume`입니다. 알 수 없는 값, 누락된 증거, 시간 초과, OCR 예측만으로는 재개하지 않습니다.
 

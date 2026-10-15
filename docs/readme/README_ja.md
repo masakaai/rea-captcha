@@ -57,7 +57,7 @@ npx skills add masakaai/rea-captcha --skill rea-captcha
 
 ## Agent / MCP
 
-ゼロ設定の Registry 起動は `npx rea-captcha@0.2.3 mcp --stateless` です。MCP は `captcha_analyze`、`captcha_inspect`、`captcha_complete`、`captcha_handoff`、`captcha_wait`、`captcha_resume` の 6 ツールを公開します。`captcha_complete` は、ポリシー、origin、ベンダーのテストキーを確認した後にだけ既存ブラウザーを操作します。詳細は [MCP tool catalog](../mcp-tools.md) を参照してください。
+ゼロ設定の Registry 起動は `npx rea-captcha@0.2.4 mcp --stateless` です。MCP は `captcha_analyze`、`captcha_inspect`、`captcha_complete`、`captcha_handoff`、`captcha_wait`、`captcha_resume` の 6 ツールを公開します。`captcha_complete` は、ポリシー、origin、ベンダーのテストキーを確認した後にだけ既存ブラウザーを操作します。詳細は [MCP tool catalog](../mcp-tools.md) を参照してください。
 
 Agent の状態遷移は `inspect → agent-action → complete → fresh verify → resume` です。不明値、欠損証拠、タイムアウト、OCR 予測だけでは再開しません。
 
