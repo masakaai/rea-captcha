@@ -19,7 +19,7 @@ const toolResult = (inspection: ChallengeInspection, state: string) => {
 };
 
 export function createReaCaptchaMcpServer(resolver: ControllerResolver): McpServer {
-  const server = new McpServer({ name: 'rea-captcha', version: '0.2.2' }, {
+  const server = new McpServer({ name: 'rea-captcha', version: '0.2.3' }, {
     maxToolInputElements: 16,
     instructions: 'Use captcha_analyze for page evidence supplied by an agent. In a configured existing browser session: inspect; use captcha_complete only when policy returns agent-action or local-processing; otherwise request handoff; then resume only after fresh clear evidence.'
   });

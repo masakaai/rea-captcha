@@ -8,13 +8,13 @@
     "url": "https://github.com/masakaai/rea-captcha",
     "source": "github"
   },
-  "version": "0.2.2",
+  "version": "0.2.3",
   "packages": [
     {
       "registryType": "npm",
       "registryBaseUrl": "https://registry.npmjs.org",
       "identifier": "rea-captcha",
-      "version": "0.2.2",
+      "version": "0.2.3",
       "runtimeHint": "npx",
       "transport": {
         "type": "stdio"

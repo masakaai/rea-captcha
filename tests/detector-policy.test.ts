@@ -33,6 +33,29 @@ describe('DOM challenge detector', () => {
     expect(finding.kind).toBeNull();
   });
 
+  it('detects visible reCAPTCHA widget copy supplied as text evidence', () => {
+    const finding = detector.detect({
+      url: 'https://fixture.test/recaptcha',
+      title: 'Verification',
+      text: "I'm not a robot reCAPTCHA",
+      capturedAt: new Date().toISOString()
+    });
+    expect(finding.status).toBe('detected');
+    expect(finding.kind).toBe('recaptcha');
+    expect(finding.evidence).toContainEqual(expect.objectContaining({ signal: 'recaptcha-copy', source: 'text' }));
+  });
+
+  it('does not flag documentation that only names reCAPTCHA', () => {
+    const finding = detector.detect({
+      url: 'https://docs.test/recaptcha-guide',
+      title: 'reCAPTCHA integration guide',
+      text: 'This article documents how a reCAPTCHA integration is configured for test environments.',
+      capturedAt: new Date().toISOString()
+    });
+    expect(finding.status).toBe('clear');
+    expect(finding.kind).toBeNull();
+  });
+
   it('treats an explicit completion marker as passed', () => {
     const finding = detector.detect(observation('<div data-captcha-status="passed">Complete</div>'));
     expect(finding.status).toBe('passed');

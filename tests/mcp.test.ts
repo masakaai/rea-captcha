@@ -47,5 +47,19 @@ describe('MCP contracts', () => {
       finding: { kind: 'turnstile', status: 'detected' },
       policy: { decision: 'human-handoff' }
     });
+
+    const textOnly = await client.callTool({
+      name: 'captcha_analyze',
+      arguments: {
+        url: 'https://fixture.test/recaptcha',
+        title: 'Verification',
+        text: "I'm not a robot reCAPTCHA"
+      }
+    });
+    expect(textOnly.structuredContent).toMatchObject({
+      state: 'analyzed',
+      finding: { kind: 'recaptcha', status: 'detected' },
+      policy: { decision: 'human-handoff' }
+    });
   });
 });

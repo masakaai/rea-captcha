@@ -6,7 +6,7 @@
       "command": "npx",
       "args": [
         "-y",
-        "rea-captcha@0.2.2",
+        "rea-captcha@0.2.3",
         "mcp",
         "--stateless"
       ]

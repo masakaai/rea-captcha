@@ -15,6 +15,7 @@ interface Rule {
 
 const rules: readonly Rule[] = [
   { kind: 'recaptcha', source: 'iframe', signal: 'recaptcha-frame', pattern: /(?:google\.com|recaptcha\.net)\/recaptcha|g-recaptcha/i, confidence: 0.99 },
+  { kind: 'recaptcha', source: 'text', signal: 'recaptcha-copy', pattern: /(?:\bi(?:'m| am) not a robot\b[\s\S]{0,120}\brecaptcha\b|\brecaptcha\b[\s\S]{0,120}\bi(?:'m| am) not a robot\b)/i, confidence: 0.9 },
   { kind: 'hcaptcha', source: 'iframe', signal: 'hcaptcha-frame', pattern: /hcaptcha\.com|h-captcha/i, confidence: 0.99 },
   { kind: 'turnstile', source: 'iframe', signal: 'turnstile-frame', pattern: /challenges\.cloudflare\.com|cf-turnstile|turnstile/i, confidence: 0.98 },
   { kind: 'geetest', source: 'script', signal: 'geetest-widget', pattern: /geetest|gt-captcha|geetest_challenge/i, confidence: 0.97 },
