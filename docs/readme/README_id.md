@@ -50,7 +50,7 @@ Memerlukan Node.js 22.19+, 24.11+, atau 26+. Setelah dikonfirmasi, `setup` membu
 
 ## Agen dan MCP
 
-Nama Registry resmi adalah `io.github.masakaai/rea-captcha`; peluncuran tanpa konfigurasi adalah `npx -y rea-captcha mcp --stateless`. Ada enam alat: `captcha_analyze`, `captcha_inspect`, `captcha_complete`, `captcha_handoff`, `captcha_wait`, dan `captcha_resume`. `captcha_complete` hanya bertindak di browser yang ada setelah memeriksa kebijakan, origin, dan kunci uji provider yang terdokumentasi.
+Nama Registry resmi adalah `io.github.masakaai/rea-captcha`; peluncuran tanpa konfigurasi adalah `npx rea-captcha@0.2.3 mcp --stateless`. Ada enam alat: `captcha_analyze`, `captcha_inspect`, `captcha_complete`, `captcha_handoff`, `captcha_wait`, dan `captcha_resume`. `captcha_complete` hanya bertindak di browser yang ada setelah memeriksa kebijakan, origin, dan kunci uji provider yang terdokumentasi.
 
 Siklus agennya adalah `inspect → agent-action → complete → verifikasi baru → resume`. Nilai yang tidak dikenal, bukti tidak lengkap, timeout, atau prediksi OCR saja tidak pernah mengizinkan pelanjutan.
 

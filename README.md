@@ -96,8 +96,10 @@ Install rea-captcha in this project and connect it to the browser session this a
 The official Registry entry is `io.github.masakaai/rea-captcha` and launches the zero-configuration stdio server through npm:
 
 ```sh
-npx -y rea-captcha mcp --stateless
+npx rea-captcha@0.2.3 mcp --stateless
 ```
+
+Review the pinned package version and approve npm's install prompt only when it matches the release you intend to run. The command does not suppress that prompt.
 
 It exposes six tools: `captcha_analyze`, `captcha_inspect`, `captcha_complete`, `captcha_handoff`, `captcha_wait`, and `captcha_resume`. `captcha_complete` performs only a policy-authorized action in the configured existing browser and waits for fresh validation evidence. See the [tool catalog](docs/mcp-tools.md) for inputs and lifecycle semantics.
 

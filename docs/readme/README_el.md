@@ -50,7 +50,7 @@ npx skills add masakaai/rea-captcha --skill rea-captcha
 
 ## Agents και MCP
 
-Το επίσημο όνομα είναι `io.github.masakaai/rea-captcha` και η εκκίνηση χωρίς ρύθμιση είναι `npx -y rea-captcha mcp --stateless`. Παρέχονται έξι εργαλεία: `captcha_analyze`, `captcha_inspect`, `captcha_complete`, `captcha_handoff`, `captcha_wait` και `captcha_resume`. Το `captcha_complete` ενεργεί στο υπάρχον browser μόνο μετά τον έλεγχο policy, origin και τεκμηριωμένου provider test key.
+Το επίσημο όνομα είναι `io.github.masakaai/rea-captcha` και η εκκίνηση χωρίς ρύθμιση είναι `npx rea-captcha@0.2.3 mcp --stateless`. Παρέχονται έξι εργαλεία: `captcha_analyze`, `captcha_inspect`, `captcha_complete`, `captcha_handoff`, `captcha_wait` και `captcha_resume`. Το `captcha_complete` ενεργεί στο υπάρχον browser μόνο μετά τον έλεγχο policy, origin και τεκμηριωμένου provider test key.
 
 Ο κύκλος του agent είναι `inspect → agent-action → complete → νέα επαλήθευση → resume`. Άγνωστη τιμή, ελλιπή στοιχεία, timeout ή μεμονωμένη πρόβλεψη OCR δεν επιτρέπουν συνέχιση.
 
