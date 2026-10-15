@@ -6,6 +6,7 @@ The repository and npm package are public. Statuses below were checked on 2026-1
 
 | Directory | Submission | Current follow-up |
 | --- | --- | --- |
+| Hermes Agent plugin catalog | [#139304](https://github.com/NousResearch/hermes-agent/pull/139304) | Portable Agent Plugins v1 package and catalog entry validated locally; awaiting catalog CI and maintainer review. |
 | awesome-playwright | [#241](https://github.com/mxschmitt/awesome-playwright/pull/241) | Awaiting review. |
 | mcpHQ | [#254](https://github.com/mcpHQ/awesome-mcp-servers/pull/254) | Included on main in catalog commit `3b21aed`; PR closed after batch integration. |
 | punkpeye | [#16418](https://github.com/punkpeye/awesome-mcp-servers/pull/16418) | [Glama listing](https://glama.ai/mcp/servers/masakaai/rea-captcha) is live; container build and six-tool MCP introspection passed, Glama 0.2.1 published, requested score badge added. Awaiting review. |
