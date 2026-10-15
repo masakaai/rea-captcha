@@ -1,0 +1,51 @@
+name: Bug report
+description: Report a reproducible rea-captcha failure without sharing private browser data.
+title: "bug: "
+body:
+  - type: checkboxes
+    attributes:
+      label: Safety check
+      options:
+        - label: I removed credentials, cookies, browser profiles, challenge tokens, and private-page evidence.
+          required: true
+        - label: This report concerns an owned, authorized, or provider-documented test flow.
+          required: true
+  - type: textarea
+    attributes:
+      label: What happened?
+      description: Describe the observed behavior and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Minimal reproduction
+      description: Include the smallest safe example, commands, and redacted configuration needed to reproduce it.
+    validations:
+      required: true
+  - type: dropdown
+    attributes:
+      label: Integration surface
+      options:
+        - TypeScript SDK
+        - MCP server
+        - browser-use plugin
+        - Playwright or CDP adapter
+        - Web demo
+        - Python detector or plugin
+        - Other
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Version and environment
+      description: rea-captcha version, Node or Python version, operating system, and browser/provider where relevant.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Redacted evidence
+      description: Add safe logs, state transitions, or screenshots. Explain which fresh evidence was missing or unexpected.
+  - type: textarea
+    attributes:
+      label: Validation attempted
+      description: List the checks or workarounds you tried and their exact results.

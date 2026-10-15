@@ -1,0 +1,34 @@
+name: Feature request
+description: Propose a scoped improvement for verification detection, handoff, validation, or integration.
+title: "feature: "
+body:
+  - type: textarea
+    attributes:
+      label: Problem
+      description: What browser-agent failure or contributor workflow should this solve?
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Proposed behavior
+      description: Describe the smallest useful behavior and who owns the browser/session lifecycle.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Evidence and resume boundary
+      description: What current evidence should be inspected, and what fresh observation would permit resume?
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Alternatives
+      description: What existing adapter, handoff, or integration path did you consider?
+  - type: checkboxes
+    attributes:
+      label: Scope check
+      options:
+        - label: The proposal does not require stealth, telemetry, commercial solver APIs, or automatic handling of third-party production challenges.
+          required: true
+        - label: I will not include credentials, cookies, browser profiles, challenge tokens, or private-page evidence.
+          required: true
