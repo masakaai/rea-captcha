@@ -13,12 +13,14 @@ const files = new Map([
   ['/image-text.html', 'image-text.html'],
   ['/demo.js', 'demo.js'],
   ['/styles.css', 'styles.css'],
+  ['/social-preview.svg', 'social-preview.svg'],
   ['/social-preview.png', 'social-preview.png']
 ]);
 const contentTypes = new Map([
   ['.html', 'text/html; charset=utf-8'],
   ['.js', 'text/javascript; charset=utf-8'],
   ['.css', 'text/css; charset=utf-8'],
+  ['.svg', 'image/svg+xml; charset=utf-8'],
   ['.png', 'image/png']
 ]);
 

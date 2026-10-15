@@ -30,10 +30,17 @@ try {
   assert.match(indexHtml, /npx -y rea-captcha mcp --stateless/);
   assert.match(indexHtml, /https:\/\/github\.com\/masakaai\/rea-captcha/);
   assert.match(indexHtml, /live provider matrix/);
+  assert.match(indexHtml, /og:image:width" content="1280"/);
+  assert.match(indexHtml, /og:image:height" content="640"/);
   assert.equal((indexHtml.match(/href="\/(?:recaptcha|turnstile|hcaptcha|image-text)\.html"/g) ?? []).length, 4);
   assert.match(index.headers.get('set-cookie') ?? '', /rea_demo_session=kept/);
 
-  for (const path of ['/', '/recaptcha.html', '/turnstile.html', '/hcaptcha.html', '/image-text.html', '/demo.js', '/styles.css', '/social-preview.png', '/passed', '/not-a-demo']) {
+  const socialPreview = Buffer.from(await (await fetch(`${origin}/social-preview.png`)).arrayBuffer());
+  assert.equal(socialPreview.toString('ascii', 1, 4), 'PNG');
+  assert.equal(socialPreview.readUInt32BE(16), 1280, 'Social preview must be 1280 px wide.');
+  assert.equal(socialPreview.readUInt32BE(20), 640, 'Social preview must be 640 px tall.');
+
+  for (const path of ['/', '/recaptcha.html', '/turnstile.html', '/hcaptcha.html', '/image-text.html', '/demo.js', '/styles.css', '/social-preview.svg', '/social-preview.png', '/passed', '/not-a-demo']) {
     const get = await fetch(`${origin}${path}`);
     await get.arrayBuffer();
     const head = await fetch(`${origin}${path}`, { method: 'HEAD' });
