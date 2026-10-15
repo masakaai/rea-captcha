@@ -33,6 +33,8 @@ try {
   assert.doesNotMatch(indexHtml, /npx (?:-y|--yes) rea-captcha/);
   assert.match(indexHtml, /https:\/\/github\.com\/masakaai\/rea-captcha/);
   assert.match(indexHtml, /https:\/\/www\.producthunt\.com\/products\/rea-captcha\?launch=rea-captcha/);
+  assert.match(indexHtml, /api\.producthunt\.com\/widgets\/embed-image\/v1\/featured\.svg\?post_id=1281761&amp;theme=light/);
+  assert.match(indexHtml, /utm_campaign=badge-rea-captcha/);
   assert.match(indexHtml, /live provider matrix/);
   assert.match(indexHtml, /og:image:width" content="1280"/);
   assert.match(indexHtml, /og:image:height" content="640"/);

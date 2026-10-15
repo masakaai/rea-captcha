@@ -30,6 +30,8 @@ h2 { font-size: clamp(42px, 6vw, 72px); }
 h1 em, h2 em { font-family: Georgia, "Times New Roman", serif; font-weight: 400; }
 .lede { max-width: 650px; margin: 30px 0; color: var(--muted); font-size: clamp(17px, 2vw, 21px); line-height: 1.55; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.product-hunt-badge { display: inline-flex; margin-top: 18px; }
+.product-hunt-badge img { display: block; width: 250px; height: 54px; }
 .button, button { display: inline-flex; align-items: center; justify-content: space-between; gap: 40px; min-width: 248px; border: 1px solid var(--ink); border-radius: 0; padding: 17px 20px; background: var(--accent); color: var(--ink); font: 600 15px/1 inherit; text-decoration: none; cursor: pointer; }
 .button:hover, button:hover { background: var(--ink); color: var(--paper); }
 .button.secondary { min-width: 190px; background: transparent; }
@@ -98,6 +100,7 @@ label { display: grid; gap: 10px; font-weight: 700; }
   .hero { padding-top: 52px; }
   .hero-actions { display: grid; }
   .hero-actions .button { width: 100%; min-width: 0; }
+  .product-hunt-badge { margin-top: 16px; }
   .flow { grid-template-columns: repeat(2, 1fr); }
   .flow div:nth-child(2) { border-right: 0; }
   .flow div:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
