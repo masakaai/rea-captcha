@@ -19,7 +19,7 @@ The repository and npm package are public. Statuses below were checked on 2026-1
 | YuzeHao2023 Awesome-MCP-Servers | [#637](https://github.com/YuzeHao2023/Awesome-MCP-Servers/pull/637) | Awaiting review. |
 | ToolSDK MCP registry | [#859](https://github.com/toolsdk-ai/toolsdk-mcp-registry/pull/859) | Awaiting review; catalog publication also requires maintainers. |
 | Backblaze Agent Infrastructure | [#35](https://github.com/backblaze-labs/awesome-agent-infrastructure/pull/35) | Awaiting review. |
-| Agent Skill Index | [#593](https://github.com/heilcheng/awesome-agent-skills/pull/593) | Awaiting review; external-contributor Vercel preview needs upstream team authorization. |
+| Agent Skill Index | [#593](https://github.com/heilcheng/awesome-agent-skills/pull/593) | Upstream conflict resolved at `4575106`; submission check passes and the PR is mergeable. The new catalog policy holds entries until the repository has at least 20 stars and is 14 days old. |
 | browser-use awesome-projects | [#11](https://github.com/browser-use/awesome-projects/pull/11) | Awaiting review. |
 | Awesome Computer Use | [#46](https://github.com/ranpox/awesome-computer-use/pull/46) | Awaiting review. |
 | Awesome Testing Tools | [#176](https://github.com/ZoranPandovski/awesome-testing-tools/pull/176) | Submitted under Automated Testing Tools; awaiting review. |
