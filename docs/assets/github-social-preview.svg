@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-labelledby="title desc">
+  <title id="title">rea-captcha social preview</title>
+  <desc id="desc">A cream, black, and orange preview card for same-session CAPTCHA handoff in Browser Use agents.</desc>
+  <rect width="1280" height="640" fill="#f5f1e8"/>
+  <rect x="28" y="28" width="1224" height="584" rx="8" fill="none" stroke="#171713" stroke-width="8"/>
+
+  <rect x="76" y="92" width="416" height="416" fill="#f2a878" stroke="#171713" stroke-width="14"/>
+  <rect x="102" y="118" width="364" height="364" fill="#f5f1e8" stroke="#171713" stroke-width="10"/>
+  <text x="284" y="304" text-anchor="middle" fill="#171713" font-family="Arial Black, Helvetica Neue, Arial, sans-serif" font-size="118" font-weight="900" letter-spacing="-8">REA</text>
+  <rect x="126" y="334" width="316" height="96" fill="#171713"/>
+  <text x="284" y="400" text-anchor="middle" fill="#f5f1e8" font-family="Arial Black, Helvetica Neue, Arial, sans-serif" font-size="50" font-weight="900" letter-spacing="-2">CAPTCHA</text>
+
+  <text x="552" y="162" fill="#171713" font-family="Arial Black, Helvetica Neue, Arial, sans-serif" font-size="72" font-weight="900" letter-spacing="-3">rea-captcha</text>
+  <text x="556" y="224" fill="#171713" font-family="Helvetica Neue, Arial, sans-serif" font-size="35" font-weight="700">Safe CAPTCHA handoff for Browser Use agents</text>
+
+  <rect x="552" y="274" width="640" height="112" fill="#171713"/>
+  <text x="584" y="322" fill="#f2a878" font-family="Helvetica Neue, Arial, sans-serif" font-size="25" font-weight="700">SAME SESSION</text>
+  <text x="584" y="360" fill="#f5f1e8" font-family="Helvetica Neue, Arial, sans-serif" font-size="28" font-weight="700">handoff → fresh evidence → resume</text>
+
+  <text x="556" y="456" fill="#171713" font-family="Helvetica Neue, Arial, sans-serif" font-size="27" font-weight="700">Open source · local MCP · TypeScript SDK</text>
+  <text x="556" y="504" fill="#5b5a54" font-family="Helvetica Neue, Arial, sans-serif" font-size="25">github.com/masakaai/rea-captcha</text>
+</svg>
