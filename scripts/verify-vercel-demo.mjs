@@ -47,9 +47,20 @@ try {
   const robots = await readFile(new URL('../public/robots.txt', import.meta.url), 'utf8');
   assert.match(robots, /^Sitemap: https:\/\/rea-captcha\.vercel\.app\/sitemap\.xml$/m);
   const sitemap = await readFile(new URL('../public/sitemap.xml', import.meta.url), 'utf8');
-  for (const path of ['/', '/recaptcha.html', '/turnstile.html', '/hcaptcha.html', '/image-text.html']) {
+  for (const path of ['/', '/recaptcha.html', '/turnstile.html', '/hcaptcha.html', '/image-text.html', '/llms.txt', '/llms-full.txt']) {
     assert.match(sitemap, new RegExp(`<loc>https://rea-captcha\\.vercel\\.app${path.replace('.', '\\.')}<\\/loc>`));
   }
+  const llms = await readFile(new URL('../public/llms.txt', import.meta.url), 'utf8');
+  assert.match(llms, /^# rea-captcha$/m);
+  assert.match(llms, /https:\/\/github\.com\/masakaai\/rea-captcha/);
+  assert.match(llms, /io\.github\.masakaai\/rea-captcha/);
+  assert.match(llms, /does not automate unknown third-party production CAPTCHA challenges/);
+  const llmsFull = await readFile(new URL('../public/llms-full.txt', import.meta.url), 'utf8');
+  assert.match(llmsFull, new RegExp(`npx rea-captcha@${packageJson.version} mcp --stateless`));
+  assert.match(llmsFull, /captcha_analyze/);
+  assert.match(llmsFull, /captcha_resume/);
+  assert.match(llmsFull, /same Playwright\/CDP browser used by the agent/);
+  assert.match(llmsFull, /automatic third-party production challenge completion (?:is|are) outside scope/);
 
   const socialPreview = Buffer.from(await (await fetch(`${origin}/social-preview.png`)).arrayBuffer());
   assert.equal(socialPreview.toString('ascii', 1, 4), 'PNG');

@@ -1,0 +1,16 @@
+# rea-captcha
+
+> Local-first verification challenge handling for browser agents. Keep a Browser Use or Playwright task in its existing browser session, use an authorized test action or human handoff, require fresh validation evidence, and then resume the same task.
+
+## Primary links
+
+- Source and setup: https://github.com/masakaai/rea-captcha
+- Controlled live cases: https://rea-captcha.vercel.app/
+- npm package: https://www.npmjs.com/package/rea-captcha
+- MCP Registry name: io.github.masakaai/rea-captcha
+- MCP tool reference: https://github.com/masakaai/rea-captcha/blob/main/docs/mcp-tools.md
+- Full agent-readable reference: https://rea-captcha.vercel.app/llms-full.txt
+
+## Scope
+
+rea-captcha supports official provider test keys, explicitly authorized owned origins, and bounded human handoff. It does not automate unknown third-party production CAPTCHA challenges, provide a hosted solver, transfer credentials, or make stealth claims.

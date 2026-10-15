@@ -1,0 +1,65 @@
+# rea-captcha agent reference
+
+rea-captcha is a local MCP server, TypeScript SDK, and browser-use adapter for verification interruptions inside browser-agent tasks. It borrows the browser session the caller already owns. It does not launch or replace that browser by default.
+
+## Problem and lifecycle
+
+When a Browser Use or Playwright task reaches a CAPTCHA or verification gate halfway through a run:
+
+1. Inspect the current page for challenge evidence.
+2. Apply an origin and provider policy.
+3. Perform only an authorized provider-test or owned-origin action, or pause for a human on an unknown production challenge.
+4. Treat handoff completion as a wake-up signal, not proof of success.
+5. Re-read the current page and require fresh page or server validation evidence.
+6. Resume the original task in the same browser session only after the current challenge is cleared.
+
+## Install and run
+
+Review the pinned package version before approving npm's install prompt:
+
+```sh
+npx rea-captcha@0.2.4 mcp --stateless
+```
+
+The Python browser-use adapter is distributed from the matching Git tag rather than PyPI:
+
+```sh
+python -m pip install 'rea-captcha[browser-use] @ git+https://github.com/masakaai/rea-captcha.git@v0.2.4#subdirectory=python'
+```
+
+## MCP tools
+
+- `captcha_analyze`: analyze supplied challenge evidence without browser access.
+- `captcha_inspect`: inspect the configured current browser session.
+- `captcha_complete`: perform a policy-authorized action and wait for fresh validation.
+- `captcha_handoff`: create a bounded human-handoff request.
+- `captcha_wait`: wait for new evidence without treating a notification as success.
+- `captcha_resume`: resume only after the current challenge has fresh passed evidence.
+
+The catalog-safe stateless command provides evidence analysis. Browser actions require an explicitly configured stateful session pointing at the same Playwright/CDP browser used by the agent.
+
+## Demonstrated cases
+
+The live site contains four complete controlled flows:
+
+- Google reCAPTCHA v2 using Google's documented non-production test keys and Siteverify.
+- Cloudflare Turnstile using documented dummy keys and Siteverify.
+- hCaptcha using documented publisher test keys and Siteverify.
+- An owned image/text challenge with local validation.
+
+These cases demonstrate integration behavior. They do not provide production anti-bot protection or establish a general production CAPTCHA bypass capability.
+
+## Canonical resources
+
+- Repository: https://github.com/masakaai/rea-captcha
+- Live controlled cases: https://rea-captcha.vercel.app/
+- npm: https://www.npmjs.com/package/rea-captcha
+- GitHub release: https://github.com/masakaai/rea-captcha/releases/tag/v0.2.4
+- MCP Registry: https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.masakaai%2Frea-captcha
+- Architecture: https://github.com/masakaai/rea-captcha/blob/main/docs/architecture.md
+- MCP tools: https://github.com/masakaai/rea-captcha/blob/main/docs/mcp-tools.md
+- Browser-use example: https://github.com/masakaai/rea-captcha/tree/main/examples/browser-use
+
+## Safety boundary
+
+Use rea-captcha only for owned or explicitly authorized workflows. Provider automation is allowed only when the adapter confirms documented non-production test credentials on an allowed origin. Unknown or production interactive challenges remain human-owned. Commercial solver APIs, credential transfer, stealth behavior, and automatic third-party production challenge completion are outside scope.

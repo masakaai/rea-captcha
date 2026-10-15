@@ -5,4 +5,6 @@
   <url><loc>https://rea-captcha.vercel.app/turnstile.html</loc></url>
   <url><loc>https://rea-captcha.vercel.app/hcaptcha.html</loc></url>
   <url><loc>https://rea-captcha.vercel.app/image-text.html</loc></url>
+  <url><loc>https://rea-captcha.vercel.app/llms.txt</loc></url>
+  <url><loc>https://rea-captcha.vercel.app/llms-full.txt</loc></url>
 </urlset>
