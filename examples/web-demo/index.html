@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <meta name="description" content="Four agent-driven verification demos for rea-captcha.">
+  <meta name="description" content="Keep browser-use tasks from stalling at CAPTCHA and verification steps. Detect, verify, and resume in the same browser session.">
   <title>rea-captcha — keep browser agents moving</title>
   <link rel="canonical" href="https://rea-captcha.vercel.app/">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://rea-captcha.vercel.app/">
-  <meta property="og:title" content="rea-captcha — verification flows for browser agents">
-  <meta property="og:description" content="Four demos using official provider test keys and owned image/text verification. Detect, act, validate, and resume in the same browser session.">
+  <meta property="og:title" content="rea-captcha — keep browser-use moving">
+  <meta property="og:description" content="When CAPTCHA interrupts a browser-use task, keep the existing session, validate fresh evidence, and resume the same run.">
   <meta property="og:image" content="https://rea-captcha.vercel.app/social-preview.png">
   <meta property="og:image:width" content="800">
   <meta property="og:image:height" content="576">
   <meta property="og:image:alt" content="Recorded Cloudflare Turnstile demo showing the official test-mode widget and challenge detection.">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="rea-captcha — verification flows for browser agents">
-  <meta name="twitter:description" content="Official provider test modes, owned image/text verification, and same-session browser-agent integration.">
+  <meta name="twitter:title" content="rea-captcha — keep browser-use moving">
+  <meta name="twitter:description" content="A same-session verification controller for browser-use and other browser agents, with four controlled live cases.">
   <meta name="twitter:image" content="https://rea-captcha.vercel.app/social-preview.png">
   <meta name="twitter:image:alt" content="Cloudflare Turnstile official test-mode demo with challenge detection.">
   <link rel="stylesheet" href="/styles.css">
@@ -33,7 +33,10 @@
         <p class="kicker">verification actions for browser agents</p>
         <h1>keep browser-use<br>from getting <em>stuck.</em></h1>
         <p class="lede">A browser task reaches a CAPTCHA and stops halfway through. rea-captcha detects it, lets the agent complete an authorized test interaction in the browser it already has, checks fresh server evidence, and continues the same task.</p>
-        <a class="button" href="#cases">try the four cases <span>→</span></a>
+        <div class="hero-actions">
+          <a class="button" href="https://github.com/masakaai/rea-captcha">view on GitHub <span>↗</span></a>
+          <a class="button secondary" href="#cases">try live cases <span>→</span></a>
+        </div>
       </div>
       <div class="browser-card" aria-label="rea-captcha lifecycle preview">
         <div class="browser-top"><span>existing browser session</span><i></i><i></i><i></i></div>
@@ -53,6 +56,26 @@
       <div><strong>Resume</strong><span>Continue only from fresh passed evidence</span></div>
     </section>
 
+    <section class="integration" id="install">
+      <div class="integration-copy">
+        <p class="kicker">browser-use handoff</p>
+        <h2>stop at the gate.<br><em>not the whole run.</em></h2>
+        <p>Keep the browser, cookies, and task context that browser-use already has. rea-captcha separates the interaction from the result: an agent resumes only after a fresh validation signal, while unknown or production challenges remain a bounded handoff.</p>
+        <a class="text-link" href="https://github.com/masakaai/rea-captcha/tree/main/examples/browser-use">see the browser-use example →</a>
+      </div>
+      <div class="install-panel" aria-label="Install rea-captcha">
+        <div class="install-row">
+          <span>01 / tell your coding agent</span>
+          <code>Install rea-captcha and connect it to the browser session this agent already uses.</code>
+        </div>
+        <div class="install-row">
+          <span>02 / run the local MCP server</span>
+          <code>npx -y rea-captcha mcp --stateless</code>
+        </div>
+        <p>The MCP process stays local. Browser actions require an explicitly configured, caller-owned session and authorized origin.</p>
+      </div>
+    </section>
+
     <section class="cases" id="cases">
       <div class="section-heading">
         <div><p class="kicker">live provider matrix</p><h2>four cases.<br><em>one agent flow.</em></h2></div>
@@ -66,7 +89,7 @@
       </div>
     </section>
 
-    <footer><span>rea-captcha · masakaai</span><span>existing browser in, verified task out.</span></footer>
+    <footer><span>rea-captcha · masakaai</span><a href="https://github.com/masakaai/rea-captcha">source, examples, and setup →</a></footer>
   </main>
 </body>
 </html>

@@ -26,6 +26,9 @@ try {
   assert.equal(index.status, 200);
   const indexHtml = await index.text();
   assert.match(indexHtml, /keep browser-use/);
+  assert.match(indexHtml, /browser-use handoff/);
+  assert.match(indexHtml, /npx -y rea-captcha mcp --stateless/);
+  assert.match(indexHtml, /https:\/\/github\.com\/masakaai\/rea-captcha/);
   assert.match(indexHtml, /live provider matrix/);
   assert.equal((indexHtml.match(/href="\/(?:recaptcha|turnstile|hcaptcha|image-text)\.html"/g) ?? []).length, 4);
   assert.match(index.headers.get('set-cookie') ?? '', /rea_demo_session=kept/);
