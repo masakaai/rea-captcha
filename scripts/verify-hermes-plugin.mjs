@@ -23,8 +23,13 @@ assert.equal(mcp.$schema, 'https://agent-plugins.org/schemas/1.0.0/mcp.schema.js
 assert.deepEqual(mcp.mcpServers['rea-captcha'], {
   type: 'stdio',
   command: 'npx',
-  args: ['-y', `rea-captcha@${packageJson.version}`, 'mcp', '--stateless']
+  args: [`rea-captcha@${packageJson.version}`, 'mcp', '--stateless']
 });
+assert.equal(
+  mcp.mcpServers['rea-captcha'].args.some(argument => argument === '-y' || argument === '--yes'),
+  false,
+  'Hermes must leave npm package installation approval visible to the user.'
+);
 assert.equal(packagedSkill, sourceSkill, 'Hermes skill must be regenerated from .agents/skills/rea-captcha.');
 await Promise.all(['README.md', 'LICENSE'].map(name => access(resolve(integration, name), constants.R_OK)));
 

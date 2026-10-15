@@ -32,7 +32,7 @@ For `captcha_inspect`, `captcha_complete`, `captcha_handoff`, `captcha_wait`, an
 ## Requirements and disclosure
 
 - Node.js 22.19+, 24.11+, or 26+ with `npx` on `PATH`.
-- First start downloads the exact `rea-captcha@0.2.3` npm package into npm's cache.
+- First start asks the user to approve downloading the exact `rea-captcha@0.2.3` npm package into npm's cache; the integration does not suppress npm's prompt.
 - The local server has no telemetry, hosted solver, commercial solver API, or stealth mode.
 - `captcha_analyze` processes only evidence included in the tool call. It makes no browser or provider request.
 - Provider-test actions and owned-origin image/text handling are available only in an explicitly configured stateful installation; production third-party interactive challenges remain human handoff.
