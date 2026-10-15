@@ -6,25 +6,27 @@ The repository and npm package are public. Statuses below were checked on 2026-1
 
 | Directory | Submission | Current follow-up |
 | --- | --- | --- |
-| Hermes Agent plugin catalog | [#139304](https://github.com/NousResearch/hermes-agent/pull/139304) | Portable Agent Plugins v1 package and catalog entry validated locally; awaiting catalog CI and maintainer review. |
+| Hermes Agent plugin catalog | [#139304](https://github.com/NousResearch/hermes-agent/pull/139304) | Catalog entry pins v0.2.4 source commit `fba05f0`; local schema validation passes. Awaiting maintainer approval for catalog CI and code-owner review. |
 | awesome-playwright | [#241](https://github.com/mxschmitt/awesome-playwright/pull/241) | Awaiting review. |
 | mcpHQ | [#254](https://github.com/mcpHQ/awesome-mcp-servers/pull/254) | Included on main in catalog commit `3b21aed`; PR closed after batch integration. |
-| punkpeye | [#16418](https://github.com/punkpeye/awesome-mcp-servers/pull/16418) | [Glama listing](https://glama.ai/mcp/servers/masakaai/rea-captcha) is live; container build and six-tool MCP introspection passed, Glama 0.2.1 published, requested score badge added. Awaiting review. |
-| TensorBlock | [#3779](https://github.com/TensorBlock/awesome-mcp-servers/pull/3779) | Merged on October 15. Main-branch entry includes authorized provider-test scope and the stateless stdio launch command. Website deployment is separate. |
+| punkpeye | [#16418](https://github.com/punkpeye/awesome-mcp-servers/pull/16418) | [Glama listing](https://glama.ai/mcp/servers/masakaai/rea-captcha) is live at v0.2.4; an independent build from release commit `fba05f0` passed and introspected all six tools. Awaiting list review. |
+| TensorBlock | [#3779](https://github.com/TensorBlock/awesome-mcp-servers/pull/3779), [metadata #3830](https://github.com/TensorBlock/awesome-mcp-servers/pull/3830) | Both merged. The [public profile](https://www.tensorblock.co/mcp/servers/github-masakaai-rea-captcha-70fd2d7e) shows six tools, local stdio installation, docs, and client configs. |
 | Steel awesome-web-agents | [#138](https://github.com/steel-dev/awesome-web-agents/pull/138) | Submitted under Dev Tools; awaiting review. |
 | Agent-Tools awesome-autonomous-web | [#39](https://github.com/Agent-Tools/awesome-autonomous-web/pull/39) | Awaiting review. |
 | Awesome AI Agent Tools | [#114](https://github.com/michielhdoteth/awesome-ai-agent-tools/pull/114) | Merged on October 15; entry verified in the main catalog. |
 | abordage awesome-mcp | [#165](https://github.com/abordage/awesome-mcp/pull/165) | Awaiting review. |
 | AIAnytime Awesome-MCP-Servers | [#218](https://github.com/AIAnytime/Awesome-MCP-Servers/pull/218) | Merged; entry verified in the main README. |
 | YuzeHao2023 Awesome-MCP-Servers | [#637](https://github.com/YuzeHao2023/Awesome-MCP-Servers/pull/637) | Awaiting review. |
-| ToolSDK MCP registry | [#859](https://github.com/toolsdk-ai/toolsdk-mcp-registry/pull/859) | Awaiting review; catalog publication also requires maintainers. |
+| ToolSDK MCP registry | [#859](https://github.com/toolsdk-ai/toolsdk-mcp-registry/pull/859) | v0.2.4 entry passes the package-schema and Biome checks; awaiting maintainer review. |
 | Backblaze Agent Infrastructure | [#35](https://github.com/backblaze-labs/awesome-agent-infrastructure/pull/35) | Awaiting review. |
 | Agent Skill Index | [#593](https://github.com/heilcheng/awesome-agent-skills/pull/593) | Upstream conflict resolved at `4575106`; submission check passes and the PR is mergeable. The new catalog policy holds entries until the repository has at least 20 stars and is 14 days old. |
+| browser-use Community integrations | [#6079](https://github.com/browser-use/browser-use/pull/6079) | Documentation-only entry has 127 applicable checks passing; awaiting the contributor's personal CLA attestation and maintainer review. |
 | browser-use awesome-projects | [#11](https://github.com/browser-use/awesome-projects/pull/11) | Awaiting review. |
 | Awesome Computer Use | [#46](https://github.com/ranpox/awesome-computer-use/pull/46) | Awaiting review. |
 | Awesome Testing Tools | [#176](https://github.com/ZoranPandovski/awesome-testing-tools/pull/176) | Submitted under Automated Testing Tools; awaiting review. |
 | Awesome DevOps MCP Servers | [#368](https://github.com/rohitg00/awesome-devops-mcp-servers/pull/368) | Submitted under Testing & Chaos Engineering; awaiting review. |
 | angrykoala awesome-browser-automation | [#193](https://github.com/angrykoala/awesome-browser-automation/pull/193) | Closed without merge or review comments; no resubmission. |
+| mcpservers.org | [free intake](https://mcpservers.org/submit) | Submitted through the official form on October 16; awaiting the directory's stated review window. |
 
 Open inclusion requests, not accepted listings: [awesome-captcha #35](https://github.com/ZYSzys/awesome-captcha/issues/35), [awesome-browser #4](https://github.com/atalariq/awesome-browser/issues/4), [Ever Works #204](https://github.com/ever-works/awesome-mcp-servers/issues/204), and [MCPM #453](https://github.com/pathintegral-institute/mcpm.sh/issues/453). MCPM's automatic manifest job was skipped because the required submission label was not applied; maintainer review is pending.
 
