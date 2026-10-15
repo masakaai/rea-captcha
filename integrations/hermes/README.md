@@ -4,7 +4,7 @@ This is the Portable Agent Plugins v1 package for [rea-captcha](https://github.c
 
 ## What the catalog package does
 
-- `mcp.json` starts `rea-captcha@0.2.1` over stdio with `--stateless`.
+- `mcp.json` starts `rea-captcha@0.2.2` over stdio with `--stateless`.
 - `skills/rea-captcha/` teaches the agent to distinguish an action from fresh verification evidence and to keep unsupported challenges in human handoff.
 - `captcha_analyze` classifies URL, HTML, visible text, and runtime signals already captured by Hermes or another browser agent. It is read-only and does not connect to a browser.
 
@@ -32,7 +32,7 @@ For `captcha_inspect`, `captcha_complete`, `captcha_handoff`, `captcha_wait`, an
 ## Requirements and disclosure
 
 - Node.js 22.19+, 24.11+, or 26+ with `npx` on `PATH`.
-- First start downloads the exact `rea-captcha@0.2.1` npm package into npm's cache.
+- First start downloads the exact `rea-captcha@0.2.2` npm package into npm's cache.
 - The local server has no telemetry, hosted solver, commercial solver API, or stealth mode.
 - `captcha_analyze` processes only evidence included in the tool call. It makes no browser or provider request.
 - Provider-test actions and owned-origin image/text handling are available only in an explicitly configured stateful installation; production third-party interactive challenges remain human handoff.

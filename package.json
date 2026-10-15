@@ -1,7 +1,7 @@
 {
   "name": "rea-captcha",
   "mcpName": "io.github.masakaai/rea-captcha",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Local-first authorized verification actions for browser agents using an existing session.",
   "license": "MIT",
   "repository": {
@@ -104,12 +104,21 @@
     "vitest": "^5.0.4"
   },
   "keywords": [
+    "ai-agents",
     "browser-agent",
+    "browser-automation",
     "captcha",
     "browser-testing",
+    "browser-use",
+    "cdp",
+    "cloudflare-turnstile",
+    "hcaptcha",
+    "human-in-the-loop",
     "jet-browser",
     "mcp",
+    "model-context-protocol",
     "playwright",
+    "recaptcha",
     "verification-challenge"
   ]
 }
