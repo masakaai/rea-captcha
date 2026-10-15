@@ -22,7 +22,8 @@ const documents = [
   'docs/mcp-tools.md',
   'docs/releasing.md',
   'docs/validation.md',
-  'examples/codex/README.md'
+  'examples/codex/README.md',
+  'integrations/hermes/README.md'
 ];
 const failures = [];
 for (const relative of documents) {

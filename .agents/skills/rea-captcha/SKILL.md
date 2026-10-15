@@ -10,6 +10,8 @@ Choose the smallest safe path:
 - If the calling agent already has page evidence, call `captcha_analyze`. Provide the page URL and at least one of HTML, visible text, or runtime signals. This path is read-only and needs no browser configuration.
 - If the task must preserve an active browser, use the configured session lifecycle below.
 
+If the MCP server was launched with `--stateless` (including the official Registry and Hermes catalog defaults), use only `captcha_analyze`. The session lifecycle tools require a separate stateful launch with `--config PATH`; tool discovery alone is not evidence that a browser session is configured.
+
 Use the session tools as one bounded lifecycle:
 
 1. Call `captcha_inspect` once with the named browser session.

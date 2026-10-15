@@ -110,6 +110,8 @@ npx rea-captcha agent-config --agent mcp-json
 
 rea-captcha adds verification intelligence and bounded completion actions; it does not replace an agent's navigation tools. Both integrations must refer to the same browser session.
 
+Hermes Agent users can inspect the [Portable Agent Plugins v1 package](integrations/hermes/README.md). Its catalog-safe default is stateless evidence analysis; same-session browser actions still require an explicit stateful rea-captcha configuration.
+
 ## TypeScript SDK
 
 ```ts

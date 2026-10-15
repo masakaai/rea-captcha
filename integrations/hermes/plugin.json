@@ -1,0 +1,20 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "rea-captcha",
+  "version": "0.2.1",
+  "description": "Inspect browser verification evidence locally and guide bounded, fresh-evidence recovery when an agent is interrupted by a CAPTCHA.",
+  "author": {
+    "name": "MASAKA AI",
+    "url": "https://github.com/masakaai"
+  },
+  "homepage": "https://github.com/masakaai/rea-captcha",
+  "repository": "https://github.com/masakaai/rea-captcha/tree/main/integrations/hermes",
+  "license": "MIT",
+  "keywords": [
+    "browser-agent",
+    "captcha",
+    "human-handoff",
+    "mcp",
+    "verification"
+  ]
+}
