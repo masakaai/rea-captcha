@@ -92,7 +92,8 @@ const passedPage = `<!doctype html>
 export async function handleDemoRequest(request, response) {
   try {
     const url = new URL(request.url ?? '/', `http://${request.headers.host ?? 'localhost'}`);
-    if (request.method === 'GET' && url.pathname === '/passed') {
+    const isRead = request.method === 'GET' || request.method === 'HEAD';
+    if (isRead && url.pathname === '/passed') {
       send(response, 200, passedPage, 'text/html; charset=utf-8');
       return;
     }
@@ -107,7 +108,7 @@ export async function handleDemoRequest(request, response) {
       send(response, result.success ? 200 : 403, JSON.stringify(result));
       return;
     }
-    if (request.method !== 'GET' || !files.has(url.pathname)) {
+    if (!isRead || !files.has(url.pathname)) {
       send(response, 404, JSON.stringify({ success: false, errors: ['not-found'] }));
       return;
     }

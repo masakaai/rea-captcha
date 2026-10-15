@@ -30,6 +30,19 @@ try {
   assert.equal((indexHtml.match(/href="\/(?:recaptcha|turnstile|hcaptcha|image-text)\.html"/g) ?? []).length, 4);
   assert.match(index.headers.get('set-cookie') ?? '', /rea_demo_session=kept/);
 
+  for (const path of ['/', '/recaptcha.html', '/turnstile.html', '/hcaptcha.html', '/image-text.html', '/demo.js', '/styles.css', '/social-preview.png', '/passed', '/not-a-demo']) {
+    const get = await fetch(`${origin}${path}`);
+    await get.arrayBuffer();
+    const head = await fetch(`${origin}${path}`, { method: 'HEAD' });
+    assert.equal(head.status, get.status, `HEAD status must match GET for ${path}`);
+    for (const header of ['content-type', 'cache-control', 'x-content-type-options', 'set-cookie']) {
+      assert.equal(head.headers.get(header), get.headers.get(header), `HEAD ${header} must match GET for ${path}`);
+    }
+    assert.equal(await head.text(), '', `HEAD must not return a body for ${path}`);
+  }
+  const headVerification = await fetch(`${origin}/verify/image-text`, { method: 'HEAD' });
+  assert.equal(headVerification.status, 404, 'HEAD must not run a verification action.');
+
   const provider = await fetch(`${origin}/turnstile.html`);
   assert.equal(provider.status, 200);
   assert.match(await provider.text(), /challenges\.cloudflare\.com\/turnstile/);
