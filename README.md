@@ -37,7 +37,7 @@
   <a href="docs/architecture.md">Architecture</a>
 </p>
 
-rea-captcha detects browser verification challenges and lets an agent complete supported interactions inside the browser session it already owns. Authorized provider-test and owned-origin flows stay in the same Playwright/CDP page, require fresh server-validated evidence, and resume the same task. It ships a TypeScript SDK, local stdio MCP server, browser-use plugin, Vercel-compatible Agent Skill, and optional authorized-origin local OCR.
+When a Browser Use task hits a CAPTCHA halfway through, rea-captcha keeps the block and recovery inside the browser session the agent already owns. It detects supported verification challenges, coordinates an authorized action or human handoff, requires fresh server-validated evidence, and then returns control to the same task. It ships a TypeScript SDK, local stdio MCP server, browser-use plugin, Vercel-compatible Agent Skill, and optional authorized-origin local OCR.
 
 > **Official source:** install from [`masakaai/rea-captcha`](https://github.com/masakaai/rea-captcha) and npm package [`rea-captcha`](https://www.npmjs.com/package/rea-captcha). The project has no hosted solver, telemetry, stealth claim, or dependency on Jet Browser. It reuses the agent's existing browser; the provider examples use documented non-production credentials only.
 
