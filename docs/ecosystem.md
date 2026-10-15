@@ -8,7 +8,7 @@ The repository and npm package are public. These submissions are open; submissio
 | --- | --- | --- |
 | awesome-playwright | [#241](https://github.com/mxschmitt/awesome-playwright/pull/241) | Awaiting review. |
 | mcpHQ | [#254](https://github.com/mcpHQ/awesome-mcp-servers/pull/254) | Awaiting review. |
-| punkpeye | [#16418](https://github.com/punkpeye/awesome-mcp-servers/pull/16418) | Glama submission confirmed on 2026-10-15; awaiting approval before Dockerfile checks and score badge. |
+| punkpeye | [#16418](https://github.com/punkpeye/awesome-mcp-servers/pull/16418) | [Glama listing](https://glama.ai/mcp/servers/masakaai/rea-captcha) is live. Maintainer declaration added in `glama.json`; awaiting Glama sync before Dockerfile checks and score badge. |
 | TensorBlock | [#3779](https://github.com/TensorBlock/awesome-mcp-servers/pull/3779) | Generated entry needs the capability update supplied in the PR comment. |
 | Steel awesome-web-agents | [#138](https://github.com/steel-dev/awesome-web-agents/pull/138) | Submitted under Dev Tools; awaiting review. |
 
