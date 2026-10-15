@@ -1,2 +1,3 @@
 User-agent: *
 Allow: /
+Sitemap: https://rea-captcha.vercel.app/sitemap.xml

@@ -26,10 +26,19 @@ class FakePage implements PlaywrightPagePort {
   sitekey = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI';
   url = 'https://fixture.test/checkout';
   frameSelector = '';
+  transientObservationFailures = 0;
+  observationAttempts = 0;
+  observationError: Error | null = null;
 
   async evaluate<R>(expression: string): Promise<R> {
     if (expression === 'location.href') return this.url as R;
     if (expression.startsWith('document.querySelector')) return this.sitekey as R;
+    this.observationAttempts += 1;
+    if (this.transientObservationFailures > 0) {
+      this.transientObservationFailures -= 1;
+      throw new Error('Execution context was destroyed, most likely because of a navigation');
+    }
+    if (this.observationError) throw this.observationError;
     return JSON.stringify({
       url: 'https://fixture.test/checkout',
       title: 'Fixture',
@@ -124,5 +133,39 @@ describe('Playwright authorized agent actions', () => {
 
     expect(page.frameSelector).toBe('iframe[src*="hcaptcha.com"][src*="frame=checkbox"]');
     expect(page.checkboxClick).toHaveBeenCalledOnce();
+  });
+
+  it('retries a fresh observation when navigation destroys the page execution context', async () => {
+    const page = new FakePage();
+    page.transientObservationFailures = 1;
+    const adapter = new PlaywrightChallengeAdapter({ id: 'existing-page', page });
+
+    await expect(adapter.observe()).resolves.toMatchObject({
+      url: 'https://fixture.test/checkout',
+      title: 'Fixture'
+    });
+    expect(page.observationAttempts).toBe(2);
+  });
+
+  it('does not retry non-navigation observation errors', async () => {
+    const page = new FakePage();
+    page.observationError = new Error('Page evaluation failed');
+    const adapter = new PlaywrightChallengeAdapter({ id: 'existing-page', page });
+
+    await expect(adapter.observe()).rejects.toThrow('Page evaluation failed');
+    expect(page.observationAttempts).toBe(1);
+  });
+
+  it('stops a navigation retry when the caller aborts', async () => {
+    const page = new FakePage();
+    page.transientObservationFailures = 1;
+    const adapter = new PlaywrightChallengeAdapter({ id: 'existing-page', page });
+    const controller = new AbortController();
+
+    const observation = adapter.observe(controller.signal);
+    controller.abort(new Error('Stopped'));
+
+    await expect(observation).rejects.toThrow('Stopped');
+    expect(page.observationAttempts).toBe(1);
   });
 });

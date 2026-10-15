@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 import { createServer } from 'node:http';
 import demoHandler from '../api/index.mjs';
 
@@ -33,8 +34,20 @@ try {
   assert.match(indexHtml, /live provider matrix/);
   assert.match(indexHtml, /og:image:width" content="1280"/);
   assert.match(indexHtml, /og:image:height" content="640"/);
+  const structuredDataMatch = indexHtml.match(/<script type="application\/ld\+json">\s*([\s\S]*?)\s*<\/script>/);
+  assert(structuredDataMatch, 'The landing page must expose JSON-LD software metadata.');
+  const structuredData = JSON.parse(structuredDataMatch[1]);
+  assert.equal(structuredData['@type'], 'SoftwareSourceCode');
+  assert.equal(structuredData.codeRepository, 'https://github.com/masakaai/rea-captcha');
   assert.equal((indexHtml.match(/href="\/(?:recaptcha|turnstile|hcaptcha|image-text)\.html"/g) ?? []).length, 4);
   assert.match(index.headers.get('set-cookie') ?? '', /rea_demo_session=kept/);
+
+  const robots = await readFile(new URL('../public/robots.txt', import.meta.url), 'utf8');
+  assert.match(robots, /^Sitemap: https:\/\/rea-captcha\.vercel\.app\/sitemap\.xml$/m);
+  const sitemap = await readFile(new URL('../public/sitemap.xml', import.meta.url), 'utf8');
+  for (const path of ['/', '/recaptcha.html', '/turnstile.html', '/hcaptcha.html', '/image-text.html']) {
+    assert.match(sitemap, new RegExp(`<loc>https://rea-captcha\\.vercel\\.app${path.replace('.', '\\.')}<\\/loc>`));
+  }
 
   const socialPreview = Buffer.from(await (await fetch(`${origin}/social-preview.png`)).arrayBuffer());
   assert.equal(socialPreview.toString('ascii', 1, 4), 'PNG');

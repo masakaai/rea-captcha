@@ -39,8 +39,26 @@ const tokenFields = {
 } as const;
 
 const hcaptchaCheckboxFrame = 'iframe[src*="hcaptcha.com"][src*="frame=checkbox"]';
+const navigationObservationRetries = 2;
 
 const normalizeOrigins = (values: readonly string[]): ReadonlySet<string> => new Set(values.map(value => new URL(value).origin));
+const isTransientNavigationError = (error: unknown): boolean => error instanceof Error
+  && /Execution context was destroyed|Cannot find context with specified id/i.test(error.message);
+
+const waitForNavigationContext = (signal?: AbortSignal): Promise<void> => new Promise((resolve, reject) => {
+  if (signal?.aborted) return reject(signal.reason ?? new Error('Aborted'));
+  const timer = setTimeout(done, 25);
+  const aborted = () => {
+    clearTimeout(timer);
+    signal?.removeEventListener('abort', aborted);
+    reject(signal?.reason ?? new Error('Aborted'));
+  };
+  function done() {
+    signal?.removeEventListener('abort', aborted);
+    resolve();
+  }
+  signal?.addEventListener('abort', aborted, { once: true });
+});
 
 export class PlaywrightChallengeAdapter implements BrowserChallengeActionPort {
   readonly id: string;
@@ -57,17 +75,27 @@ export class PlaywrightChallengeAdapter implements BrowserChallengeActionPort {
   }
 
   async observe(signal?: AbortSignal): Promise<ChallengeObservation> {
-    if (signal?.aborted) throw signal.reason ?? new Error('Aborted');
-    const evaluation = this.#page.evaluate<unknown>(browserObservationExpression);
-    const value = signal ? await Promise.race([
-      evaluation,
-      new Promise<never>((_resolve, reject) => {
-        const abort = () => reject(signal.reason ?? new Error('Aborted'));
-        signal.addEventListener('abort', abort, { once: true });
-        void evaluation.finally(() => signal.removeEventListener('abort', abort));
-      })
-    ]) : await evaluation;
-    return parseObservation(value);
+    for (let attempt = 0; attempt <= navigationObservationRetries; attempt += 1) {
+      if (signal?.aborted) throw signal.reason ?? new Error('Aborted');
+      try {
+        const evaluation = this.#page.evaluate<unknown>(browserObservationExpression);
+        let abort: (() => void) | undefined;
+        const value = signal ? await Promise.race([
+          evaluation,
+          new Promise<never>((_resolve, reject) => {
+            abort = () => reject(signal.reason ?? new Error('Aborted'));
+            signal.addEventListener('abort', abort, { once: true });
+          })
+        ]).finally(() => {
+          if (abort) signal.removeEventListener('abort', abort);
+        }) : await evaluation;
+        return parseObservation(value);
+      } catch (error) {
+        if (!isTransientNavigationError(error) || attempt === navigationObservationRetries) throw error;
+        await waitForNavigationContext(signal);
+      }
+    }
+    throw new Error('Browser observation retry loop ended unexpectedly.');
   }
 
   async completeAuthorizedChallenge(inspection: ChallengeInspection, signal?: AbortSignal): Promise<void> {
