@@ -20,7 +20,7 @@ The repository and npm package are public. Statuses below were checked on 2026-1
 | ToolSDK MCP registry | [#859](https://github.com/toolsdk-ai/toolsdk-mcp-registry/pull/859) | v0.2.4 entry passes the package-schema and Biome checks; awaiting maintainer review. |
 | Backblaze Agent Infrastructure | [#35](https://github.com/backblaze-labs/awesome-agent-infrastructure/pull/35) | Awaiting review. |
 | Agent Skill Index | [#593](https://github.com/heilcheng/awesome-agent-skills/pull/593) | Upstream conflict resolved at `4575106`; submission check passes and the PR is mergeable. The new catalog policy holds entries until the repository has at least 20 stars and is 14 days old. |
-| browser-use Community integrations | [#6079](https://github.com/browser-use/browser-use/pull/6079) | Documentation-only entry has 127 applicable checks passing; awaiting the contributor's personal CLA attestation and maintainer review. |
+| browser-use Community integrations | [#6079](https://github.com/browser-use/browser-use/pull/6079) | CLA signed; 128 checks pass and one trigger job is skipped by design. The PR is clean and mergeable, awaiting maintainer review. |
 | browser-use awesome-projects | [#11](https://github.com/browser-use/awesome-projects/pull/11) | Awaiting review. |
 | Awesome Computer Use | [#46](https://github.com/ranpox/awesome-computer-use/pull/46) | Awaiting review. |
 | Awesome Testing Tools | [#176](https://github.com/ZoranPandovski/awesome-testing-tools/pull/176) | Submitted under Automated Testing Tools; awaiting review. |
