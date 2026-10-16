@@ -1,4 +1,16 @@
+<h1 align="center">rea-captcha</h1>
+
+<p align="center"><strong>Keep Browser Use tasks alive through CAPTCHA handoff.</strong></p>
+
 <p align="center">
+  <a href="https://www.npmjs.com/package/rea-captcha"><img alt="npm" src="https://img.shields.io/npm/v/rea-captcha.svg"></a>
+  <a href="https://github.com/masakaai/rea-captcha/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/masakaai/rea-captcha/actions/workflows/ci.yml/badge.svg"></a>
+  <a href="https://rea-captcha.vercel.app"><img alt="Live demo" src="https://img.shields.io/badge/live_demo-four_cases-157a73.svg"></a>
+  <a href="LICENSE"><img alt="license" src="https://img.shields.io/badge/license-MIT-157a73.svg"></a>
+</p>
+
+<details align="center">
+  <summary>Translations</summary>
   <a href="README.md">English</a> · <a href="docs/readme/README_ar.md">العربية</a> ·
   <a href="docs/readme/README_de.md">Deutsch</a> · <a href="docs/readme/README_el.md">Ελληνικά</a> ·
   <a href="docs/readme/README_es.md">Español</a> · <a href="docs/readme/README_fa.md">فارسی</a> ·
@@ -9,28 +21,12 @@
   <a href="docs/readme/README_th.md">ไทย</a> · <a href="docs/readme/README_tr.md">Türkçe</a> ·
   <a href="docs/readme/README_uk.md">Українська</a> · <a href="docs/readme/README_vi.md">Tiếng Việt</a> ·
   <a href="docs/readme/README_zh.md">简体中文</a> · <a href="docs/readme/README_zh-TW.md">繁體中文</a>
-</p>
-
-<h1 align="center">rea-captcha</h1>
-
-<p align="center"><strong>Keep Browser Use tasks alive through CAPTCHA handoff.</strong></p>
-
-<p align="center">
-  <a href="https://www.npmjs.com/package/rea-captcha"><img alt="npm" src="https://img.shields.io/npm/v/rea-captcha.svg"></a>
-  <a href="https://github.com/masakaai/rea-captcha/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/masakaai/rea-captcha/actions/workflows/ci.yml/badge.svg"></a>
-  <a href="https://github.com/masakaai/rea-captcha/actions/workflows/web-demo.yml"><img alt="Provider web demos" src="https://github.com/masakaai/rea-captcha/actions/workflows/web-demo.yml/badge.svg"></a>
-  <a href="https://rea-captcha.vercel.app"><img alt="Live demo" src="https://img.shields.io/badge/live_demo-four_cases-157a73.svg"></a>
-  <a href="https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.masakaai%2Frea-captcha"><img alt="MCP Registry" src="https://img.shields.io/badge/MCP_Registry-io.github.masakaai%2Frea--captcha-5c6ac4.svg"></a>
-  <a href="docs/mcp-tools.md"><img alt="MCP tools" src="https://img.shields.io/badge/MCP_tools-6-157a73.svg"></a>
-  <a href="https://skills.sh/masakaai/rea-captcha/rea-captcha"><img alt="skills.sh" src="https://skills.sh/b/masakaai/rea-captcha"></a>
-  <a href="https://discord.gg/8Ybc32NcMt"><img alt="Discord" src="https://img.shields.io/discord/1555850967147356162?label=Discord&amp;logo=discord&amp;color=5865F2"></a>
-  <a href="LICENSE"><img alt="license" src="https://img.shields.io/badge/license-MIT-157a73.svg"></a>
-</p>
+</details>
 
 <p align="center">
   <a href="#install">Install</a> ·
   <a href="https://rea-captcha.vercel.app">Live demo</a> ·
-  <a href="#agentic-verification-matrix">Agentic matrix</a> ·
+  <a href="#what-the-demo-proves">Demo evidence</a> ·
   <a href="#how-it-works">How it works</a> ·
   <a href="docs/mcp-tools.md">MCP catalog</a> ·
   <a href="docs/cases.md">Cases</a> ·
@@ -41,34 +37,17 @@ When a Browser Use task hits a CAPTCHA halfway through, rea-captcha keeps the bl
 
 > **Official source:** install from [`masakaai/rea-captcha`](https://github.com/masakaai/rea-captcha) and npm package [`rea-captcha`](https://www.npmjs.com/package/rea-captcha). The project has no hosted solver, telemetry, stealth claim, or dependency on Jet Browser. It reuses the agent's existing browser; the provider examples use documented non-production credentials only.
 
+<p align="center">
+  <a href="https://rea-captcha.vercel.app">
+    <img src="https://raw.githubusercontent.com/masakaai/rea-captcha/main/docs/assets/demos/matrix.gif" alt="Four same-session verification demos: reCAPTCHA, Turnstile, hCaptcha, and an owned image/text flow" width="900">
+  </a>
+</p>
+
 <p align="center"><a href="https://rea-captcha.vercel.app"><strong>Run the four live verification cases</strong></a></p>
 
 <p align="center"><sub>If this fixes a handoff you have actually hit, a star helps other Browser Use builders find it.</sub></p>
 
-<h2 align="center">Agentic verification matrix</h2>
-
-<table align="center">
-  <tr>
-    <td align="center" width="50%">
-      <strong>Google reCAPTCHA v2</strong><br>
-      <img src="https://raw.githubusercontent.com/masakaai/rea-captcha/main/docs/assets/demos/recaptcha.gif" alt="Agent completes Google reCAPTCHA test mode, validates, and resumes" width="100%">
-    </td>
-    <td align="center" width="50%">
-      <strong>Cloudflare Turnstile</strong><br>
-      <img src="https://raw.githubusercontent.com/masakaai/rea-captcha/main/docs/assets/demos/turnstile.gif" alt="Agent completes Cloudflare Turnstile test mode, validates, and resumes" width="100%">
-    </td>
-  </tr>
-  <tr>
-    <td align="center" width="50%">
-      <strong>hCaptcha</strong><br>
-      <img src="https://raw.githubusercontent.com/masakaai/rea-captcha/main/docs/assets/demos/hcaptcha.gif" alt="Agent completes hCaptcha test mode, validates, and resumes" width="100%">
-    </td>
-    <td align="center" width="50%">
-      <strong>Owned image/text</strong><br>
-      <img src="https://raw.githubusercontent.com/masakaai/rea-captcha/main/docs/assets/demos/image-text.gif" alt="Agent completes owned image text verification, validates, and resumes" width="100%">
-    </td>
-  </tr>
-</table>
+## What the demo proves
 
 These are complete agent-driven protected-action flows, not DOM-only fixtures. Each run detects a challenge, performs the authorized browser interaction in the same page, submits to the real validation boundary, observes fresh passed evidence, verifies the session cookie, and resumes the same controller. Google reCAPTCHA v2, Cloudflare Turnstile, and hCaptcha use their documented test modes plus vendor Siteverify endpoints; the owned image/text case uses an explicitly authorized local path and local server validation.
 
