@@ -42,6 +42,8 @@ If the Trusted Publisher was newly configured, complete its first successful CI 
 
 The Python adapter is built and published by `.github/workflows/publish-pypi.yml`. The build and publish jobs are separate: the build job has read-only repository access, while only the final PyPI job receives `id-token: write`. The workflow builds both a wheel and source distribution, runs strict metadata validation, installs the wheel into a clean virtual environment, and uploads the verified files as one short-lived artifact before publication.
 
+The GitHub `pypi` environment accepts deployments only from the `main` branch and tags matching `v*`.
+
 For the first release, sign in to PyPI and add a pending GitHub trusted publisher with these exact values:
 
 | Field | Value |
