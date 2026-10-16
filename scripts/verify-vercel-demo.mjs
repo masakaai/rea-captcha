@@ -55,6 +55,10 @@ try {
 
   const robots = await readFile(new URL('../public/robots.txt', import.meta.url), 'utf8');
   assert.match(robots, /^Sitemap: https:\/\/rea-captcha\.vercel\.app\/sitemap\.xml$/m);
+  const indexNowKey = 'f9c49a7c2b404e10ab3e3a78a44ba9da';
+  const indexNowKeyFile = await readFile(new URL(`../public/${indexNowKey}.txt`, import.meta.url), 'utf8');
+  assert.match(indexNowKeyFile, /^[a-f0-9]{32}\n?$/, 'The IndexNow key file must contain only its public key.');
+  assert.equal(indexNowKeyFile.trim(), indexNowKey, 'The IndexNow key must match its root filename.');
   const sitemap = await readFile(new URL('../public/sitemap.xml', import.meta.url), 'utf8');
   for (const path of ['/', '/recaptcha.html', '/turnstile.html', '/hcaptcha.html', '/image-text.html', '/llms.txt', '/llms-full.txt']) {
     assert.match(sitemap, new RegExp(`<loc>https://rea-captcha\\.vercel\\.app${path.replace('.', '\\.')}<\\/loc>`));
