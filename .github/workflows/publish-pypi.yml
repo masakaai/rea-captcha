@@ -1,0 +1,95 @@
+name: Publish Python package
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Git tag to build
+        required: true
+        default: v0.3.0
+      publish:
+        description: Publish the verified distributions to PyPI
+        required: true
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      RELEASE_TAG: ${{ github.event.release.tag_name || inputs.tag }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: ${{ github.event.release.tag_name || inputs.tag }}
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.13'
+      - name: Verify release versions
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import pathlib
+          import tomllib
+
+          root = pathlib.Path.cwd()
+          node_version = json.loads((root / "package.json").read_text())["version"]
+          with (root / "python" / "pyproject.toml").open("rb") as stream:
+              python_version = tomllib.load(stream)["project"]["version"]
+          tag = os.environ["RELEASE_TAG"]
+          expected_tag = f"v{node_version}"
+          if python_version != node_version:
+              raise SystemExit(
+                  f"Python version {python_version} does not match package version {node_version}."
+              )
+          if tag != expected_tag:
+              raise SystemExit(f"Release tag {tag} does not match {expected_tag}.")
+          print(f"Release tag {tag} matches both package versions.")
+          PY
+      - name: Install locked packaging tools
+        run: python -m pip install --disable-pip-version-check --no-input build==1.6.1 twine==7.0.0
+      - name: Build wheel and source distribution
+        run: python -m build --outdir dist/python python
+      - name: Verify distribution metadata
+        run: python -m twine check --strict dist/python/*
+      - name: Smoke-test the built wheel
+        run: |
+          python -m venv .venv-wheel-smoke
+          .venv-wheel-smoke/bin/python -m pip install --disable-pip-version-check --no-input dist/python/*.whl
+          .venv-wheel-smoke/bin/python -c 'import os, rea_captcha; assert rea_captcha.__version__ == os.environ["RELEASE_TAG"].removeprefix("v")'
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: python-distributions
+          path: dist/python/
+          if-no-files-found: error
+          retention-days: 5
+
+  publish:
+    if: ${{ github.event_name == 'release' || inputs.publish }}
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    environment:
+      name: pypi
+      url: https://pypi.org/p/rea-captcha
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: python-distributions
+          path: dist/
+      - name: Publish with PyPI Trusted Publishing
+        uses: pypa/gh-action-pypi-publish@dc37677b2e1c63e2034f94d8a5b11f265b73ba33 # v1.14.2
+        with:
+          packages-dir: dist/
+          print-hash: true
