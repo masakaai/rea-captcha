@@ -13,7 +13,7 @@
 
 <h1 align="center">rea-captcha</h1>
 
-<p align="center"><strong>Local-first verification challenge intelligence for browser agents.</strong></p>
+<p align="center"><strong>Keep Browser Use tasks alive through CAPTCHA handoff.</strong></p>
 
 <p align="center">
   <a href="https://www.npmjs.com/package/rea-captcha"><img alt="npm" src="https://img.shields.io/npm/v/rea-captcha.svg"></a>
