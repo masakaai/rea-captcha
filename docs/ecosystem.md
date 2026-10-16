@@ -6,10 +6,10 @@ The repository and npm package are public. Statuses below were checked on 2026-1
 
 | Directory | Submission | Current follow-up |
 | --- | --- | --- |
-| Hermes Agent plugin catalog | [#139304](https://github.com/NousResearch/hermes-agent/pull/139304) | Catalog entry pins v0.2.4 source commit `fba05f0`; local schema validation passes. Awaiting maintainer approval for catalog CI and code-owner review. |
+| Hermes Agent plugin catalog | [#139304](https://github.com/NousResearch/hermes-agent/pull/139304) | Catalog entry pins the v0.3.0 plugin source at `3ece0d3`; the current standalone catalog validator passes. Awaiting maintainer approval and code-owner review. |
 | awesome-playwright | [#241](https://github.com/mxschmitt/awesome-playwright/pull/241) | Awaiting review. |
 | mcpHQ | [#254](https://github.com/mcpHQ/awesome-mcp-servers/pull/254) | Included on main in catalog commit `3b21aed`; PR closed after batch integration. |
-| punkpeye | [#16418](https://github.com/punkpeye/awesome-mcp-servers/pull/16418) | [Glama listing](https://glama.ai/mcp/servers/masakaai/rea-captcha) is live at v0.2.4; an independent build from release commit `fba05f0` passed and introspected all six tools. Awaiting list review. |
+| punkpeye | [#16418](https://github.com/punkpeye/awesome-mcp-servers/pull/16418) | [Glama listing](https://glama.ai/mcp/servers/masakaai/rea-captcha) is live at v0.3.0; build `01a14427-5de3-79b0-b3a0-3bfc9a33fa33` checked out `99b215b`, initialized the server as 0.3.0, and introspected all six tools. Awaiting list review. |
 | TensorBlock | [#3779](https://github.com/TensorBlock/awesome-mcp-servers/pull/3779), [metadata #3830](https://github.com/TensorBlock/awesome-mcp-servers/pull/3830) | Both merged. The [public profile](https://www.tensorblock.co/mcp/servers/github-masakaai-rea-captcha-70fd2d7e) shows six tools, local stdio installation, docs, and client configs. |
 | Steel awesome-web-agents | [#138](https://github.com/steel-dev/awesome-web-agents/pull/138) | Submitted under Dev Tools; awaiting review. |
 | Agent-Tools awesome-autonomous-web | [#39](https://github.com/Agent-Tools/awesome-autonomous-web/pull/39) | Awaiting review. |
@@ -17,7 +17,7 @@ The repository and npm package are public. Statuses below were checked on 2026-1
 | abordage awesome-mcp | [#165](https://github.com/abordage/awesome-mcp/pull/165) | Awaiting review. |
 | AIAnytime Awesome-MCP-Servers | [#218](https://github.com/AIAnytime/Awesome-MCP-Servers/pull/218) | Merged; entry verified in the main README. |
 | YuzeHao2023 Awesome-MCP-Servers | [#637](https://github.com/YuzeHao2023/Awesome-MCP-Servers/pull/637) | Awaiting review. |
-| ToolSDK MCP registry | [#859](https://github.com/toolsdk-ai/toolsdk-mcp-registry/pull/859) | v0.2.4 entry passes the package-schema and Biome checks; awaiting maintainer review. |
+| ToolSDK MCP registry | [initial #859](https://github.com/toolsdk-ai/toolsdk-mcp-registry/pull/859), [v0.3.0 #879](https://github.com/toolsdk-ai/toolsdk-mcp-registry/pull/879) | Initial entry merged and is published in the catalog. The focused 0.3.0 version update passes package-schema and Biome checks and awaits review. |
 | Backblaze Agent Infrastructure | [#35](https://github.com/backblaze-labs/awesome-agent-infrastructure/pull/35) | Awaiting review. |
 | Agent Skill Index | [#593](https://github.com/heilcheng/awesome-agent-skills/pull/593) | Upstream conflict resolved at `4575106`; submission check passes and the PR is mergeable. The new catalog policy holds entries until the repository has at least 20 stars and is 14 days old. |
 | browser-use Community integrations | [#6079](https://github.com/browser-use/browser-use/pull/6079) | CLA signed; 128 checks pass and one trigger job is skipped by design. The PR is clean and mergeable, awaiting maintainer review. |
