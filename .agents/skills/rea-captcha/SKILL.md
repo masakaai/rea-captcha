@@ -18,9 +18,9 @@ Use the session tools as one bounded lifecycle:
 2. If the decision is `continue`, return to the browser task.
 3. If the decision is `agent-action` or `local-processing`, call `captcha_complete` once. It may act only on the exact configured origin; provider actions additionally require a documented non-production test key.
 4. Call `captcha_resume`. Continue only when it reports `resumed` with fresh clear or passed evidence.
-5. If the decision is `human-handoff`, the challenge is outside the automatic boundary. Call `captcha_handoff` once, then `captcha_wait` with a bounded timeout, and finally `captcha_resume` after fresh clearance.
+5. If the decision is `human-handoff`, the challenge is outside the automatic boundary. Choose a stable caller-owned task/run ID, call `captcha_handoff` once with `session_id` and `task_id`, and retain the returned opaque `handoff.id`. Call `captcha_wait` with a bounded timeout. After fresh clearance, call `captcha_resume` with the same `session_id`, the same `task_id`, and that `handoff_id`.
 
-Do not describe a challenge as solved from an OCR result alone. Do not attempt to automate a third-party production challenge or bypass access controls. Do not move cookies or challenge tokens to another browser. Keep the original session ID throughout the lifecycle. If waiting times out, evidence is malformed, or inspection fails, report the evidence and leave the browser session available for recovery.
+Do not treat a human completion callback as proof that the current gate cleared. A newer handoff makes the older ID stale, and each accepted ID is consumed once. Do not describe a challenge as solved from an OCR result alone. Do not attempt to automate a third-party production challenge or bypass access controls. Do not move cookies or challenge tokens to another browser. Keep the original session ID throughout the lifecycle. If waiting times out, evidence is malformed, or inspection fails, report the evidence and leave the browser session available for recovery.
 
 Jet Browser is an optional adapter only. Do not install or start it unless the task explicitly selected an existing Jet Browser session. Generic Playwright/CDP and evidence-only analysis do not require Jet Browser.
 
@@ -33,5 +33,9 @@ Input: an agent asks whether its captured checkout HTML contains a Turnstile cha
 ### Complete an authorized provider-test flow in the existing session
 
 Input: the user asks to finish the Turnstile integration demo in an already configured session named `checkout-test`. Confirm the configuration authorizes that demo's exact origin and provider-test actions; do not add authorization merely because this example uses it. Call `captcha_inspect` with `{"session_id":"checkout-test"}`. Only if the decision is `agent-action`, call `captcha_complete` with `{"session_id":"checkout-test","timeout_ms":30000,"poll_ms":100}`, then `captcha_resume` with the same session ID after fresh clearance. Expected successful outcome: `resumed`, with the original page and session retained. A timeout or still-active challenge is not success; preserve the session and report the failure.
+
+### Resume a human handoff once
+
+Input: task `checkout-run-42` is blocked by an unsupported challenge in configured session `checkout-tab`. After `captcha_inspect` returns `human-handoff`, call `captcha_handoff` with `{"session_id":"checkout-tab","task_id":"checkout-run-42"}` and retain the returned `handoff.id`. Call `captcha_wait` with a bounded timeout. Only after it reports fresh clear or passed evidence, call `captcha_resume` with `{"session_id":"checkout-tab","task_id":"checkout-run-42","handoff_id":"<returned handoff.id>"}`. Never reuse an older ID after another handoff starts, and never call human resume with only the session ID.
 
 The [recorded demo validation](https://github.com/masakaai/rea-captcha/blob/main/docs/validation.md) documents the provider-test boundary and same-session controller behavior. These recordings are not evidence of production CAPTCHA solving or of every agent client's integration. See the [MCP tool catalog](https://github.com/masakaai/rea-captcha/blob/main/docs/mcp-tools.md) for exact inputs and configuration requirements.
