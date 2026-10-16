@@ -13,6 +13,7 @@ const files = new Map([
   ['/image-text.html', 'image-text.html'],
   ['/demo.js', 'demo.js'],
   ['/styles.css', 'styles.css'],
+  ['/favicon.png', 'favicon.png'],
   ['/social-preview.svg', 'social-preview.svg'],
   ['/social-preview.png', 'social-preview.png']
 ]);

@@ -36,13 +36,20 @@ try {
   assert.match(indexHtml, /api\.producthunt\.com\/widgets\/embed-image\/v1\/featured\.svg\?post_id=1281761&amp;theme=light/);
   assert.match(indexHtml, /utm_campaign=badge-rea-captcha/);
   assert.match(indexHtml, /live provider matrix/);
+  assert.match(indexHtml, /<link rel="icon" type="image\/png" sizes="192x192" href="\/favicon\.png">/);
+  assert.match(indexHtml, /<meta property="og:site_name" content="rea-captcha">/);
   assert.match(indexHtml, /og:image:width" content="1280"/);
   assert.match(indexHtml, /og:image:height" content="640"/);
-  const structuredDataMatch = indexHtml.match(/<script type="application\/ld\+json">\s*([\s\S]*?)\s*<\/script>/);
-  assert(structuredDataMatch, 'The landing page must expose JSON-LD software metadata.');
-  const structuredData = JSON.parse(structuredDataMatch[1]);
-  assert.equal(structuredData['@type'], 'SoftwareSourceCode');
-  assert.equal(structuredData.codeRepository, 'https://github.com/masakaai/rea-captcha');
+  const structuredData = [...indexHtml.matchAll(/<script type="application\/ld\+json">\s*([\s\S]*?)\s*<\/script>/g)]
+    .map(match => JSON.parse(match[1]));
+  const softwareSource = structuredData.find(item => item['@type'] === 'SoftwareSourceCode');
+  assert(softwareSource, 'The landing page must expose JSON-LD software metadata.');
+  assert.equal(softwareSource.codeRepository, 'https://github.com/masakaai/rea-captcha');
+  const website = structuredData.find(item => item['@type'] === 'WebSite');
+  assert(website, 'The landing page must expose WebSite metadata for its preferred site name.');
+  assert.equal(website.name, 'rea-captcha');
+  assert.deepEqual(website.alternateName, ['rea captcha', 'rea-captcha.vercel.app']);
+  assert.equal(website.url, 'https://rea-captcha.vercel.app/');
   assert.equal((indexHtml.match(/href="\/(?:recaptcha|turnstile|hcaptcha|image-text)\.html"/g) ?? []).length, 4);
   assert.match(index.headers.get('set-cookie') ?? '', /rea_demo_session=kept/);
 
@@ -69,7 +76,12 @@ try {
   assert.equal(socialPreview.readUInt32BE(16), 1280, 'Social preview must be 1280 px wide.');
   assert.equal(socialPreview.readUInt32BE(20), 640, 'Social preview must be 640 px tall.');
 
-  for (const path of ['/', '/recaptcha.html', '/turnstile.html', '/hcaptcha.html', '/image-text.html', '/demo.js', '/styles.css', '/social-preview.svg', '/social-preview.png', '/passed', '/not-a-demo']) {
+  const favicon = Buffer.from(await (await fetch(`${origin}/favicon.png`)).arrayBuffer());
+  assert.equal(favicon.toString('ascii', 1, 4), 'PNG');
+  assert.equal(favicon.readUInt32BE(16), 192, 'Favicon must be 192 px wide.');
+  assert.equal(favicon.readUInt32BE(20), 192, 'Favicon must be 192 px tall.');
+
+  for (const path of ['/', '/recaptcha.html', '/turnstile.html', '/hcaptcha.html', '/image-text.html', '/demo.js', '/styles.css', '/favicon.png', '/social-preview.svg', '/social-preview.png', '/passed', '/not-a-demo']) {
     const get = await fetch(`${origin}${path}`);
     await get.arrayBuffer();
     const head = await fetch(`${origin}${path}`, { method: 'HEAD' });
