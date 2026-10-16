@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "rea-captcha"
-version = "0.3.0"
+version = "0.3.1"
 description = "Safe same-session CAPTCHA handoff for Browser Use, with fresh-evidence resume and optional local OCR."
 readme = "README.md"
 requires-python = ">=3.11"

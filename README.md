@@ -65,7 +65,7 @@ npm run test:web-demo  # all four live validation paths
 Install the version-aligned Python adapter from the verified release wheel:
 
 ```sh
-python -m pip install 'rea-captcha[browser-use] @ https://github.com/masakaai/rea-captcha/releases/download/v0.3.0/rea_captcha-0.3.0-py3-none-any.whl'
+python -m pip install 'rea-captcha[browser-use] @ https://github.com/masakaai/rea-captcha/releases/download/v0.3.1/rea_captcha-0.3.1-py3-none-any.whl'
 ```
 
 Attach the handoff guard to the `Agent` that already owns the browser session:
@@ -86,10 +86,10 @@ CI installs the supported Browser Use dependency and exercises the adapter again
 For local, stateless evidence analysis:
 
 ```sh
-npx rea-captcha@0.3.0 mcp --stateless
+npx rea-captcha@0.3.1 mcp --stateless
 ```
 
-Stateless mode does not control a browser. Same-session actions require a configured Playwright/CDP adapter; generate a host configuration with `npx rea-captcha@0.3.0 agent-config --agent mcp-json`.
+Stateless mode does not control a browser. Same-session actions require a configured Playwright/CDP adapter; generate a host configuration with `npx rea-captcha@0.3.1 agent-config --agent mcp-json`.
 
 Or ask Codex, Claude Code, Cursor, or another coding agent to wire the correct path for the project:
 
@@ -108,7 +108,7 @@ Install rea-captcha in this project and connect it to the browser session this a
 The official Registry entry is `io.github.masakaai/rea-captcha` and launches the zero-configuration stdio server through npm:
 
 ```sh
-npx rea-captcha@0.3.0 mcp --stateless
+npx rea-captcha@0.3.1 mcp --stateless
 ```
 
 Review the pinned package version and approve npm's install prompt only when it matches the release you intend to run. The command does not suppress that prompt.
@@ -188,7 +188,7 @@ Generic Playwright `Page`, Playwright-over-CDP, browser-use, and optional Jet Br
 
 ## browser-use and local OCR
 
-The Python adapter is not published on PyPI yet, so an unqualified `pip install rea-captcha` will not work. The pinned wheel is built from the v0.3.0 tag, smoke-tested in GitHub Actions, and attached to the corresponding release.
+The Python adapter is not published on PyPI yet, so an unqualified `pip install rea-captcha` will not work. The pinned wheel is built from the v0.3.1 tag, smoke-tested in GitHub Actions, and attached to the corresponding release.
 
 For agent-driven completion, point rea-captcha's Playwright/CDP session at the same existing browser used by browser-use. The MCP lifecycle detects the block, performs an authorized action, verifies the result, and returns control without replacing the browser or task context.
 

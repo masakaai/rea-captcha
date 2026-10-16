@@ -7,7 +7,7 @@ Browser Use jobs often fail late rather than early: the agent has already naviga
 Pin the adapter to the matching verified release wheel:
 
 ```sh
-python -m pip install 'rea-captcha[browser-use] @ https://github.com/masakaai/rea-captcha/releases/download/v0.3.0/rea_captcha-0.3.0-py3-none-any.whl'
+python -m pip install 'rea-captcha[browser-use] @ https://github.com/masakaai/rea-captcha/releases/download/v0.3.1/rea_captcha-0.3.1-py3-none-any.whl'
 ```
 
 ```python

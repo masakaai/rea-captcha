@@ -16,7 +16,7 @@ rea-captcha exposes six bounded stdio MCP tools. `captcha_analyze` works in the 
 The official MCP Registry entry launches:
 
 ```sh
-npx rea-captcha@0.3.0 mcp --stateless
+npx rea-captcha@0.3.1 mcp --stateless
 ```
 
 Review the pinned package version and approve npm's install prompt only when it matches the release you intend to run. The command deliberately does not suppress that prompt.

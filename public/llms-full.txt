@@ -18,13 +18,13 @@ When a Browser Use or Playwright task reaches a CAPTCHA or verification gate hal
 Review the pinned package version before approving npm's install prompt:
 
 ```sh
-npx rea-captcha@0.3.0 mcp --stateless
+npx rea-captcha@0.3.1 mcp --stateless
 ```
 
 The Python browser-use adapter is distributed as a verified release wheel rather than through PyPI:
 
 ```sh
-python -m pip install 'rea-captcha[browser-use] @ https://github.com/masakaai/rea-captcha/releases/download/v0.3.0/rea_captcha-0.3.0-py3-none-any.whl'
+python -m pip install 'rea-captcha[browser-use] @ https://github.com/masakaai/rea-captcha/releases/download/v0.3.1/rea_captcha-0.3.1-py3-none-any.whl'
 ```
 
 ## MCP tools
@@ -55,7 +55,7 @@ These cases demonstrate integration behavior. They do not provide production ant
 - Live controlled cases: https://rea-captcha.vercel.app/
 - Browser Use CAPTCHA handoff guide: https://rea-captcha.vercel.app/browser-use-captcha-handoff.html
 - npm: https://www.npmjs.com/package/rea-captcha
-- GitHub release: https://github.com/masakaai/rea-captcha/releases/tag/v0.3.0
+- GitHub release: https://github.com/masakaai/rea-captcha/releases/tag/v0.3.1
 - MCP Registry: https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.masakaai%2Frea-captcha
 - Architecture: https://github.com/masakaai/rea-captcha/blob/main/docs/architecture.md
 - MCP tools: https://github.com/masakaai/rea-captcha/blob/main/docs/mcp-tools.md

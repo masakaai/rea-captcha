@@ -92,7 +92,7 @@ try {
   assert.match(llmsFull, /captcha_analyze/);
   assert.match(llmsFull, /captcha_resume/);
   assert.match(llmsFull, /same Playwright\/CDP browser used by the agent/);
-  assert.match(llmsFull, /releases\/download\/v0\.3\.0\/rea_captcha-0\.3\.0-py3-none-any\.whl/);
+  assert(llmsFull.includes(`releases/download/v${packageJson.version}/rea_captcha-${packageJson.version}-py3-none-any.whl`));
   assert.match(llmsFull, /automatic third-party production challenge completion (?:is|are) outside scope/);
 
   const socialPreview = Buffer.from(await (await fetch(`${origin}/social-preview.png`)).arrayBuffer());

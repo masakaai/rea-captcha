@@ -5,7 +5,7 @@ This package provides the `ChallengePlugin` integration for browser-use and an o
 The Python adapter is currently distributed as a verified GitHub release wheel, not on PyPI. Install the browser-use extra with:
 
 ```sh
-python -m pip install 'rea-captcha[browser-use] @ https://github.com/masakaai/rea-captcha/releases/download/v0.3.0/rea_captcha-0.3.0-py3-none-any.whl'
+python -m pip install 'rea-captcha[browser-use] @ https://github.com/masakaai/rea-captcha/releases/download/v0.3.1/rea_captcha-0.3.1-py3-none-any.whl'
 ```
 
 For local OCR, replace the extra with `rea-captcha[ocr]`. Keep the release asset URL pinned so the Python adapter version stays aligned with the repository release.

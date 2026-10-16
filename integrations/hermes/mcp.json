@@ -5,7 +5,7 @@
       "type": "stdio",
       "command": "npx",
       "args": [
-        "rea-captcha@0.3.0",
+        "rea-captcha@0.3.1",
         "mcp",
         "--stateless"
       ]
