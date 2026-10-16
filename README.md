@@ -43,6 +43,8 @@ When a Browser Use task hits a CAPTCHA halfway through, rea-captcha keeps the bl
 
 <p align="center"><a href="https://rea-captcha.vercel.app"><strong>Run the four live verification cases</strong></a></p>
 
+<p align="center"><sub>If this fixes a handoff you have actually hit, a star helps other Browser Use builders find it.</sub></p>
+
 <h2 align="center">Agentic verification matrix</h2>
 
 <table align="center">
