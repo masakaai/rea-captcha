@@ -1,4 +1,4 @@
-# npm release procedure
+# Release procedure
 
 The release workflow is `.github/workflows/publish-npm.yml`. It runs only for a published GitHub Release, requires a tag exactly matching `v<package.json version>`, and publishes only after the deterministic suite, live four-provider suite, and clean tarball consumer install pass.
 
@@ -30,10 +30,28 @@ Run `npm run mcp-registry:check` before tagging. The Registry workflow also veri
 
 ## Normal releases
 
-1. Update `version` in `package.json` and `package-lock.json`.
+1. Update the aligned version in `package.json`, `package-lock.json`, and `python/pyproject.toml`.
 2. Run `npm ci && npm run check && npm run test:web-demo && npm run test:package`.
 3. Merge the version change to `main`.
 4. Create and publish a GitHub Release tagged `v<version>` from that exact commit.
-5. Confirm the `Publish npm package` workflow passes, then run `npm view rea-captcha version` and `npm audit signatures` from a clean consumer project.
+5. Confirm the npm, PyPI, and MCP publication workflows pass. Then verify `npm view rea-captcha version`, `npm audit signatures`, and the public PyPI project from clean consumers.
 
 If the Trusted Publisher was newly configured, complete its first successful CI publish before npm's displayed expiry deadline.
+
+## Python package publication
+
+The Python adapter is built and published by `.github/workflows/publish-pypi.yml`. The build and publish jobs are separate: the build job has read-only repository access, while only the final PyPI job receives `id-token: write`. The workflow builds both a wheel and source distribution, runs strict metadata validation, installs the wheel into a clean virtual environment, and uploads the verified files as one short-lived artifact before publication.
+
+For the first release, sign in to PyPI and add a pending GitHub trusted publisher with these exact values:
+
+| Field | Value |
+|---|---|
+| PyPI project name | `rea-captcha` |
+| GitHub owner | `masakaai` |
+| Repository | `rea-captcha` |
+| Workflow filename | `publish-pypi.yml` |
+| Environment | `pypi` |
+
+The pending publisher does not reserve the package name. Configure it immediately before the first publish, then manually dispatch `Publish Python package` with the exact release tag and `publish` enabled. A build-only manual dispatch leaves `publish` disabled and exercises the complete artifact path without requesting a PyPI credential.
+
+Future published GitHub Releases trigger both npm and PyPI workflows. Confirm the Python workflow passes, then verify the public version and provenance at `https://pypi.org/project/rea-captcha/`. Never add a PyPI password or long-lived token to this repository.
