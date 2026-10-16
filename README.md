@@ -81,7 +81,36 @@ npm run test:web-demo  # all four live validation paths
 
 ## Install
 
-Paste one sentence into Codex, Claude Code, Cursor, or another coding agent:
+### Browser Use
+
+Install the version-aligned Python adapter from the tagged source:
+
+```sh
+python -m pip install 'rea-captcha[browser-use] @ git+https://github.com/masakaai/rea-captcha.git@v0.2.4#subdirectory=python'
+```
+
+Attach the handoff guard to the `Agent` that already owns the browser session:
+
+```python
+from rea_captcha import ChallengePlugin
+
+challenge = ChallengePlugin(mode="local", human_handoff=True)
+await challenge.attach(agent)
+```
+
+The plugin borrows the agent's current `BrowserSession`; it does not launch or replace the browser. See the [complete Browser Use example](examples/browser-use/handoff.py).
+
+### MCP and coding agents
+
+For local, stateless evidence analysis:
+
+```sh
+npx rea-captcha@0.2.4 mcp --stateless
+```
+
+Stateless mode does not control a browser. Same-session actions require a configured Playwright/CDP adapter; generate a host configuration with `npx rea-captcha@0.2.4 agent-config --agent mcp-json`.
+
+Or ask Codex, Claude Code, Cursor, or another coding agent to wire the correct path for the project:
 
 ```text
 Install rea-captcha in this project and connect it to the browser session this agent already uses.
@@ -171,26 +200,11 @@ Generic Playwright `Page`, Playwright-over-CDP, browser-use, and optional Jet Br
 
 ## browser-use and local OCR
 
-Install the version-aligned Python adapter from the tagged repository source:
-
-```sh
-python -m pip install 'rea-captcha[browser-use] @ git+https://github.com/masakaai/rea-captcha.git@v0.2.4#subdirectory=python'
-```
-
 The Python adapter is not published on PyPI yet, so an unqualified `pip install rea-captcha` will not work. The pinned source install keeps the adapter and repository release aligned without relying on an unpublished distribution.
 
 For agent-driven completion, point rea-captcha's Playwright/CDP session at the same existing browser used by browser-use. The MCP lifecycle detects the block, performs an authorized action, verifies the result, and returns control without replacing the browser or task context.
 
-The Python plugin remains a lightweight detection and manual-recovery fallback for browser-use integrations that do not expose a compatible CDP action surface:
-
-```python
-from browser_use import Agent
-from rea_captcha import ChallengePlugin
-
-agent = Agent(task="Complete the authorized workflow", llm=llm)
-challenge = ChallengePlugin(mode="local", human_handoff=True)
-await challenge.attach(agent)
-```
+The Python plugin shown in [Install](#browser-use) remains a lightweight detection and manual-recovery fallback for browser-use integrations that do not expose a compatible CDP action surface.
 
 Local `ddddocr` is an optional primitive only for simple image/text challenges on an exact authorized origin. It is disabled unless both `allowLocalImageText` and `authorizedOrigins` are configured. No model weights are redistributed, and an OCR prediction remains untrusted evidence.
 
