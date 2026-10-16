@@ -39,3 +39,11 @@ jobs:
           python-version: ${{ matrix.python }}
       - run: python -m unittest discover -s python/tests -p 'test_*.py' -v
       - run: python -m pip wheel ./python --no-deps --wheel-dir dist
+      - name: Verify Browser Use adapter contract
+        if: matrix.python == '3.12'
+        env:
+          ANONYMIZED_TELEMETRY: 'false'
+          BROWSER_USE_CLOUD_SYNC: 'false'
+        run: |
+          python -m pip install './python[browser-use]'
+          python -m unittest discover -s python/integration_tests -p 'test_*.py' -v
