@@ -79,6 +79,8 @@ await challenge.attach(agent)
 
 The plugin borrows the agent's current `BrowserSession`; it does not launch or replace the browser. See the [Browser Use handoff guide](docs/browser-use.md) and [complete example](examples/browser-use/handoff.py).
 
+CI installs the supported Browser Use dependency and exercises the adapter against real `Agent` / `BrowserSession` pause-resume contracts; see the [integration test](python/integration_tests/test_browser_use_contract.py).
+
 ### MCP and coding agents
 
 For local, stateless evidence analysis:
