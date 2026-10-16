@@ -50,7 +50,7 @@ npx skills add masakaai/rea-captcha --skill rea-captcha
 
 ## Agent 與 MCP
 
-官方 Registry 名稱為 `io.github.masakaai/rea-captcha`，零設定啟動為 `npx rea-captcha@0.2.4 mcp --stateless`。服務提供六個工具：`captcha_analyze`、`captcha_inspect`、`captcha_complete`、`captcha_handoff`、`captcha_wait` 與 `captcha_resume`。`captcha_complete` 僅在策略允許、origin 相符且供應商測試 key 通過檢查時操作既有瀏覽器。
+官方 Registry 名稱為 `io.github.masakaai/rea-captcha`，零設定啟動為 `npx rea-captcha@0.3.0 mcp --stateless`。服務提供六個工具：`captcha_analyze`、`captcha_inspect`、`captcha_complete`、`captcha_handoff`、`captcha_wait` 與 `captcha_resume`。`captcha_complete` 僅在策略允許、origin 相符且供應商測試 key 通過檢查時操作既有瀏覽器。
 
 Agent 流程為 `inspect → agent-action → complete → 新證據驗證 → resume`。未知值、缺少證據、逾時或單獨的 OCR 預測都不能授權恢復。
 

@@ -50,7 +50,7 @@ npx skills add masakaai/rea-captcha --skill rea-captcha
 
 ## الوكلاء وMCP
 
-اسم السجل الرسمي هو `io.github.masakaai/rea-captcha` والتشغيل بلا إعداد هو `npx rea-captcha@0.2.4 mcp --stateless`. تتوفر ست أدوات: `captcha_analyze` و`captcha_inspect` و`captcha_complete` و`captcha_handoff` و`captcha_wait` و`captcha_resume`. لا تعمل `captcha_complete` في المتصفح الحالي إلا بعد التحقق من السياسة والأصل ومفتاح الاختبار الموثق لدى المزوّد.
+اسم السجل الرسمي هو `io.github.masakaai/rea-captcha` والتشغيل بلا إعداد هو `npx rea-captcha@0.3.0 mcp --stateless`. تتوفر ست أدوات: `captcha_analyze` و`captcha_inspect` و`captcha_complete` و`captcha_handoff` و`captcha_wait` و`captcha_resume`. لا تعمل `captcha_complete` في المتصفح الحالي إلا بعد التحقق من السياسة والأصل ومفتاح الاختبار الموثق لدى المزوّد.
 
 دورة الوكيل هي `inspect → agent-action → complete → تحقق جديد → resume`. لا تسمح القيم المجهولة أو الأدلة الناقصة أو انتهاء المهلة أو توقع OCR وحده بالاستئناف.
 

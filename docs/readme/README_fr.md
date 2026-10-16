@@ -50,7 +50,7 @@ Node.js 22.19+, 24.11+ ou 26+ est requis. Après confirmation, `setup` crée une
 
 ## Agents et MCP
 
-Le nom officiel est `io.github.masakaai/rea-captcha` et le lancement sans configuration est `npx rea-captcha@0.2.4 mcp --stateless`. Six outils sont exposés : `captcha_analyze`, `captcha_inspect`, `captcha_complete`, `captcha_handoff`, `captcha_wait` et `captcha_resume`. `captcha_complete` n'agit dans le navigateur existant qu'après contrôle de la politique, de l'origine et de la clé de test documentée du fournisseur.
+Le nom officiel est `io.github.masakaai/rea-captcha` et le lancement sans configuration est `npx rea-captcha@0.3.0 mcp --stateless`. Six outils sont exposés : `captcha_analyze`, `captcha_inspect`, `captcha_complete`, `captcha_handoff`, `captcha_wait` et `captcha_resume`. `captcha_complete` n'agit dans le navigateur existant qu'après contrôle de la politique, de l'origine et de la clé de test documentée du fournisseur.
 
 Le cycle agent est `inspect → agent-action → complete → nouvelle vérification → resume`. Une valeur inconnue, une preuve incomplète, un délai dépassé ou une prédiction OCR seule n'autorise jamais la reprise.
 

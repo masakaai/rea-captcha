@@ -53,3 +53,14 @@ export interface ChallengeInspection {
   readonly finding: ChallengeFinding;
   readonly policy: ChallengePolicyDecision;
 }
+
+export interface ChallengeHandoffIdentity {
+  readonly id: string;
+  readonly taskId: string;
+  readonly tabId: string;
+  readonly generation: number;
+}
+
+export interface ChallengeHandoff extends ChallengeInspection {
+  readonly handoff: ChallengeHandoffIdentity;
+}

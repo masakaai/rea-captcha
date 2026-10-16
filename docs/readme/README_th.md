@@ -50,7 +50,7 @@ npx skills add masakaai/rea-captcha --skill rea-captcha
 
 ## Agent และ MCP
 
-ชื่อทางการคือ `io.github.masakaai/rea-captcha` และคำสั่งเริ่มต้นแบบไม่ต้องตั้งค่าคือ `npx rea-captcha@0.2.4 mcp --stateless` มีเครื่องมือหกรายการ: `captcha_analyze`, `captcha_inspect`, `captcha_complete`, `captcha_handoff`, `captcha_wait` และ `captcha_resume` โดย `captcha_complete` จะทำงานใน browser เดิมหลังตรวจ policy, origin และ provider test key ที่มีเอกสารกำกับแล้วเท่านั้น
+ชื่อทางการคือ `io.github.masakaai/rea-captcha` และคำสั่งเริ่มต้นแบบไม่ต้องตั้งค่าคือ `npx rea-captcha@0.3.0 mcp --stateless` มีเครื่องมือหกรายการ: `captcha_analyze`, `captcha_inspect`, `captcha_complete`, `captcha_handoff`, `captcha_wait` และ `captcha_resume` โดย `captcha_complete` จะทำงานใน browser เดิมหลังตรวจ policy, origin และ provider test key ที่มีเอกสารกำกับแล้วเท่านั้น
 
 วงจรของ agent คือ `inspect → agent-action → complete → ตรวจสอบใหม่ → resume` ค่าที่ไม่ทราบ หลักฐานไม่ครบ timeout หรือผลคาดการณ์ OCR เพียงอย่างเดียวไม่อนุญาตให้ทำงานต่อ
 

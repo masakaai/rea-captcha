@@ -50,7 +50,7 @@ Node.js 22.19+، 24.11+ یا 26+ لازم است. `setup` پس از تأیید �
 
 ## عامل‌ها و MCP
 
-نام رسمی رجیستری `io.github.masakaai/rea-captcha` و اجرای بدون پیکربندی `npx rea-captcha@0.2.4 mcp --stateless` است. شش ابزار ارائه می‌شود: `captcha_analyze`، `captcha_inspect`، `captcha_complete`، `captcha_handoff`، `captcha_wait` و `captcha_resume`. ابزار `captcha_complete` فقط پس از بررسی سیاست، origin و کلید تست مستند سرویس‌دهنده در مرورگر موجود عمل می‌کند.
+نام رسمی رجیستری `io.github.masakaai/rea-captcha` و اجرای بدون پیکربندی `npx rea-captcha@0.3.0 mcp --stateless` است. شش ابزار ارائه می‌شود: `captcha_analyze`، `captcha_inspect`، `captcha_complete`، `captcha_handoff`، `captcha_wait` و `captcha_resume`. ابزار `captcha_complete` فقط پس از بررسی سیاست، origin و کلید تست مستند سرویس‌دهنده در مرورگر موجود عمل می‌کند.
 
 چرخهٔ عامل `inspect → agent-action → complete → بررسی تازه → resume` است. مقدار ناشناخته، شاهد ناقص، پایان مهلت یا پیش‌بینی OCR به‌تنهایی اجازهٔ ادامه نمی‌دهد.
 

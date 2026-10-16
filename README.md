@@ -86,7 +86,7 @@ npm run test:web-demo  # all four live validation paths
 Install the version-aligned Python adapter from the tagged source:
 
 ```sh
-python -m pip install 'rea-captcha[browser-use] @ git+https://github.com/masakaai/rea-captcha.git@v0.2.4#subdirectory=python'
+python -m pip install 'rea-captcha[browser-use] @ git+https://github.com/masakaai/rea-captcha.git@v0.3.0#subdirectory=python'
 ```
 
 Attach the handoff guard to the `Agent` that already owns the browser session:
@@ -105,10 +105,10 @@ The plugin borrows the agent's current `BrowserSession`; it does not launch or r
 For local, stateless evidence analysis:
 
 ```sh
-npx rea-captcha@0.2.4 mcp --stateless
+npx rea-captcha@0.3.0 mcp --stateless
 ```
 
-Stateless mode does not control a browser. Same-session actions require a configured Playwright/CDP adapter; generate a host configuration with `npx rea-captcha@0.2.4 agent-config --agent mcp-json`.
+Stateless mode does not control a browser. Same-session actions require a configured Playwright/CDP adapter; generate a host configuration with `npx rea-captcha@0.3.0 agent-config --agent mcp-json`.
 
 Or ask Codex, Claude Code, Cursor, or another coding agent to wire the correct path for the project:
 
@@ -127,7 +127,7 @@ Install rea-captcha in this project and connect it to the browser session this a
 The official Registry entry is `io.github.masakaai/rea-captcha` and launches the zero-configuration stdio server through npm:
 
 ```sh
-npx rea-captcha@0.2.4 mcp --stateless
+npx rea-captcha@0.3.0 mcp --stateless
 ```
 
 Review the pinned package version and approve npm's install prompt only when it matches the release you intend to run. The command does not suppress that prompt.
@@ -172,10 +172,17 @@ const inspection = await controller.inspect();
 if (inspection.policy.decision === 'agent-action' || inspection.policy.decision === 'local-processing') {
   await controller.complete({ timeoutMs: 30_000 });
   await controller.resume();
+} else if (inspection.policy.decision === 'human-handoff') {
+  const handoff = await controller.handoff({ taskId: 'checkout-run-42' });
+  await controller.wait({ timeoutMs: 120_000 });
+  await controller.resume({
+    taskId: 'checkout-run-42',
+    handoffId: handoff.handoff.id
+  });
 }
 ```
 
-The controller borrows `page`; it does not create or close the browser.
+The controller borrows `page`; it does not create or close the browser. Human completion is a wake-up signal, not proof of success: the handoff identity is bound to the task, existing tab/session, and gate generation, and the controller still requires fresh evidence before consuming it once.
 
 ## Browser providers
 

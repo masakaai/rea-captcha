@@ -9,6 +9,18 @@ export const waitInput = sessionInput.extend({
   poll_ms: z.number().int().min(25).max(60_000).default(1_000)
 });
 
+export const handoffInput = sessionInput.extend({
+  task_id: z.string().min(1).max(200).describe('Caller-owned task or run identifier for this handoff.')
+});
+
+export const resumeInput = sessionInput.extend({
+  task_id: z.string().min(1).max(200).optional().describe('Task identifier used for a human handoff.'),
+  handoff_id: z.string().min(1).max(200).optional().describe('Opaque identifier returned by captcha_handoff.')
+}).refine(
+  value => (value.task_id === undefined) === (value.handoff_id === undefined),
+  { message: 'task_id and handoff_id must be supplied together for a human handoff.' }
+);
+
 export const analyzeInput = z.object({
   url: z.url().describe('URL of the page observed by the calling agent.'),
   title: z.string().max(2_000).default(''),

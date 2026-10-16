@@ -1,7 +1,7 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import type { ChallengeInspection } from '../domain/challenge.js';
-import { analyzeInput, sessionInput, toolNames, waitInput } from '../contracts/tool-contracts.js';
+import { analyzeInput, handoffInput, resumeInput, sessionInput, toolNames, waitInput } from '../contracts/tool-contracts.js';
 import type { ChallengeController } from '../application/controller.js';
 import { DomChallengeDetector } from '../detector/dom-detector.js';
 import { ChallengePolicy } from '../application/policy.js';
@@ -19,7 +19,7 @@ const toolResult = (inspection: ChallengeInspection, state: string) => {
 };
 
 export function createReaCaptchaMcpServer(resolver: ControllerResolver): McpServer {
-  const server = new McpServer({ name: 'rea-captcha', version: '0.2.4' }, {
+  const server = new McpServer({ name: 'rea-captcha', version: '0.3.0' }, {
     maxToolInputElements: 16,
     instructions: 'Use captcha_analyze for page evidence supplied by an agent. In a configured existing browser session: inspect; use captcha_complete only when policy returns agent-action or local-processing; otherwise request handoff; then resume only after fresh clear evidence.'
   });
@@ -56,22 +56,25 @@ export function createReaCaptchaMcpServer(resolver: ControllerResolver): McpServ
 
   server.registerTool(toolNames[3], {
     title: 'Request human handoff',
-    description: 'Mark the current challenge as awaiting a person in the existing browser session.',
-    inputSchema: sessionInput,
+    description: 'Bind the current challenge to a caller-owned task and create a generation-scoped human handoff in the existing browser session.',
+    inputSchema: handoffInput,
     annotations: { readOnlyHint: false, openWorldHint: false }
-  }, async ({ session_id }) => {
+  }, async ({ session_id, task_id }) => {
     const controller = await resolver.get(session_id);
-    return toolResult(await controller.handoff(), controller.state);
+    return toolResult(await controller.handoff({ taskId: task_id }), controller.state);
   });
 
   server.registerTool(toolNames[4], {
     title: 'Verify and resume',
-    description: 'Re-inspect the existing browser session and resume its agent lifecycle only after the challenge is clear.',
-    inputSchema: sessionInput,
+    description: 'Consume the matching task-scoped handoff once, re-inspect the existing browser session, and resume only after the current challenge is clear.',
+    inputSchema: resumeInput,
     annotations: { readOnlyHint: false, openWorldHint: false }
-  }, async ({ session_id }, extra) => {
+  }, async ({ session_id, task_id, handoff_id }, extra) => {
     const controller = await resolver.get(session_id);
-    return toolResult(await controller.resume(extra.signal), controller.state);
+    const inspection = task_id !== undefined && handoff_id !== undefined
+      ? await controller.resume({ taskId: task_id, handoffId: handoff_id, signal: extra.signal })
+      : await controller.resume(extra.signal);
+    return toolResult(inspection, controller.state);
   });
 
   server.registerTool(toolNames[5], {

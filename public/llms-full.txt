@@ -18,13 +18,13 @@ When a Browser Use or Playwright task reaches a CAPTCHA or verification gate hal
 Review the pinned package version before approving npm's install prompt:
 
 ```sh
-npx rea-captcha@0.2.4 mcp --stateless
+npx rea-captcha@0.3.0 mcp --stateless
 ```
 
 The Python browser-use adapter is distributed from the matching Git tag rather than PyPI:
 
 ```sh
-python -m pip install 'rea-captcha[browser-use] @ git+https://github.com/masakaai/rea-captcha.git@v0.2.4#subdirectory=python'
+python -m pip install 'rea-captcha[browser-use] @ git+https://github.com/masakaai/rea-captcha.git@v0.3.0#subdirectory=python'
 ```
 
 ## MCP tools
@@ -32,9 +32,9 @@ python -m pip install 'rea-captcha[browser-use] @ git+https://github.com/masakaa
 - `captcha_analyze`: analyze supplied challenge evidence without browser access.
 - `captcha_inspect`: inspect the configured current browser session.
 - `captcha_complete`: perform a policy-authorized action and wait for fresh validation.
-- `captcha_handoff`: create a bounded human-handoff request.
+- `captcha_handoff`: create a task- and generation-scoped human-handoff identity.
 - `captcha_wait`: wait for new evidence without treating a notification as success.
-- `captcha_resume`: resume only after the current challenge has fresh passed evidence.
+- `captcha_resume`: consume the matching human handoff once, or the completed authorized-action permit, and resume only after the current challenge has fresh passed evidence.
 
 The catalog-safe stateless command provides evidence analysis. Browser actions require an explicitly configured stateful session pointing at the same Playwright/CDP browser used by the agent.
 
@@ -54,7 +54,7 @@ These cases demonstrate integration behavior. They do not provide production ant
 - Repository: https://github.com/masakaai/rea-captcha
 - Live controlled cases: https://rea-captcha.vercel.app/
 - npm: https://www.npmjs.com/package/rea-captcha
-- GitHub release: https://github.com/masakaai/rea-captcha/releases/tag/v0.2.4
+- GitHub release: https://github.com/masakaai/rea-captcha/releases/tag/v0.3.0
 - MCP Registry: https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.masakaai%2Frea-captcha
 - Architecture: https://github.com/masakaai/rea-captcha/blob/main/docs/architecture.md
 - MCP tools: https://github.com/masakaai/rea-captcha/blob/main/docs/mcp-tools.md

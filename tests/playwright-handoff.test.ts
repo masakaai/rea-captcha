@@ -29,11 +29,11 @@ describe('Playwright handoff acceptance', () => {
       });
 
       expect((await controller.inspect()).finding.kind).toBe('turnstile');
-      await controller.handoff();
+      const handoff = await controller.handoff({ taskId: 'checkout-run' });
       await page.locator('.cf-turnstile').evaluate(element => element.remove());
       await page.locator('main').evaluate(element => element.setAttribute('data-captcha-status', 'passed'));
       await controller.wait({ timeoutMs: 1_000, pollMs: 25 });
-      await controller.resume();
+      await controller.resume({ taskId: 'checkout-run', handoffId: handoff.handoff.id });
 
       expect(pause).toHaveBeenCalledOnce();
       expect(resume).toHaveBeenCalledOnce();

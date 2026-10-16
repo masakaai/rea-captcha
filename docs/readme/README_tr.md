@@ -50,7 +50,7 @@ Node.js 22.19+, 24.11+ veya 26+ gerekir. `setup`, onaydan sonra incelenebilir bi
 
 ## Ajanlar ve MCP
 
-Resmî ad `io.github.masakaai/rea-captcha`, yapılandırmasız başlatma komutu `npx rea-captcha@0.2.4 mcp --stateless` şeklindedir. Altı araç sunulur: `captcha_analyze`, `captcha_inspect`, `captcha_complete`, `captcha_handoff`, `captcha_wait` ve `captcha_resume`. `captcha_complete`, politika, origin ve belgelenmiş sağlayıcı test anahtarı doğrulandıktan sonra mevcut tarayıcıda işlem yapar.
+Resmî ad `io.github.masakaai/rea-captcha`, yapılandırmasız başlatma komutu `npx rea-captcha@0.3.0 mcp --stateless` şeklindedir. Altı araç sunulur: `captcha_analyze`, `captcha_inspect`, `captcha_complete`, `captcha_handoff`, `captcha_wait` ve `captcha_resume`. `captcha_complete`, politika, origin ve belgelenmiş sağlayıcı test anahtarı doğrulandıktan sonra mevcut tarayıcıda işlem yapar.
 
 Ajan döngüsü `inspect → agent-action → complete → yeni doğrulama → resume` şeklindedir. Bilinmeyen değerler, eksik kanıt, timeout veya tek başına OCR tahmini devam izni vermez.
 

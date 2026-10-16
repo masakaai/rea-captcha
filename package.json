@@ -1,8 +1,8 @@
 {
   "name": "rea-captcha",
   "mcpName": "io.github.masakaai/rea-captcha",
-  "version": "0.2.4",
-  "description": "Local-first authorized verification actions for browser agents using an existing session.",
+  "version": "0.3.0",
+  "description": "Safe same-session CAPTCHA handoff and fresh-evidence resume for Browser Use and Playwright agents.",
   "license": "MIT",
   "repository": {
     "type": "git",
