@@ -52,7 +52,24 @@ try {
   assert.deepEqual(website.alternateName, ['rea captcha', 'rea-captcha.vercel.app']);
   assert.equal(website.url, 'https://rea-captcha.vercel.app/');
   assert.equal((indexHtml.match(/href="\/(?:recaptcha|turnstile|hcaptcha|image-text)\.html"/g) ?? []).length, 4);
+  assert.match(indexHtml, /href="\/browser-use-captcha-handoff\.html"/);
   assert.match(index.headers.get('set-cookie') ?? '', /rea_demo_session=kept/);
+
+  const browserUseGuide = await fetch(`${origin}/browser-use-captcha-handoff.html`);
+  assert.equal(browserUseGuide.status, 200);
+  const browserUseGuideHtml = await browserUseGuide.text();
+  assert.match(browserUseGuideHtml, /<title>Browser Use CAPTCHA handoff:/);
+  assert.match(browserUseGuideHtml, /<link rel="canonical" href="https:\/\/rea-captcha\.vercel\.app\/browser-use-captcha-handoff\.html">/);
+  assert.match(browserUseGuideHtml, /CAPTCHA blocks a Browser Use task/);
+  assert.match(browserUseGuideHtml, /from rea_captcha import ChallengePlugin/);
+  assert.match(browserUseGuideHtml, /re-read the current page/);
+  assert.match(browserUseGuideHtml, /production third-party challenges remain human work/);
+  assert.match(browserUseGuideHtml, /https:\/\/github\.com\/masakaai\/rea-captcha/);
+  const guideStructuredData = [...browserUseGuideHtml.matchAll(/<script type="application\/ld\+json">\s*([\s\S]*?)\s*<\/script>/g)]
+    .map(match => JSON.parse(match[1]));
+  const techArticle = guideStructuredData.find(item => item['@type'] === 'TechArticle');
+  assert(techArticle, 'The Browser Use guide must expose TechArticle metadata.');
+  assert.equal(techArticle.mainEntityOfPage, 'https://rea-captcha.vercel.app/browser-use-captcha-handoff.html');
 
   const robots = await readFile(new URL('../public/robots.txt', import.meta.url), 'utf8');
   assert.match(robots, /^Sitemap: https:\/\/rea-captcha\.vercel\.app\/sitemap\.xml$/m);
@@ -61,12 +78,13 @@ try {
   assert.match(indexNowKeyFile, /^[a-f0-9]{32}\n?$/, 'The IndexNow key file must contain only its public key.');
   assert.equal(indexNowKeyFile.trim(), indexNowKey, 'The IndexNow key must match its root filename.');
   const sitemap = await readFile(new URL('../public/sitemap.xml', import.meta.url), 'utf8');
-  for (const path of ['/', '/recaptcha.html', '/turnstile.html', '/hcaptcha.html', '/image-text.html', '/llms.txt', '/llms-full.txt']) {
+  for (const path of ['/', '/browser-use-captcha-handoff.html', '/recaptcha.html', '/turnstile.html', '/hcaptcha.html', '/image-text.html', '/llms.txt', '/llms-full.txt']) {
     assert.match(sitemap, new RegExp(`<loc>https://rea-captcha\\.vercel\\.app${path.replace('.', '\\.')}<\\/loc>`));
   }
   const llms = await readFile(new URL('../public/llms.txt', import.meta.url), 'utf8');
   assert.match(llms, /^# rea-captcha$/m);
   assert.match(llms, /https:\/\/github\.com\/masakaai\/rea-captcha/);
+  assert.match(llms, /https:\/\/rea-captcha\.vercel\.app\/browser-use-captcha-handoff\.html/);
   assert.match(llms, /io\.github\.masakaai\/rea-captcha/);
   assert.match(llms, /does not automate unknown third-party production CAPTCHA challenges/);
   const llmsFull = await readFile(new URL('../public/llms-full.txt', import.meta.url), 'utf8');
@@ -74,6 +92,7 @@ try {
   assert.match(llmsFull, /captcha_analyze/);
   assert.match(llmsFull, /captcha_resume/);
   assert.match(llmsFull, /same Playwright\/CDP browser used by the agent/);
+  assert.match(llmsFull, /releases\/download\/v0\.3\.0\/rea_captcha-0\.3\.0-py3-none-any\.whl/);
   assert.match(llmsFull, /automatic third-party production challenge completion (?:is|are) outside scope/);
 
   const socialPreview = Buffer.from(await (await fetch(`${origin}/social-preview.png`)).arrayBuffer());
@@ -86,7 +105,7 @@ try {
   assert.equal(favicon.readUInt32BE(16), 192, 'Favicon must be 192 px wide.');
   assert.equal(favicon.readUInt32BE(20), 192, 'Favicon must be 192 px tall.');
 
-  for (const path of ['/', '/recaptcha.html', '/turnstile.html', '/hcaptcha.html', '/image-text.html', '/demo.js', '/styles.css', '/favicon.png', '/social-preview.svg', '/social-preview.png', '/passed', '/not-a-demo']) {
+  for (const path of ['/', '/browser-use-captcha-handoff.html', '/recaptcha.html', '/turnstile.html', '/hcaptcha.html', '/image-text.html', '/demo.js', '/styles.css', '/favicon.png', '/social-preview.svg', '/social-preview.png', '/passed', '/not-a-demo']) {
     const get = await fetch(`${origin}${path}`);
     await get.arrayBuffer();
     const head = await fetch(`${origin}${path}`, { method: 'HEAD' });

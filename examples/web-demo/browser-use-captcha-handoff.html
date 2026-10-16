@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="A practical Browser Use CAPTCHA handoff pattern: pause the current Agent, keep its browser session, wait for human action, re-read fresh evidence, and resume safely.">
+  <title>Browser Use CAPTCHA handoff: pause, verify, resume</title>
+  <link rel="canonical" href="https://rea-captcha.vercel.app/browser-use-captcha-handoff.html">
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="rea-captcha">
+  <meta property="og:url" content="https://rea-captcha.vercel.app/browser-use-captcha-handoff.html">
+  <meta property="og:title" content="Browser Use CAPTCHA handoff: pause, verify, resume">
+  <meta property="og:description" content="Keep the current Browser Use session, treat human completion as a wake-up signal, and resume only after fresh evidence clears the gate.">
+  <meta property="og:image" content="https://rea-captcha.vercel.app/social-preview.png">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="640">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Browser Use CAPTCHA handoff: pause, verify, resume">
+  <meta name="twitter:description" content="A same-session recovery pattern for Browser Use tasks interrupted by CAPTCHA or another verification gate.">
+  <meta name="twitter:image" content="https://rea-captcha.vercel.app/social-preview.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Browser Use CAPTCHA handoff: pause, verify, resume",
+    "description": "A practical same-session recovery pattern for Browser Use tasks interrupted by CAPTCHA or another verification gate.",
+    "url": "https://rea-captcha.vercel.app/browser-use-captcha-handoff.html",
+    "mainEntityOfPage": "https://rea-captcha.vercel.app/browser-use-captcha-handoff.html",
+    "datePublished": "2026-10-16",
+    "dateModified": "2026-10-16",
+    "author": {
+      "@type": "Organization",
+      "name": "MASAKA AI",
+      "url": "https://github.com/masakaai"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "MASAKA AI",
+      "url": "https://github.com/masakaai"
+    },
+    "about": ["Browser Use", "CAPTCHA handoff", "browser agents", "human in the loop"]
+  }
+  </script>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="guide-page">
+  <main class="guide-shell">
+    <nav class="case-nav">
+      <a class="mini-mark" href="/">REA CAPTCHA</a>
+      <span class="status-pill">Browser Use guide</span>
+    </nav>
+
+    <header class="guide-hero">
+      <p class="eyebrow">same-session recovery</p>
+      <h1>CAPTCHA blocks a Browser Use task.<br><em>Keep the run.</em></h1>
+      <p>A task may already have logged in, navigated several pages, and filled a form when verification appears. Restarting throws that context away. A safer boundary pauses the current Agent, keeps its <code>BrowserSession</code>, waits for authorized human action, and resumes only after fresh page evidence says the gate is gone.</p>
+      <div class="hero-actions">
+        <a class="button" href="#install">install the adapter <span>↓</span></a>
+        <a class="button secondary" href="https://github.com/masakaai/rea-captcha">view source <span>↗</span></a>
+      </div>
+    </header>
+
+    <div class="guide-layout">
+      <aside class="guide-toc" aria-label="On this page">
+        <span>On this page</span>
+        <a href="#failure">The failure mode</a>
+        <a href="#boundary">The recovery boundary</a>
+        <a href="#install">Install and attach</a>
+        <a href="#fresh-evidence">Fresh evidence</a>
+        <a href="#levels">Choose the level</a>
+        <a href="#scope">Scope</a>
+      </aside>
+
+      <article class="guide-article">
+        <section id="failure">
+          <p class="eyebrow">01 / failure mode</p>
+          <h2>A click is not a result.</h2>
+          <p>The hard part is not noticing a widget. It is deciding when the original task may continue. A person returning control, a checkbox animation, or a callback saying “done” can all arrive while the page is still blocked—or after the browser has been replaced.</p>
+          <div class="guide-callout"><strong>Invariant</strong><span>The same task continues only when the current browser session produces a new clear or passed observation.</span></div>
+        </section>
+
+        <section id="boundary">
+          <p class="eyebrow">02 / recovery boundary</p>
+          <h2>Pause. Hand off. Re-read. Resume.</h2>
+          <ol class="guide-flow">
+            <li><b>Detect</b><span>Inspect uncached URL, DOM, frame, text, and runtime evidence before the next agent step.</span></li>
+            <li><b>Pause</b><span>Stop Browser Use from taking another step while leaving its existing browser available.</span></li>
+            <li><b>Hand off</b><span>Notify a person for an unknown or production challenge. Keep the task and browser identity with the request.</span></li>
+            <li><b>Verify</b><span>After the wake-up, re-read the current page. If the browser changed or the gate remains, fail closed.</span></li>
+            <li><b>Resume</b><span>Return control once, only after fresh evidence clears the current challenge.</span></li>
+          </ol>
+        </section>
+
+        <section id="install">
+          <p class="eyebrow">03 / install and attach</p>
+          <h2>Borrow the Agent's session.</h2>
+          <p>Install the version-pinned release wheel with the supported Browser Use adapter:</p>
+          <pre><code>python -m pip install 'rea-captcha[browser-use] @ https://github.com/masakaai/rea-captcha/releases/download/v0.3.0/rea_captcha-0.3.0-py3-none-any.whl'</code></pre>
+          <p>Attach the guard to the Agent that already owns the browser:</p>
+          <pre><code>from browser_use import Agent
+from rea_captcha import ChallengePlugin
+
+agent = Agent(task="Complete the authorized workflow", llm=llm)
+
+async def notify_human(finding, _agent):
+    print(f"Action needed for {finding.kind} at {finding.url}")
+
+challenge = ChallengePlugin(
+    human_handoff=True,
+    timeout=15 * 60,
+    on_handoff=notify_human,
+)
+await challenge.attach(agent)
+
+try:
+    await agent.run()
+finally:
+    await challenge.detach()</code></pre>
+          <p>The plugin borrows the current <code>BrowserSession</code>. It does not launch, replace, or close the browser, and its bounded human wait does not silently turn a timeout into success.</p>
+        </section>
+
+        <section id="fresh-evidence">
+          <p class="eyebrow">04 / fresh evidence</p>
+          <h2>“Done” only wakes the guard.</h2>
+          <p>After human action, the adapter requests a new Browser Use state summary and re-reads the current page before returning. If the detector is unavailable, the observation is malformed, the browser identity changed, or challenge evidence is still active, the task stays paused.</p>
+          <div class="guide-code-line"><span>unsafe</span><code>human_done → resume</code></div>
+          <div class="guide-code-line safe"><span>required</span><code>human_done → re-read the current page → fresh clear evidence → resume</code></div>
+          <p>For an application that needs delayed-callback protection, bind the handoff to the task, tab/session, and challenge generation. A newer handoff makes an older callback stale, and an accepted resume identity is consumed once.</p>
+        </section>
+
+        <section id="levels">
+          <p class="eyebrow">05 / choose the level</p>
+          <h2>Use the smallest contract that is safe.</h2>
+          <div class="guide-options">
+            <div><strong>Python <code>ChallengePlugin</code></strong><p>Best when a person can complete the current Browser Use page and fresh page reinspection is enough. It provides pause, bounded wait, and same-session detection.</p></div>
+            <div><strong>Stateful SDK or MCP controller</strong><p>Use when you need task/tab/generation binding, one-shot resume, an authorized provider-test action, or an explicit server validation boundary.</p></div>
+          </div>
+          <p>CI installs the supported Browser Use dependency and exercises the adapter against real <code>Agent</code> and <code>BrowserSession</code> pause/resume APIs. Review the <a href="https://github.com/masakaai/rea-captcha/blob/main/python/integration_tests/test_browser_use_contract.py">contract test</a> and the <a href="https://github.com/masakaai/rea-captcha/blob/main/docs/browser-use.md">full integration guide</a>.</p>
+        </section>
+
+        <section id="scope">
+          <p class="eyebrow">06 / scope</p>
+          <h2>Recovery, not generic bypass.</h2>
+          <p>Automatic actions are limited to official provider test credentials or explicitly authorized owned origins. Unknown and production third-party challenges remain human work. rea-captcha does not transfer cookies, provide a hosted solver, promise stealth, or treat OCR output as proof that a protected action succeeded.</p>
+          <div class="guide-cta">
+            <div><strong>Keep a Browser Use task alive through verification.</strong><span>Source, tests, examples, and the complete tool contract are public.</span></div>
+            <a class="button" href="https://github.com/masakaai/rea-captcha">open GitHub <span>↗</span></a>
+          </div>
+        </section>
+      </article>
+    </div>
+
+    <footer><span>rea-captcha · masakaai</span><a href="/">live cases and setup →</a></footer>
+  </main>
+</body>
+</html>

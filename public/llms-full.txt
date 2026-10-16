@@ -21,10 +21,10 @@ Review the pinned package version before approving npm's install prompt:
 npx rea-captcha@0.3.0 mcp --stateless
 ```
 
-The Python browser-use adapter is distributed from the matching Git tag rather than PyPI:
+The Python browser-use adapter is distributed as a verified release wheel rather than through PyPI:
 
 ```sh
-python -m pip install 'rea-captcha[browser-use] @ git+https://github.com/masakaai/rea-captcha.git@v0.3.0#subdirectory=python'
+python -m pip install 'rea-captcha[browser-use] @ https://github.com/masakaai/rea-captcha/releases/download/v0.3.0/rea_captcha-0.3.0-py3-none-any.whl'
 ```
 
 ## MCP tools
@@ -53,6 +53,7 @@ These cases demonstrate integration behavior. They do not provide production ant
 
 - Repository: https://github.com/masakaai/rea-captcha
 - Live controlled cases: https://rea-captcha.vercel.app/
+- Browser Use CAPTCHA handoff guide: https://rea-captcha.vercel.app/browser-use-captcha-handoff.html
 - npm: https://www.npmjs.com/package/rea-captcha
 - GitHub release: https://github.com/masakaai/rea-captcha/releases/tag/v0.3.0
 - MCP Registry: https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.masakaai%2Frea-captcha

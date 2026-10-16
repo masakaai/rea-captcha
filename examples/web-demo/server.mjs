@@ -7,6 +7,7 @@ import { fileURLToPath } from 'node:url';
 const root = dirname(fileURLToPath(import.meta.url));
 const files = new Map([
   ['/', 'index.html'],
+  ['/browser-use-captcha-handoff.html', 'browser-use-captcha-handoff.html'],
   ['/recaptcha.html', 'recaptcha.html'],
   ['/turnstile.html', 'turnstile.html'],
   ['/hcaptcha.html', 'hcaptcha.html'],

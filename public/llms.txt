@@ -6,6 +6,7 @@
 
 - Source and setup: https://github.com/masakaai/rea-captcha
 - Controlled live cases: https://rea-captcha.vercel.app/
+- Browser Use CAPTCHA handoff guide: https://rea-captcha.vercel.app/browser-use-captcha-handoff.html
 - npm package: https://www.npmjs.com/package/rea-captcha
 - MCP Registry name: io.github.masakaai/rea-captcha
 - MCP tool reference: https://github.com/masakaai/rea-captcha/blob/main/docs/mcp-tools.md
