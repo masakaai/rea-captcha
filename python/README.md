@@ -9,3 +9,5 @@ python -m pip install 'rea-captcha[browser-use] @ git+https://github.com/masakaa
 ```
 
 For local OCR, replace the extra with `rea-captcha[ocr]`. Keep the Git tag pinned so the Python adapter version stays aligned with the repository release.
+
+See the repository's [Browser Use handoff guide](../docs/browser-use.md) for hook timing, timeout behavior, and the boundary between lightweight page reinspection and the task-scoped stateful controller.

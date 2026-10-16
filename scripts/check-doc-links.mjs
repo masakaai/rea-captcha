@@ -17,11 +17,13 @@ const documents = [
   'MODEL_LICENSES.md',
   'THIRD_PARTY_NOTICES.md',
   'docs/architecture.md',
+  'docs/browser-use.md',
   'docs/cases.md',
   'docs/ecosystem.md',
   'docs/mcp-tools.md',
   'docs/releasing.md',
   'docs/validation.md',
+  'python/README.md',
   'examples/codex/README.md',
   'integrations/hermes/README.md'
 ];

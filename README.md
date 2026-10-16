@@ -98,7 +98,7 @@ challenge = ChallengePlugin(mode="local", human_handoff=True)
 await challenge.attach(agent)
 ```
 
-The plugin borrows the agent's current `BrowserSession`; it does not launch or replace the browser. See the [complete Browser Use example](examples/browser-use/handoff.py).
+The plugin borrows the agent's current `BrowserSession`; it does not launch or replace the browser. See the [Browser Use handoff guide](docs/browser-use.md) and [complete example](examples/browser-use/handoff.py).
 
 ### MCP and coding agents
 
@@ -227,6 +227,7 @@ Local `ddddocr` is an optional primitive only for simple image/text challenges o
 ## Documentation
 
 - [Architecture and trust boundaries](docs/architecture.md)
+- [Browser Use handoff guide](docs/browser-use.md)
 - [Case matrix and fixture rationale](docs/cases.md)
 - [MCP tool catalog](docs/mcp-tools.md)
 - [Validation evidence](docs/validation.md)
